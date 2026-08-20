@@ -209,6 +209,7 @@ function renderCoachHighlights(highlights) {
     lego: 'fa-solid fa-cubes-stacked',
     sparkles: 'fa-solid fa-wand-magic-sparkles',
     users: 'fa-solid fa-people-arrows',
+    dice: 'fa-solid fa-dice',
     palette: 'fa-solid fa-pen-nib'
   };
 
