@@ -213,16 +213,14 @@
       clip-path: polygon(0% 3%, 100% 0%, 98% 95%, 85% 98%, 70% 94%, 55% 99%, 40% 95%, 25% 98%, 10% 94%, 0% 97%);
     }
 
-    /* ==================== DOT VOTING STICKERS ==================== */
+    /* ==================== FLAT DOT VOTING STICKERS ==================== */
     .voting-dot {
       display: inline-block;
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
-      box-shadow: 
-        inset -2px -2px 4px rgba(0, 0, 0, 0.35),
-        inset 1.5px 1.5px 2px rgba(255, 255, 255, 0.5),
-        0 2px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      border: 1.5px solid rgba(255, 255, 255, 0.6);
       position: relative;
       flex-shrink: 0;
       transition: transform 0.15s ease;
@@ -231,16 +229,16 @@
       transform: scale(1.2) !important;
     }
     .voting-dot-red {
-      background: radial-gradient(circle at 35% 35%, #f87171 0%, #ef4444 60%, #b91c1c 100%);
+      background-color: #ef4444;
     }
     .voting-dot-blue {
-      background: radial-gradient(circle at 35% 35%, #60a5fa 0%, #2563eb 60%, #1d4ed8 100%);
+      background-color: #2563eb;
     }
     .voting-dot-green {
-      background: radial-gradient(circle at 35% 35%, #4ade80 0%, #16a34a 60%, #15803d 100%);
+      background-color: #10b981;
     }
     .voting-dot-yellow {
-      background: radial-gradient(circle at 35% 35%, #fde047 0%, #eab308 60%, #a16207 100%);
+      background-color: #f59e0b;
     }
 
     /* ==================== WASHI / MASKING TAPE KEYWORD STRIPS ==================== */
@@ -272,17 +270,17 @@
     /* ==================== KANBAN STATUS STAMPS & BADGES ==================== */
     .kanban-badge-wip {
       position: absolute;
-      top: -10px;
-      right: 14px;
+      top: 10px;
+      right: 12px;
       background: #fef08a;
       color: #854d0e;
-      border: 2px solid #eab308;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-      padding: 0.12rem 0.55rem;
+      border: 1.5px solid #eab308;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      padding: 0.15rem 0.6rem;
       border-radius: 4px;
-      font-size: 0.72rem;
-      letter-spacing: 0.05em;
-      transform: rotate(2.5deg);
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      transform: rotate(3deg);
       z-index: 10;
       pointer-events: none;
     }
@@ -875,21 +873,23 @@
 
           <div class="grid grid-cols-1 gap-4">
             
-          <article class="relative bg-[#fefce8] border border-amber-200 rotate-[-1deg] p-5 pt-6 rounded-lg shadow-sm transition hover:rotate-0 hover:shadow-md print-break-avoid overflow-hidden">
+          <article class="relative bg-[#fefce8] border border-amber-200 rotate-[-1deg] p-5 pt-6 rounded-lg shadow-sm transition hover:rotate-0 hover:shadow-md print-break-avoid">
             <div class="washi-tape-amber no-print" aria-hidden="true"></div>
             
             <span class="kanban-badge-wip font-marker">WIP</span>
 
-            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2 pr-14 sm:pr-16">
               <div>
-                <div class="flex items-center gap-2 flex-wrap pr-16 sm:pr-20">
-                  <h4 class="font-extrabold text-slate-950 text-base sm:text-lg">Politie Nederland</h4>
-                  <span class="font-hand font-bold text-sm px-2 py-0.5 rounded bg-amber-200/90 text-slate-950 shadow-2xs">
+                <h4 class="font-extrabold text-slate-950 text-base sm:text-lg leading-tight">
+                  Politie Nederland
+                </h4>
+                
+                  <p class="text-xs sm:text-sm font-bold text-teal-900 mt-0.5 font-sans">
                     Scrum Master (via Capgemini)
-                  </span>
-                </div>
+                  </p>
+                
               </div>
-              <time class="date-highlight text-xs self-start sm:self-auto mt-1 sm:mt-0">
+              <time class="date-highlight text-xs self-start sm:self-auto mt-1 sm:mt-0 shrink-0">
                 Okt 2025 – Heden
               </time>
             </div>
@@ -913,21 +913,23 @@
             
           </article>
         
-          <article class="relative bg-[#f0fdfa] border border-teal-200 rotate-[1.2deg] p-5 pt-6 rounded-lg shadow-sm transition hover:rotate-0 hover:shadow-md print-break-avoid overflow-hidden">
+          <article class="relative bg-[#f0fdfa] border border-teal-200 rotate-[1.2deg] p-5 pt-6 rounded-lg shadow-sm transition hover:rotate-0 hover:shadow-md print-break-avoid">
             <div class="washi-tape no-print" aria-hidden="true"></div>
             
             <span class="kanban-stamp-done font-marker">DONE</span>
 
-            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2 pr-14 sm:pr-16">
               <div>
-                <div class="flex items-center gap-2 flex-wrap pr-16 sm:pr-20">
-                  <h4 class="font-extrabold text-slate-950 text-base sm:text-lg">ABN AMRO Bank N.V.</h4>
-                  <span class="font-hand font-bold text-sm px-2 py-0.5 rounded bg-amber-200/90 text-slate-950 shadow-2xs">
+                <h4 class="font-extrabold text-slate-950 text-base sm:text-lg leading-tight">
+                  ABN AMRO Bank N.V.
+                </h4>
+                
+                  <p class="text-xs sm:text-sm font-bold text-teal-900 mt-0.5 font-sans">
                     DevOps/Scrum Coach (via Capgemini)
-                  </span>
-                </div>
+                  </p>
+                
               </div>
-              <time class="date-highlight text-xs self-start sm:self-auto mt-1 sm:mt-0">
+              <time class="date-highlight text-xs self-start sm:self-auto mt-1 sm:mt-0 shrink-0">
                 Feb 2023 – Jul 2025
               </time>
             </div>
@@ -951,21 +953,23 @@
             
           </article>
         
-          <article class="relative bg-[#f8fafc] border border-slate-300 rotate-[-0.8deg] p-5 pt-6 rounded-lg shadow-sm transition hover:rotate-0 hover:shadow-md print-break-avoid overflow-hidden">
+          <article class="relative bg-[#f8fafc] border border-slate-300 rotate-[-0.8deg] p-5 pt-6 rounded-lg shadow-sm transition hover:rotate-0 hover:shadow-md print-break-avoid">
             <div class="washi-tape no-print" aria-hidden="true"></div>
             
             <span class="kanban-stamp-done font-marker">DONE</span>
 
-            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2 pr-14 sm:pr-16">
               <div>
-                <div class="flex items-center gap-2 flex-wrap pr-16 sm:pr-20">
-                  <h4 class="font-extrabold text-slate-950 text-base sm:text-lg">UWV</h4>
-                  <span class="font-hand font-bold text-sm px-2 py-0.5 rounded bg-amber-200/90 text-slate-950 shadow-2xs">
+                <h4 class="font-extrabold text-slate-950 text-base sm:text-lg leading-tight">
+                  UWV
+                </h4>
+                
+                  <p class="text-xs sm:text-sm font-bold text-teal-900 mt-0.5 font-sans">
                     Scrum Master bij UWV Klant&Service (via Capgemini)
-                  </span>
-                </div>
+                  </p>
+                
               </div>
-              <time class="date-highlight text-xs self-start sm:self-auto mt-1 sm:mt-0">
+              <time class="date-highlight text-xs self-start sm:self-auto mt-1 sm:mt-0 shrink-0">
                 Jun 2021 – Okt 2022
               </time>
             </div>
@@ -1593,10 +1597,8 @@
   <!-- ==================== FOOTER ==================== -->
   <footer class="no-print mt-12 py-6 border-t border-slate-300 bg-white/50 text-slate-600 text-xs">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
-      <p>© <span id="current-year">2026</span> Jochen Hendriks • Gebaseerd op het open <a href="https://jsonresume.org" target="_blank" class="underline hover:text-slate-900">JSON Resume</a> schema.</p>
-      <p class="flex items-center gap-2">
-        <span class="font-hand text-sm font-bold text-teal-800">Geen cookies, pure code & koffie</span>
-        <span>•</span>
+      <p>© <span id="current-year">2026</span> Jochen Hendriks</p>
+      <p>
         <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" class="text-teal-800 font-bold hover:underline">Naar boven ↑</a>
       </p>
     </div>
