@@ -273,7 +273,7 @@ function renderCoachHighlights(highlights) {
 
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-950">
+          <h2 class="text-2xl sm:text-3xl font-marker tracking-wide text-slate-900">
             Facilitatie & Werkvormen
           </h2>
         </div>
