@@ -17,10 +17,11 @@ function formatDate(dateStr) {
 }
 
 function renderHeaderContact(basics) {
-  const email = basics.email || 'jochen.e.hendriks@gmail.com';
+  const linkedinProfile = (basics.profiles || []).find(p => (p.network || '').toLowerCase().includes('linkedin'));
+  const linkedinUrl = linkedinProfile ? linkedinProfile.url : 'https://www.linkedin.com/in/jochenh';
   return `
-    <a id="btn-contact-nav" href="mailto:${email}" class="sketch-card inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-amber-300 hover:bg-amber-400 text-slate-950 text-xs sm:text-sm font-bold transition">
-      <i class="fa-solid fa-paper-plane text-xs"></i>
+    <a id="btn-contact-nav" href="${linkedinUrl}" target="_blank" rel="noopener noreferrer" class="sketch-card inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-amber-300 hover:bg-amber-400 text-slate-950 text-xs sm:text-sm font-bold transition" title="Neem contact op via LinkedIn">
+      <i class="fa-brands fa-linkedin text-sm text-[#0a66c2]"></i>
       <span>Contact</span>
     </a>
   `;
@@ -30,9 +31,8 @@ function renderPrintHeader(basics) {
   const name = basics.name || 'Jochen Hendriks';
   const label = basics.label || '';
   const summary = basics.summary || '';
-  const email = basics.email || '';
-  const phone = basics.phone || '';
   const locStr = basics.location ? [basics.location.city, basics.location.region, basics.location.countryCode].filter(Boolean).join(', ') : '';
+  const linkedinProfile = (basics.profiles || []).find(p => (p.network || '').toLowerCase().includes('linkedin'));
   const urlDisplay = basics.url ? basics.url.replace(/^https?:\/\//, '') : '';
 
   return `
@@ -44,9 +44,8 @@ function renderPrintHeader(basics) {
           <p class="text-xs text-slate-600 mt-2 max-w-2xl">${summary}</p>
         </div>
         <div class="text-right text-xs space-y-1 text-slate-700 shrink-0 ml-4">
-          <div><i class="fa-solid fa-envelope mr-1.5 text-slate-400"></i>${email}</div>
-          ${phone ? `<div><i class="fa-solid fa-phone mr-1.5 text-slate-400"></i>${phone}</div>` : ''}
           ${locStr ? `<div><i class="fa-solid fa-location-dot mr-1.5 text-slate-400"></i>${locStr}</div>` : ''}
+          ${linkedinProfile ? `<div><i class="fa-brands fa-linkedin mr-1.5 text-slate-400"></i>${linkedinProfile.url.replace(/^https?:\/\//, '')}</div>` : ''}
           ${urlDisplay ? `<div><i class="fa-solid fa-globe mr-1.5 text-slate-400"></i>${urlDisplay}</div>` : ''}
         </div>
       </div>
@@ -140,22 +139,10 @@ function renderHero(basics) {
 
           <div class="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3 text-xs sm:text-sm text-slate-700 font-bold">
             ${locStr ? `
-              <a href="#" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155] hover:bg-slate-50 transition">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155]">
                 <i class="fa-solid fa-location-dot text-rose-500"></i>
                 <span>${locStr}</span>
-              </a>
-            ` : ''}
-            ${email ? `
-              <a href="mailto:${email}" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155] hover:bg-amber-100 transition">
-                <i class="fa-solid fa-envelope text-teal-700"></i>
-                <span>${email}</span>
-              </a>
-            ` : ''}
-            ${phone ? `
-              <a href="tel:${phone.replace(/[^0-9+]/g, '')}" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155] hover:bg-emerald-50 transition">
-                <i class="fa-solid fa-phone text-emerald-600"></i>
-                <span>${phone}</span>
-              </a>
+              </div>
             ` : ''}
             ${profilesHtml}
           </div>
