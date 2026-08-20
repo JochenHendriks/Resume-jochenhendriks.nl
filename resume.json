@@ -4,8 +4,6 @@
     "name": "Jochen Hendriks",
     "label": "Scrum Master bij Capgemini Nederland",
     "image": "profile.jpg",
-    "email": "",
-    "phone": "",
     "url": "https://www.jochenhendriks.nl",
     "summary": "Ervaren Scrum Master met expertise in diverse sectoren. Sterk in het creëren van een transparante cultuur waarin teams continu leren, zich aanpassen en échte waarde leveren. Ik hou van een uitdaging en pak deze met veel positieve energie aan.",
     "location": {
@@ -52,18 +50,15 @@
       "position": "Managing Consultant / Agile Trainer / Senior Consultant",
       "url": "https://www.capgemini.com/nl-nl/",
       "startDate": "2021-05",
-      "endDate": "Present",
-      "summary": "Actief in consultancy, agile transformaties en teamcoaching.",
+      "summary": "Actief in team coaching, agile transformatie en het geven van trainingen",
       "roles": [
         {
           "title": "Managing Consultant",
-          "startDate": "2026-07",
-          "endDate": "Present"
+          "startDate": "2026-07"
         },
         {
           "title": "Agile Trainer",
-          "startDate": "2026-01",
-          "endDate": "Present"
+          "startDate": "2026-01"
         },
         {
           "title": "Senior Consultant",
@@ -76,7 +71,6 @@
           "client": "Politie Nederland",
           "role": "Scrum Master (via Capgemini)",
           "startDate": "2025-10",
-          "endDate": "Present",
           "summary": "Scrum Master via Capgemini bij Politie Nederland in Utrecht.",
           "highlights": [
             "Begeleiden van teams bij wendbaar werken binnen het politiedomein."
@@ -136,7 +130,6 @@
     {
       "name": "Koot & Be Present",
       "position": "Afstudeerproject",
-      "url": "",
       "startDate": "2011-02",
       "endDate": "2011-07",
       "summary": "Afstudeerproject in Amersfoort.",
@@ -145,7 +138,6 @@
     {
       "name": "Plus Magazine",
       "position": "(stagiair) Online Marketing",
-      "url": "",
       "startDate": "2009-08",
       "endDate": "2010-01",
       "summary": "Stage op de afdeling Online Marketing.",
@@ -154,45 +146,67 @@
   ],
   "skills": [
     {
-      "name": "Top Skills",
+      "name": "Liberating Structures",
+      "level": "Advanced",
+      "keywords": [
+        "Facilitatie & Coaching",
+        "1-2-4-All",
+        "Workshop Design",
+        "Teambuilding"
+      ]
+    },
+    {
+      "name": "LEGO® Serious Play®",
+      "level": "Intermediate",
+      "keywords": [
+        "Facilitatie & Coaching",
+        "Serious Gaming",
+        "Storytelling",
+        "3D Modelleren"
+      ]
+    },
+    {
+      "name": "Agile Frameworks",
       "level": "Master",
       "keywords": [
-        "Faciliteren",
-        "Teambuilding",
-        "Serious Gaming"
+        "Agile Frameworks & Praktijken",
+        "Scrum",
+        "SAFe",
+        "DevOps",
+        "Flow & Metrics"
       ]
     }
   ],
   "certificates": [
     {
-      "name": "DASA DevOps Fundamentals",
-      "date": "",
-      "issuer": "DASA (DevOps Agile Skills Association)",
-      "url": ""
-    },
-    {
-      "name": "Professional Scrum Master II (PSM II)",
-      "date": "",
-      "issuer": "Scrum.org",
-      "url": "https://www.scrum.org"
-    },
-    {
       "name": "Certified Facilitator of the Lego® Serious Play® Method",
-      "date": "",
-      "issuer": "Association of Master Trainers in the LEGO® SERIOUS PLAY® Method",
-      "url": ""
+      "date": "2026-05-12",
+      "issuer": "LSP method",
+      "url": "https://www.credential.net/4811d34f-7cb4-4db2-aa3c-881c6cc075ca#acc.ICyVDYgv"
     },
     {
       "name": "Certified SAFe 5 Agilist",
-      "date": "",
+      "date": "2022-12-01",
       "issuer": "Scaled Agile, Inc.",
-      "url": "https://scaledagile.com"
+      "url": "https://www.credly.com/badges/71275a28-d698-4a43-9e39-e9f75d1f3954/public_url"
+    },
+    {
+      "name": "DASA DevOps Fundamentals",
+      "date": "2022-12-01",
+      "issuer": "DASA (DevOps Agile Skills Association)",
+      "url": "https://www.credly.com/badges/26c1c6f9-ec43-4e16-99f3-830106daef07/public_url"
+    },
+    {
+      "name": "Professional Scrum Master II (PSM II)",
+      "date": "2019-07-01",
+      "issuer": "Scrum.org",
+      "url": "https://www.scrum.org/user/359188"
     },
     {
       "name": "Professional Scrum Master I (PSM I)",
-      "date": "",
+      "date": "2016-06-01",
       "issuer": "Scrum.org",
-      "url": "https://www.scrum.org"
+      "url": "https://www.scrum.org/user/359188"
     }
   ],
   "education": [

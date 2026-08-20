@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jochen Hendriks - Scrum Master & Agile Coach | Capgemini Nederland</title>
   <meta name="description" content="Interactief, creatief CV van Jochen Hendriks: Scrum Master & Agile Coach bij Capgemini Nederland. Specialismen: LEGO® Serious Play®, Faciliteren, Teambuilding en Serious Gaming.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
 
-  <!-- Google Fonts: Shantell Sans (Organic Readable Marker Body) + Caveat (Handwritten Coach Notes) + Permanent Marker (Headings) -->
+  <!-- Google Fonts: Shantell Sans + Kalam + Caveat + Permanent Marker -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Permanent+Marker&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Kalam:wght@400;700&family=Permanent+Marker&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
   <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -69,93 +71,77 @@
       background: #ffffff;
       box-shadow: 
         0 1px 3px rgba(0,0,0,0.05),
-        0 10px 25px -5px rgba(0,0,0,0.06),
-        0 8px 10px -6px rgba(0,0,0,0.04);
+        0 10px 25px -5px rgba(0,0,0,0.06);
       border-radius: 8px;
     }
 
-    /* ==================== PURE GRADIENT FOLDED STICKY NOTES (DEV.TO TECHNIQUE) ==================== */
-    .sticky-fold-br {
+    /* ==================== STICKY NOTES (SVG CLIPPATH + CURLED SHADOW) ==================== */
+    /* Some positioning and ratios */
+    .sticky-container {
+      max-width: 270px;
       position: relative;
-      background: linear-gradient(315deg, transparent 1.75em, var(--note-color) 0);
-      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease;
     }
 
-    /* Asymmetric curling lift-shadow under the sticky note */
-    .sticky-fold-br::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      bottom: 8px;
-      right: 6px;
-      width: 75%;
-      height: 25px;
-      background: transparent;
-      box-shadow: 0 14px 18px rgba(0, 0, 0, 0.16);
-      transform: skew(4deg) rotate(3.5deg);
-      pointer-events: none;
+    .sticky-outer {
+      display: flex;
+      padding-top: 92.5925926%;
+      position: relative;
+      width: 100%;
     }
 
-    /* Folded corner flap using pure linear-gradient lighting/shading (NO borders) */
-    .sticky-fold-br::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 1.75em;
-      height: 1.75em;
-      background: linear-gradient(135deg, transparent 50%, rgba(0, 0, 0, 0.18) 50%, var(--note-fold) 54%);
-      border-top-left-radius: 4px;
-      border-bottom-right-radius: 2px;
-      filter: drop-shadow(-2px -2px 3px rgba(0, 0, 0, 0.16));
-      pointer-events: none;
-    }
-
-    .sticky-fold-br:hover {
-      transform: scale(1.025) translateY(-3px) rotate(0deg) !important;
-      z-index: 30;
-    }
-
-    /* Dynamic CSS Variables per Note Color */
-    .sticky-yellow {
-      --note-color: #fef08a;
-      --note-fold: #eab308;
-    }
-
-    .sticky-emerald {
-      --note-color: #d1fae5;
-      --note-fold: #34d399;
-    }
-
-    .sticky-indigo {
-      --note-color: #e0e7ff;
-      --note-fold: #818cf8;
-    }
-
-    .sticky-rose {
-      --note-color: #ffe4e6;
-      --note-fold: #fb7185;
-    }
-
-    /* Top Left Fold (Hero Quote Note) */
-    .sticky-yellow-tl {
-      background: #fef08a;
-      background: linear-gradient(135deg, transparent 24px, #fef08a 24px);
-      filter: drop-shadow(2px 5px 8px rgba(0, 0, 0, 0.1));
-    }
-    .sticky-yellow-tl::before {
-      content: "";
-      position: absolute;
+    .sticky-inner {
+      position: absolute !important;
       top: 0;
       left: 0;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 0 0 24px 24px;
-      border-color: transparent transparent #eab308 transparent;
-      filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.18));
-      border-bottom-right-radius: 4px;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Shadow behind the sticky note */
+    .sticky-inner:before {
+      box-shadow: -2px 2px 15px 0 rgba(0, 0, 0, 0.4);
+      background-color: rgba(0, 0, 0, 0.2);
+      content: '';
+      width: 90%;
+      left: 5px;
+      height: 83%;
+      position: absolute;
+      top: 28%;
       pointer-events: none;
+    }
+
+    /* The sticky note itself */
+    .sticky-content {
+      background: linear-gradient(
+        180deg,
+        rgba(187, 235, 255, 1) 0%,
+        rgba(187, 235, 255, 1) 12%,
+        rgba(170, 220, 241, 1) 75%,
+        rgba(195, 229, 244, 1) 100%
+      );
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+
+      clip-path: url(#stickyClip);
+      -webkit-clip-path: url(#stickyClip);
+    }
+
+    /* Note Color Variations */
+    .sticky-yellow .sticky-content {
+      background: linear-gradient(180deg, #fef9c3 0%, #fef08a 15%, #fde047 75%, #fef08a 100%);
+    }
+    .sticky-emerald .sticky-content {
+      background: linear-gradient(180deg, #ecfdf5 0%, #d1fae5 15%, #a7f3d0 75%, #d1fae5 100%);
+    }
+    .sticky-blue .sticky-content,
+    .sticky-indigo .sticky-content {
+      background: linear-gradient(180deg, rgba(187, 235, 255, 1) 0%, rgba(187, 235, 255, 1) 15%, rgba(170, 220, 241, 1) 75%, rgba(195, 229, 244, 1) 100%);
+    }
+    .sticky-rose .sticky-content {
+      background: linear-gradient(180deg, #fff1f2 0%, #ffe4e6 15%, #fecdd3 75%, #ffe4e6 100%);
     }
 
     /* ==================== TORN PAPER BOTTOM EDGE ==================== */
@@ -219,20 +205,144 @@
       -webkit-box-decoration-break: clone;
     }
 
+    /* Coffee Stain & Shopping List Utility Classes */
+    .coffee-stain {
+      mix-blend-mode: multiply;
+    }
+    .shopping-list-torn {
+      clip-path: polygon(0% 3%, 100% 0%, 98% 95%, 85% 98%, 70% 94%, 55% 99%, 40% 95%, 25% 98%, 10% 94%, 0% 97%);
+    }
+
+    /* ==================== DOT VOTING STICKERS ==================== */
+    .voting-dot {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      box-shadow: 
+        inset -2px -2px 4px rgba(0, 0, 0, 0.35),
+        inset 1.5px 1.5px 2px rgba(255, 255, 255, 0.5),
+        0 2px 5px rgba(0, 0, 0, 0.2);
+      position: relative;
+      flex-shrink: 0;
+      transition: transform 0.15s ease;
+    }
+    .voting-dot:hover {
+      transform: scale(1.2) !important;
+    }
+    .voting-dot-red {
+      background: radial-gradient(circle at 35% 35%, #f87171 0%, #ef4444 60%, #b91c1c 100%);
+    }
+    .voting-dot-blue {
+      background: radial-gradient(circle at 35% 35%, #60a5fa 0%, #2563eb 60%, #1d4ed8 100%);
+    }
+    .voting-dot-green {
+      background: radial-gradient(circle at 35% 35%, #4ade80 0%, #16a34a 60%, #15803d 100%);
+    }
+    .voting-dot-yellow {
+      background: radial-gradient(circle at 35% 35%, #fde047 0%, #eab308 60%, #a16207 100%);
+    }
+
+    /* ==================== WASHI / MASKING TAPE KEYWORD STRIPS ==================== */
+    .washi-keyword {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.35rem 1.1rem;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(1px);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      clip-path: polygon(
+        0% 0%, 3% 20%, 0% 40%, 4% 60%, 0% 80%, 3% 100%,
+        100% 100%, 97% 80%, 100% 60%, 96% 40%, 100% 20%, 97% 0%
+      );
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .washi-keyword:hover {
+      transform: scale(1.08) rotate(0deg) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+      z-index: 10;
+    }
+    .washi-keyword-yellow {
+      background: rgba(254, 240, 138, 0.92);
+    }
+    .washi-keyword-teal {
+      background: rgba(204, 251, 241, 0.92);
+    }
+    /* ==================== KANBAN STATUS STAMPS & BADGES ==================== */
+    .kanban-badge-wip {
+      position: absolute;
+      top: -10px;
+      right: 14px;
+      background: #fef08a;
+      color: #854d0e;
+      border: 2px solid #eab308;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      padding: 0.12rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      transform: rotate(2.5deg);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .kanban-stamp-done {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      color: rgba(220, 38, 38, 0.65);
+      border: 2px dashed rgba(220, 38, 38, 0.65);
+      font-size: 0.8rem;
+      padding: 0.08rem 0.5rem;
+      border-radius: 4px;
+      transform: rotate(-13deg);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      letter-spacing: 0.12em;
+      line-height: 1.1;
+      z-index: 5;
+    }
+
+    /* ==================== ORGANISCHE MARKER TIJDLIJN & PUNAISES ==================== */
+    .timeline-article {
+      position: relative;
+      padding-left: 2.25rem;
+      padding-bottom: 2.5rem;
+    }
+    .timeline-article:last-child {
+      padding-bottom: 0.5rem;
+    }
+    .pushpin-svg {
+      position: absolute;
+      left: -13px;
+      top: 1px;
+      width: 30px;
+      height: 30px;
+      filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.22));
+      pointer-events: none;
+      z-index: 10;
+      user-select: none;
+    }
+
     /* Irregular Red Marker Circle for Key Metric */
     .marker-circle-red {
       position: relative;
       display: inline-block;
       z-index: 1;
+      padding: 0.1rem 0.5rem;
     }
+    .marker-circle-red img,
     .marker-circle-red svg {
       position: absolute;
       top: -30%;
-      left: -20%;
-      width: 140%;
-      height: 160%;
+      left: -8%;
+      width: 148%;
+      height: 165%;
       pointer-events: none;
       z-index: -1;
+      user-select: none;
+      object-fit: fill;
     }
 
     /* Print Specific Clean A4 Styles */
@@ -265,12 +375,34 @@
       }
 
       .flipchart-sheet,
-      .sticky-fold-br {
+      .sticky-content {
         box-shadow: none !important;
         border: 1px solid #cbd5e1 !important;
         background: #ffffff !important;
         padding: 10px !important;
         break-inside: avoid;
+      }
+
+      .sticky-container {
+        max-width: 100% !important;
+      }
+
+      .sticky-outer {
+        padding-top: 0 !important;
+        display: block !important;
+      }
+
+      .sticky-inner {
+        position: relative !important;
+      }
+
+      .sticky-inner:before {
+        display: none !important;
+      }
+
+      .sticky-content {
+        clip-path: none !important;
+        -webkit-clip-path: none !important;
       }
 
       .print-break-avoid {
@@ -307,6 +439,15 @@
 
 <body class="flipchart-bg text-slate-800 antialiased min-h-screen flex flex-col font-sans selection:bg-teal-200">
 
+  <!-- Global SVG ClipPath Defs for Sticky Notes (Shared across all notes) -->
+  <svg width="0" height="0" class="sr-only" aria-hidden="true">
+    <defs>
+      <clipPath id="stickyClip" clipPathUnits="objectBoundingBox">
+        <path d="M 0 0 Q 0 0.69, 0.03 0.96 0.03 0.96, 1 0.96 Q 0.96 0.69, 0.96 0 0.96 0, 0 0" stroke-linejoin="round" stroke-linecap="square"/>
+      </clipPath>
+    </defs>
+  </svg>
+
   <!-- ==================== PRINT ONLY HEADER (A4 PDF) ==================== -->
   <!-- SLOT_PRINT_HEADER -->
 
@@ -314,7 +455,7 @@
   <div class="relative max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
 
     <!-- ==================== LINKERMARGE (STICKY TIJDLIJN MILESTONES) ==================== -->
-    <aside class="no-print hidden xl:block absolute -left-32 top-28 bottom-28 w-28 pointer-events-none z-10">
+    <aside class="no-print hidden xl:block absolute -left-32 top-28 bottom-28 w-28 pointer-events-none z-10" aria-label="Carrière mijlpalen tijdlijn">
       <div class="sticky top-20 space-y-5">
         <!-- Milestone 1 -->
         <div class="bg-[#fef08a] border border-amber-300 p-2.5 rounded shadow-sm text-center rotate-[-2.5deg]">
@@ -340,32 +481,31 @@
     </aside>
 
     <!-- ==================== REALISTIC COFFEE STAIN (BEHIND / OVERLAPPING CONTENT) ==================== -->
-    <div class="no-print absolute -right-20 -top-8 w-72 sm:w-96 pointer-events-none select-none z-0 opacity-85" style="mix-blend-mode: multiply;">
-      <img src="coffee-stain.png" alt="Verse workshop koffie" class="w-full h-auto transform rotate-[12deg]">
+    <div class="no-print absolute -right-20 -top-8 w-72 sm:w-96 pointer-events-none select-none z-0 opacity-85 coffee-stain" aria-hidden="true">
+      <img src="coffee-stain.png" alt="" class="w-full h-auto transform rotate-[12deg]">
     </div>
 
     <!-- ==================== RECHTERMARGE (WERKTAFEL EASTER EGGS) ==================== -->
-    <aside class="no-print hidden xl:block absolute -right-44 top-36 w-44 space-y-6 pointer-events-none z-20">
+    <aside class="no-print hidden xl:block absolute -right-44 top-36 w-44 space-y-6 pointer-events-none z-20" aria-label="Workshop notitieblok">
       <!-- 📋 Afgescheurd Boodschappenlijstje (Groter & Doorgestreept) -->
-      <div class="relative bg-[#fef9c3] p-4 shadow-md border border-amber-300 rotate-6 text-slate-900 rounded-sm"
-           style="clip-path: polygon(0% 3%, 100% 0%, 98% 95%, 85% 98%, 70% 94%, 55% 99%, 40% 95%, 25% 98%, 10% 94%, 0% 97%);">
-        <div class="washi-tape-amber -top-2.5 left-1/2 -translate-x-1/2 w-14 h-4"></div>
+      <div class="relative bg-[#fef9c3] p-4 shadow-md border border-amber-300 rotate-6 text-slate-900 rounded-sm shopping-list-torn">
+        <div class="washi-tape-amber -top-2.5 left-1/2 -translate-x-1/2 w-14 h-4" aria-hidden="true"></div>
         
         <div class="font-hand font-bold text-lg text-slate-950 border-b border-amber-400/80 pb-1 mb-2">
           Workshop prep:
         </div>
 
-        <ul class="font-hand text-base space-y-1.5 font-bold leading-tight">
+        <ul class="font-hand text-base space-y-1.5 font-bold leading-tight text-slate-900">
           <li>
-            <span class="line-through decoration-red-600 decoration-2 text-slate-500">Stiften (zwart & rood)</span>
+            <span class="line-through decoration-red-600 decoration-2">Stiften (zwart & rood)</span>
           </li>
           <li>
-            <span class="line-through decoration-red-600 decoration-2 text-slate-500">Post-its (geel & groen)</span>
+            <span class="line-through decoration-red-600 decoration-2">Post-its (geel & groen)</span>
           </li>
-          <li class="text-slate-900">
+          <li>
             <span>LEGO® sets</span>
           </li>
-          <li class="text-slate-900">
+          <li>
             <span>Extra koffiebonen!</span>
           </li>
         </ul>
@@ -384,7 +524,7 @@
     <!-- ==================== WERKVERLEDEN & OPDRACHTEN (CONSULTANCY ASSIGNMENTS) ==================== -->
     <section id="ervaring" class="space-y-6 relative">
       
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b-2 border-slate-300">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b-2 border-slate-300 relative">
         <div>
           <h2 class="text-2xl sm:text-3xl font-marker tracking-wide text-slate-900">
             Werkervaring & Klantopdrachten
@@ -394,7 +534,7 @@
         <!-- Puur handgeschreven coach notitie met doodle pijl -->
         <div class="no-print hidden sm:flex items-center gap-2 font-hand text-teal-900 -rotate-2 select-none pointer-events-none self-end sm:self-auto pb-0.5">
           <span class="text-base sm:text-lg font-bold">Focus op meetbare flow & team autonomie</span>
-          <svg class="w-8 h-7 text-teal-700 rotate-12 shrink-0" viewBox="0 0 50 40" fill="none">
+          <svg class="w-8 h-7 text-teal-700 rotate-12 shrink-0" viewBox="0 0 50 40" fill="none" aria-hidden="true">
             <path d="M8 8 Q 28 4 36 24 M 26 22 L 36 24 L 36 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
@@ -406,8 +546,8 @@
       </div>
     </section>
 
-    <!-- ==================== EXPERTISE & VAARDIGHEDEN ==================== -->
-    <section id="vaardigheden" class="space-y-6 print-break-avoid">
+    <!-- ==================== EXPERTISE & VAARDIGHEDEN (DOT VOTING) ==================== -->
+    <section id="vaardigheden" class="space-y-4 print-break-avoid">
       <div class="pb-2 border-b-2 border-slate-300 flex items-center justify-between">
         <div>
           <h2 class="text-2xl sm:text-3xl font-marker tracking-wide text-slate-900">
@@ -416,7 +556,7 @@
         </div>
       </div>
 
-      <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div id="skills-container" class="space-y-8 pt-2">
         <!-- SLOT_SKILLS -->
       </div>
     </section>
