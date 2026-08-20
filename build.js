@@ -52,7 +52,7 @@ function renderMetrics(metricsList) {
     rose: 'bg-paper-rose/80 text-rose-950 border-slate-700 shadow-[2px_3px_0px_#334155] rotate-1'
   };
 
-  const cardsHtml = metricsList.map((m, idx) => {
+  const cardsHtml = metricsList.map((m) => {
     const styleClass = colorStyles[m.color] || colorStyles.amber;
     return `
       <div class="${styleClass} p-3.5 border-2 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] flex flex-col justify-center items-center">
@@ -69,14 +69,14 @@ function renderMetrics(metricsList) {
   `;
 }
 
-function renderHero(basics, metrics) {
+function renderHero(basics, uiConfig = {}) {
   const name = basics.name || 'Jochen Hendriks';
   const image = basics.image || 'profile.jpg';
   const label = basics.label || '';
   const summary = basics.summary || '';
   const locStr = basics.location ? [basics.location.city, basics.location.region, basics.location.countryCode].filter(Boolean).join(', ') : '';
   const linkedinProfile = (basics.profiles || []).find(p => (p.network || '').toLowerCase().includes('linkedin'));
-  const linkedinUrl = linkedinProfile ? linkedinProfile.url : 'https://www.linkedin.com/in/jochenh';
+  const linkedinUrl = linkedinProfile ? linkedinProfile.url : 'https://www.linkedin.com/in/jochenh/';
 
   const profilesHtml = (basics.profiles || []).map(p => {
     const net = (p.network || '').toLowerCase();
@@ -107,13 +107,14 @@ function renderHero(basics, metrics) {
     `;
   }).join('');
 
-  const quoteHtml = basics.quote && basics.quote.text ? `
+  const quote = uiConfig.quote;
+  const quoteHtml = quote && quote.text ? `
     <div class="no-print hidden xl:block absolute -right-8 -top-8 w-44 sticky-note bg-paper-yellow p-3 border-2 border-slate-700 rotate-6 shadow-md z-30">
       <div class="washi-tape"></div>
       <div class="font-hand font-bold text-slate-900 text-lg leading-tight">
-        "${basics.quote.text}"
+        "${quote.text}"
       </div>
-      ${basics.quote.author ? `<span class="block text-right font-hand text-xs text-slate-600 mt-1">— ${basics.quote.author}</span>` : ''}
+      ${quote.author ? `<span class="block text-right font-hand text-xs text-slate-600 mt-1">— ${quote.author}</span>` : ''}
     </div>
   ` : '';
 
@@ -142,7 +143,7 @@ function renderHero(basics, metrics) {
             </div>
           </div>
 
-          ${basics.availableForWork ? `
+          ${uiConfig.availableForWork ? `
             <div class="no-print absolute -bottom-6 -right-6 flex items-center text-teal-800 pointer-events-none">
               <svg class="w-10 h-8 text-teal-700 rotate-12" viewBox="0 0 50 40" fill="none">
                 <path d="M8 30 C 20 35 35 25 42 10 M 34 8 L 43 10 L 41 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -189,7 +190,7 @@ function renderHero(basics, metrics) {
         </div>
       </div>
 
-      ${renderMetrics(metrics || [])}
+      ${renderMetrics(uiConfig.metrics || [])}
     </section>
   `;
 }
@@ -449,10 +450,11 @@ function renderLanguages(langList) {
   `).join('');
 }
 
-function build() {
-  console.log('🚀 Starten van statische CV Pre-render build...');
+async function build() {
+  console.log('🚀 Starten van asynchrone statische CV Pre-render build...');
 
   const resumePath = path.join(__dirname, 'resume.json');
+  const uiConfigPath = path.join(__dirname, 'ui-config.json');
   const templatePath = path.join(__dirname, 'template.html');
   const outputPath = path.join(__dirname, 'index.html');
 
@@ -466,29 +468,38 @@ function build() {
     process.exit(1);
   }
 
-  const rawResume = fs.readFileSync(resumePath, 'utf-8');
-  let resumeObj;
   try {
-    resumeObj = JSON.parse(rawResume);
-  } catch (e) {
-    console.error('❌ Fout bij parsen resume.json:', e.message);
+    const readUiPromise = fs.existsSync(uiConfigPath) 
+      ? fs.promises.readFile(uiConfigPath, 'utf-8') 
+      : Promise.resolve('{}');
+
+    const [rawResume, rawUiConfig, templateHtml] = await Promise.all([
+      fs.promises.readFile(resumePath, 'utf-8'),
+      readUiPromise,
+      fs.promises.readFile(templatePath, 'utf-8')
+    ]);
+
+    const resumeObj = JSON.parse(rawResume);
+    const uiConfig = JSON.parse(rawUiConfig);
+
+    let html = templateHtml;
+
+    // Pre-render pure static HTML into all slots combining resume data and UI config
+    html = html.replace('<!-- SLOT_PRINT_HEADER -->', renderPrintHeader(resumeObj.basics || {}));
+    html = html.replace('<!-- SLOT_HERO -->', renderHero(resumeObj.basics || {}, uiConfig));
+    html = html.replace('<!-- SLOT_COACH_HIGHLIGHTS -->', renderCoachHighlights(uiConfig.coachHighlights || []));
+    html = html.replace('<!-- SLOT_WORK -->', renderWork(resumeObj.work || []));
+    html = html.replace('<!-- SLOT_SKILLS -->', renderSkills(resumeObj.skills || []));
+    html = html.replace('<!-- SLOT_CERTIFICATES -->', renderCertificates(resumeObj.certificates || []));
+    html = html.replace('<!-- SLOT_EDUCATION -->', renderEducation(resumeObj.education || []));
+    html = html.replace('<!-- SLOT_LANGUAGES -->', renderLanguages(resumeObj.languages || []));
+
+    await fs.promises.writeFile(outputPath, html, 'utf-8');
+    console.log(`✅ Succes! Data uit resume.json + ui-config.json samengevoegd en 100% statisch geschreven naar ${outputPath}`);
+  } catch (err) {
+    console.error('❌ Fout tijdens build proces:', err.message);
     process.exit(1);
   }
-
-  let html = fs.readFileSync(templatePath, 'utf-8');
-
-  // Pre-render pure static HTML into all slots
-  html = html.replace('<!-- SLOT_PRINT_HEADER -->', renderPrintHeader(resumeObj.basics || {}));
-  html = html.replace('<!-- SLOT_HERO -->', renderHero(resumeObj.basics || {}, resumeObj.metrics || []));
-  html = html.replace('<!-- SLOT_COACH_HIGHLIGHTS -->', renderCoachHighlights(resumeObj.coachHighlights || []));
-  html = html.replace('<!-- SLOT_WORK -->', renderWork(resumeObj.work || []));
-  html = html.replace('<!-- SLOT_SKILLS -->', renderSkills(resumeObj.skills || []));
-  html = html.replace('<!-- SLOT_CERTIFICATES -->', renderCertificates(resumeObj.certificates || []));
-  html = html.replace('<!-- SLOT_EDUCATION -->', renderEducation(resumeObj.education || []));
-  html = html.replace('<!-- SLOT_LANGUAGES -->', renderLanguages(resumeObj.languages || []));
-
-  fs.writeFileSync(outputPath, html, 'utf-8');
-  console.log(`✅ Succes! 100% statisch gepre-renderde HTML geschreven naar ${outputPath}`);
 }
 
 build();

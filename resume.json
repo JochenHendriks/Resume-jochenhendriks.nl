@@ -3,11 +3,6 @@
     "name": "Jochen Hendriks",
     "label": "Scrum Master bij Capgemini Nederland",
     "image": "profile.jpg",
-    "availableForWork": false,
-    "quote": {
-      "text": "Mensen boven processen, echte interactie boven dikke plannen! ✨",
-      "author": "Agile Mindset"
-    },
     "email": "",
     "phone": "",
     "url": "https://www.jochenhendriks.nl",
@@ -50,58 +45,6 @@
       }
     ]
   },
-  "metrics": [
-    {
-      "value": "10+ Jaar",
-      "label": "Scrum Master",
-      "color": "amber"
-    },
-    {
-      "value": "33+",
-      "label": "Liberating Structures",
-      "color": "teal"
-    },
-    {
-      "value": "LSP",
-      "label": "Certified Facilitator of the Lego® Serious Play® Method",
-      "color": "yellow"
-    },
-    {
-      "value": "PSM II",
-      "label": "Professional Scrum Master & DevOps",
-      "color": "rose"
-    }
-  ],
-  "coachHighlights": [
-    {
-      "icon": "lego",
-      "title": "Lego® Serious Play®",
-      "badge": "Certified Facilitator",
-      "color": "amber",
-      "description": "3D-modelleren en storytelling om visies, teamuitdagingen en strategische doelen tastbaar te maken."
-    },
-    {
-      "icon": "sparkles",
-      "title": "Faciliteren",
-      "badge": "Master Facilitator",
-      "color": "emerald",
-      "description": "Sessies en ceremonies interactief, doelgericht en energiek faciliteren voor maximale betrokkenheid."
-    },
-    {
-      "icon": "users",
-      "title": "Teambuilding",
-      "badge": "Scrum & DevOps",
-      "color": "indigo",
-      "description": "Creëren van een veilige, transparante leercultuur waarin teams continu groeien en waarde leveren."
-    },
-    {
-      "icon": "palette",
-      "title": "Serious Gaming",
-      "badge": "Agile Games",
-      "color": "rose",
-      "description": "Spelenderwijs complexe concepten, wendbaarheid en samenwerking in de praktijk ervaren."
-    }
-  ],
   "work": [
     {
       "name": "Capgemini",
