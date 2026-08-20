@@ -57,12 +57,18 @@ function renderMetrics(metricsList) {
     const isFirst = idx === 0;
 
     const valueContent = isFirst ? `
-      <span class="marker-circle-red font-extrabold">
-        ${m.value}
-        <svg viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 25 C 10 10, 45 4, 85 12 C 95 15, 96 35, 75 42 C 45 48, 8 42, 6 24 C 5 15, 25 8, 48 7" stroke="#dc2626" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <div class="flex items-center justify-center gap-1.5">
+        <span class="marker-circle-red font-extrabold">
+          ${m.value}
+          <svg viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 25 C 10 10, 45 4, 85 12 C 95 15, 96 35, 75 42 C 45 48, 8 42, 6 24 C 5 15, 25 8, 48 7" stroke="#dc2626" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <!-- Hand-drawn Sprint / Iteration Cycle Doodle -->
+        <svg class="w-6 h-6 text-blue-600 inline-block shrink-0 -rotate-12" viewBox="0 0 36 36" fill="none" title="Agile Sprint / Iteratie loop">
+          <path d="M9 18 A 9 9 0 1 1 27 18 A 9 9 0 0 1 9 18 M 24 12 L 28 17 L 33 13 M 12 24 L 8 19 L 3 23" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-      </span>
+      </div>
     ` : m.value;
 
     return `
@@ -227,8 +233,19 @@ function renderCoachHighlights(highlights) {
   const cardsHtml = highlights.map((item, idx) => {
     const style = styles[idx % styles.length];
     const faIcon = iconFa[item.icon] || 'fa-solid fa-lightbulb';
+    const isLsp = idx === 0;
+
+    const starDoodle = isLsp ? `
+      <div class="no-print absolute -left-3.5 -top-3.5 text-amber-500 pointer-events-none -rotate-12 z-20" title="Star highlight">
+        <svg class="w-7 h-7" viewBox="0 0 40 40" fill="none">
+          <path d="M20 4 L23 14 L33 15 L25 22 L27 32 L19 26 L11 31 L14 21 L7 14 L17 13 Z" stroke="#d97706" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(251, 191, 36, 0.25)"/>
+        </svg>
+      </div>
+    ` : '';
+
     return `
-      <div class="${style.class} p-5 pb-8 flex flex-col justify-between rounded-sm min-h-[190px]">
+      <div class="${style.class} relative p-5 pb-8 flex flex-col justify-between rounded-sm min-h-[190px]">
+        ${starDoodle}
         <div>
           <div class="flex items-center justify-between gap-2 mb-3">
             <div class="w-10 h-10 rounded-lg ${style.iconBg} flex items-center justify-center text-lg shadow-xs">
@@ -247,6 +264,26 @@ function renderCoachHighlights(highlights) {
 
   return `
     <section id="werkvormen" class="space-y-4 print-break-avoid relative">
+      <!-- Elmo Doodle ("Enough, Let's Move On" / Supergrover) -->
+      <div class="no-print hidden lg:block absolute -left-12 -bottom-6 pointer-events-none -rotate-6 z-20" title="ELMO: Enough, Let's Move On!">
+        <svg class="w-14 h-14" viewBox="0 0 60 60" fill="none">
+          <path d="M12 38 C8 24, 20 12, 32 12 C44 12, 54 22, 50 38 C46 50, 16 50, 12 38 Z" stroke="#dc2626" stroke-width="2.5" fill="rgba(239, 68, 68, 0.15)" stroke-linecap="round"/>
+          <circle cx="24" cy="20" r="5.5" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
+          <circle cx="25" cy="20" r="2" fill="#1e293b"/>
+          <circle cx="36" cy="20" r="5.5" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
+          <circle cx="35" cy="20" r="2" fill="#1e293b"/>
+          <ellipse cx="30" cy="28" rx="4.5" ry="6.5" fill="#ea580c" stroke="#c2410c" stroke-width="2"/>
+          <path d="M18 35 Q30 48 42 35 Z" fill="#1e293b" stroke="#1e293b" stroke-width="2"/>
+        </svg>
+      </div>
+
+      <!-- Hand-drawn curved arrow pointing down to Werkervaring -->
+      <div class="no-print hidden md:block absolute right-8 -bottom-10 pointer-events-none z-20">
+        <svg class="w-16 h-12 text-teal-700" viewBox="0 0 60 45" fill="none">
+          <path d="M10 6 C 35 4, 48 18, 42 36 M 34 30 L 42 37 L 48 28" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
         <div>
           <div class="flex items-center gap-2">
@@ -344,7 +381,18 @@ function renderWork(workList) {
       `).join('');
 
       assignmentsHtml = `
-        <div class="mt-6 pt-5 border-t-2 border-dashed border-slate-200">
+        <div class="mt-6 pt-5 border-t-2 border-dashed border-slate-200 relative">
+          <!-- Gift Box Doodle (Delivering Business Value) -->
+          <div class="no-print hidden sm:block absolute right-2 -top-4 pointer-events-none rotate-6" title="Delivering Value!">
+            <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none">
+              <rect x="8" y="16" width="24" height="18" rx="2" stroke="#0d9488" stroke-width="2" fill="rgba(13, 148, 136, 0.12)"/>
+              <rect x="6" y="12" width="28" height="5" rx="1.5" stroke="#0d9488" stroke-width="2" fill="#ffffff"/>
+              <line x1="20" y1="12" x2="20" y2="34" stroke="#dc2626" stroke-width="2"/>
+              <line x1="8" y1="24" x2="32" y2="24" stroke="#dc2626" stroke-width="1.5"/>
+              <path d="M15 12 C12 6, 17 6, 20 12 C23 6, 28 6, 25 12" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+
           <div class="flex items-center justify-between mb-4">
             <div class="flex items-center gap-2">
               <span class="font-hand font-bold text-lg text-teal-900">
@@ -364,8 +412,21 @@ function renderWork(workList) {
       <p class="text-sm font-bold text-teal-900 mt-0.5">${job.position}</p>
     ` : '';
 
+    const rocketDoodle = job.name === 'Capgemini' ? `
+      <!-- Rocket Doodle (Acceleration & Agile Flow) -->
+      <div class="no-print hidden sm:block absolute -right-4 -top-5 pointer-events-none rotate-12 z-20" title="Accelerating Flow & Continuous Delivery">
+        <svg class="w-10 h-10" viewBox="0 0 50 50" fill="none">
+          <path d="M25 6 C17 12, 16 26, 18 36 L32 36 C34 26, 33 12, 25 6 Z" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(37, 99, 235, 0.08)"/>
+          <circle cx="25" cy="20" r="3.5" stroke="#2563eb" stroke-width="2" fill="#ffffff"/>
+          <path d="M18 28 L10 35 L17 36 M32 28 L40 35 L33 36" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M21 37 Q25 46 25 48 Q26 46 29 37" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    ` : '';
+
     return `
       <div class="flipchart-sheet p-6 sm:p-7 print-break-avoid relative">
+        ${rocketDoodle}
         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
           <div>
             <h3 class="text-xl sm:text-2xl font-extrabold text-slate-950">${job.name || 'Werkgever'}</h3>

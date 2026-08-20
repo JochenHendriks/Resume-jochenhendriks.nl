@@ -186,18 +186,28 @@
       pointer-events: none;
     }
 
-    /* ==================== WASHI TAPE STRIPS ==================== */
+    /* ==================== TORN PAPER BOTTOM EDGE ==================== */
+    .flipchart-torn-bottom {
+      clip-path: polygon(
+        0% 0%, 100% 0%, 100% calc(100% - 12px),
+        98% 100%, 96% calc(100% - 9px), 94% 100%, 92% calc(100% - 6px), 90% calc(100% - 11px), 88% 100%, 86% calc(100% - 8px), 84% calc(100% - 12px), 82% 100%, 80% calc(100% - 10px), 78% calc(100% - 12px), 76% 100%, 74% calc(100% - 6px), 72% calc(100% - 11px), 70% 100%, 68% calc(100% - 9px), 66% calc(100% - 12px), 64% 100%, 62% calc(100% - 7px), 60% calc(100% - 11px), 58% 100%, 56% calc(100% - 8px), 54% calc(100% - 13px), 52% 100%, 50% calc(100% - 10px), 48% calc(100% - 12px), 46% 100%, 44% calc(100% - 7px), 42% calc(100% - 11px), 40% 100%, 38% calc(100% - 9px), 36% calc(100% - 12px), 34% 100%, 32% calc(100% - 8px), 30% calc(100% - 13px), 28% 100%, 26% calc(100% - 10px), 24% calc(100% - 12px), 22% 100%, 20% calc(100% - 7px), 18% calc(100% - 11px), 16% 100%, 14% calc(100% - 9px), 12% calc(100% - 12px), 10% 100%, 8% calc(100% - 8px), 6% calc(100% - 13px), 4% 100%, 2% calc(100% - 10px), 0% calc(100% - 12px)
+      );
+    }
+
+    /* ==================== JAGGED TORN WASHI TAPE ==================== */
     .washi-tape {
       position: absolute;
       top: -12px;
       left: 50%;
       transform: translateX(-50%) rotate(-1.5deg);
-      width: 76px;
+      width: 78px;
       height: 22px;
-      background: rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.78);
       backdrop-filter: blur(1px);
-      border-left: 2px dashed rgba(203, 213, 225, 0.85);
-      border-right: 2px dashed rgba(203, 213, 225, 0.85);
+      clip-path: polygon(
+        0% 0%, 4% 20%, 0% 40%, 5% 60%, 0% 80%, 4% 100%,
+        100% 100%, 96% 80%, 100% 60%, 95% 40%, 100% 20%, 96% 0%
+      );
       box-shadow: 0 1px 2px rgba(0,0,0,0.06);
       pointer-events: none;
       z-index: 20;
@@ -208,11 +218,13 @@
       top: -11px;
       left: 50%;
       transform: translateX(-50%) rotate(2deg);
-      width: 70px;
+      width: 74px;
       height: 22px;
-      background: rgba(254, 240, 138, 0.8);
-      border-left: 2px dashed rgba(234, 179, 8, 0.6);
-      border-right: 2px dashed rgba(234, 179, 8, 0.6);
+      background: rgba(254, 240, 138, 0.82);
+      clip-path: polygon(
+        0% 0%, 5% 25%, 0% 50%, 4% 75%, 0% 100%,
+        100% 100%, 95% 75%, 100% 50%, 96% 25%, 100% 0%
+      );
       box-shadow: 0 1px 2px rgba(0,0,0,0.06);
       pointer-events: none;
       z-index: 20;
@@ -429,12 +441,18 @@
       
       <div class="bg-[#fef3c7] text-amber-950 -rotate-1 border border-amber-300 relative p-4 rounded-lg shadow-sm flex flex-col justify-center items-center hover:scale-105 transition-transform">
         <div class="text-xl sm:text-2xl font-extrabold font-sans py-1">
-      <span class="marker-circle-red font-extrabold">
-        10+ Jaar
-        <svg viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 25 C 10 10, 45 4, 85 12 C 95 15, 96 35, 75 42 C 45 48, 8 42, 6 24 C 5 15, 25 8, 48 7" stroke="#dc2626" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <div class="flex items-center justify-center gap-1.5">
+        <span class="marker-circle-red font-extrabold">
+          10+ Jaar
+          <svg viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 25 C 10 10, 45 4, 85 12 C 95 15, 96 35, 75 42 C 45 48, 8 42, 6 24 C 5 15, 25 8, 48 7" stroke="#dc2626" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <!-- Hand-drawn Sprint / Iteration Cycle Doodle -->
+        <svg class="w-6 h-6 text-blue-600 inline-block shrink-0 -rotate-12" viewBox="0 0 36 36" fill="none" title="Agile Sprint / Iteratie loop">
+          <path d="M9 18 A 9 9 0 1 1 27 18 A 9 9 0 0 1 9 18 M 24 12 L 28 17 L 33 13 M 12 24 L 8 19 L 3 23" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-      </span>
+      </div>
     </div>
         <div class="text-xs font-bold text-slate-800 leading-snug text-center mt-1">Scrum Master</div>
       </div>
@@ -462,6 +480,26 @@
     <!-- ==================== COACHING WERK VORMEN & FACILITATIE ==================== -->
     
     <section id="werkvormen" class="space-y-4 print-break-avoid relative">
+      <!-- Elmo Doodle ("Enough, Let's Move On" / Supergrover) -->
+      <div class="no-print hidden lg:block absolute -left-12 -bottom-6 pointer-events-none -rotate-6 z-20" title="ELMO: Enough, Let's Move On!">
+        <svg class="w-14 h-14" viewBox="0 0 60 60" fill="none">
+          <path d="M12 38 C8 24, 20 12, 32 12 C44 12, 54 22, 50 38 C46 50, 16 50, 12 38 Z" stroke="#dc2626" stroke-width="2.5" fill="rgba(239, 68, 68, 0.15)" stroke-linecap="round"/>
+          <circle cx="24" cy="20" r="5.5" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
+          <circle cx="25" cy="20" r="2" fill="#1e293b"/>
+          <circle cx="36" cy="20" r="5.5" fill="#ffffff" stroke="#1e293b" stroke-width="2"/>
+          <circle cx="35" cy="20" r="2" fill="#1e293b"/>
+          <ellipse cx="30" cy="28" rx="4.5" ry="6.5" fill="#ea580c" stroke="#c2410c" stroke-width="2"/>
+          <path d="M18 35 Q30 48 42 35 Z" fill="#1e293b" stroke="#1e293b" stroke-width="2"/>
+        </svg>
+      </div>
+
+      <!-- Hand-drawn curved arrow pointing down to Werkervaring -->
+      <div class="no-print hidden md:block absolute right-8 -bottom-10 pointer-events-none z-20">
+        <svg class="w-16 h-12 text-teal-700" viewBox="0 0 60 45" fill="none">
+          <path d="M10 6 C 35 4, 48 18, 42 36 M 34 30 L 42 37 L 48 28" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
         <div>
           <div class="flex items-center gap-2">
@@ -483,7 +521,14 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 pt-2">
         
-      <div class="sticky-fold-br sticky-yellow -rotate-1 p-5 pb-8 flex flex-col justify-between rounded-sm min-h-[190px]">
+      <div class="sticky-fold-br sticky-yellow -rotate-1 relative p-5 pb-8 flex flex-col justify-between rounded-sm min-h-[190px]">
+        
+      <div class="no-print absolute -left-3.5 -top-3.5 text-amber-500 pointer-events-none -rotate-12 z-20" title="Star highlight">
+        <svg class="w-7 h-7" viewBox="0 0 40 40" fill="none">
+          <path d="M20 4 L23 14 L33 15 L25 22 L27 32 L19 26 L11 31 L14 21 L7 14 L17 13 Z" stroke="#d97706" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(251, 191, 36, 0.25)"/>
+        </svg>
+      </div>
+    
         <div>
           <div class="flex items-center justify-between gap-2 mb-3">
             <div class="w-10 h-10 rounded-lg bg-amber-200 text-amber-950 flex items-center justify-center text-lg shadow-xs">
@@ -498,7 +543,8 @@
         </div>
       </div>
     
-      <div class="sticky-fold-br sticky-emerald rotate-1 p-5 pb-8 flex flex-col justify-between rounded-sm min-h-[190px]">
+      <div class="sticky-fold-br sticky-emerald rotate-1 relative p-5 pb-8 flex flex-col justify-between rounded-sm min-h-[190px]">
+        
         <div>
           <div class="flex items-center justify-between gap-2 mb-3">
             <div class="w-10 h-10 rounded-lg bg-emerald-200 text-emerald-950 flex items-center justify-center text-lg shadow-xs">
@@ -513,7 +559,8 @@
         </div>
       </div>
     
-      <div class="sticky-fold-br sticky-indigo -rotate-1.5 p-5 pb-8 flex flex-col justify-between rounded-sm min-h-[190px]">
+      <div class="sticky-fold-br sticky-indigo -rotate-1.5 relative p-5 pb-8 flex flex-col justify-between rounded-sm min-h-[190px]">
+        
         <div>
           <div class="flex items-center justify-between gap-2 mb-3">
             <div class="w-10 h-10 rounded-lg bg-indigo-200 text-indigo-950 flex items-center justify-center text-lg shadow-xs">
@@ -528,7 +575,8 @@
         </div>
       </div>
     
-      <div class="sticky-fold-br sticky-rose rotate-1.5 p-5 pb-8 flex flex-col justify-between rounded-sm min-h-[190px]">
+      <div class="sticky-fold-br sticky-rose rotate-1.5 relative p-5 pb-8 flex flex-col justify-between rounded-sm min-h-[190px]">
+        
         <div>
           <div class="flex items-center justify-between gap-2 mb-3">
             <div class="w-10 h-10 rounded-lg bg-rose-200 text-rose-950 flex items-center justify-center text-lg shadow-xs">
@@ -572,6 +620,17 @@
       <div id="work-container" class="space-y-8">
         
       <div class="flipchart-sheet p-6 sm:p-7 print-break-avoid relative">
+        
+      <!-- Rocket Doodle (Acceleration & Agile Flow) -->
+      <div class="no-print hidden sm:block absolute -right-4 -top-5 pointer-events-none rotate-12 z-20" title="Accelerating Flow & Continuous Delivery">
+        <svg class="w-10 h-10" viewBox="0 0 50 50" fill="none">
+          <path d="M25 6 C17 12, 16 26, 18 36 L32 36 C34 26, 33 12, 25 6 Z" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(37, 99, 235, 0.08)"/>
+          <circle cx="25" cy="20" r="3.5" stroke="#2563eb" stroke-width="2" fill="#ffffff"/>
+          <path d="M18 28 L10 35 L17 36 M32 28 L40 35 L33 36" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M21 37 Q25 46 25 48 Q26 46 29 37" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    
         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
           <div>
             <h3 class="text-xl sm:text-2xl font-extrabold text-slate-950">Capgemini</h3>
@@ -624,7 +683,18 @@
         
 
         
-        <div class="mt-6 pt-5 border-t-2 border-dashed border-slate-200">
+        <div class="mt-6 pt-5 border-t-2 border-dashed border-slate-200 relative">
+          <!-- Gift Box Doodle (Delivering Business Value) -->
+          <div class="no-print hidden sm:block absolute right-2 -top-4 pointer-events-none rotate-6" title="Delivering Value!">
+            <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none">
+              <rect x="8" y="16" width="24" height="18" rx="2" stroke="#0d9488" stroke-width="2" fill="rgba(13, 148, 136, 0.12)"/>
+              <rect x="6" y="12" width="28" height="5" rx="1.5" stroke="#0d9488" stroke-width="2" fill="#ffffff"/>
+              <line x1="20" y1="12" x2="20" y2="34" stroke="#dc2626" stroke-width="2"/>
+              <line x1="8" y1="24" x2="32" y2="24" stroke="#dc2626" stroke-width="1.5"/>
+              <path d="M15 12 C12 6, 17 6, 20 12 C23 6, 28 6, 25 12" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+
           <div class="flex items-center justify-between mb-4">
             <div class="flex items-center gap-2">
               <span class="font-hand font-bold text-lg text-teal-900">
@@ -734,6 +804,7 @@
       </div>
     
       <div class="flipchart-sheet p-6 sm:p-7 print-break-avoid relative">
+        
         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
           <div>
             <h3 class="text-xl sm:text-2xl font-extrabold text-slate-950">Intergamma</h3>
@@ -779,6 +850,7 @@
       </div>
     
       <div class="flipchart-sheet p-6 sm:p-7 print-break-avoid relative">
+        
         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
           <div>
             <h3 class="text-xl sm:text-2xl font-extrabold text-slate-950">Hulpstudent.nl</h3>
@@ -802,6 +874,7 @@
       </div>
     
       <div class="flipchart-sheet p-6 sm:p-7 print-break-avoid relative">
+        
         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
           <div>
             <h3 class="text-xl sm:text-2xl font-extrabold text-slate-950">Koot & Be Present</h3>
@@ -825,6 +898,7 @@
       </div>
     
       <div class="flipchart-sheet p-6 sm:p-7 print-break-avoid relative">
+        
         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
           <div>
             <h3 class="text-xl sm:text-2xl font-extrabold text-slate-950">Plus Magazine</h3>
@@ -1048,7 +1122,7 @@
     </div>
 
     <!-- ==================== CALL TO ACTION / BOTTOM WORKSHOP BANNER ==================== -->
-    <section id="cta-contact" class="no-print relative flipchart-sheet p-6 sm:p-8 text-center rotate-[-0.5deg]">
+    <section id="cta-contact" class="no-print relative flipchart-sheet flipchart-torn-bottom p-6 sm:p-8 text-center rotate-[-0.5deg]">
       <div class="washi-tape-amber"></div>
 
       <div class="max-w-xl mx-auto space-y-3">

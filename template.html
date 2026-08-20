@@ -186,18 +186,28 @@
       pointer-events: none;
     }
 
-    /* ==================== WASHI TAPE STRIPS ==================== */
+    /* ==================== TORN PAPER BOTTOM EDGE ==================== */
+    .flipchart-torn-bottom {
+      clip-path: polygon(
+        0% 0%, 100% 0%, 100% calc(100% - 12px),
+        98% 100%, 96% calc(100% - 9px), 94% 100%, 92% calc(100% - 6px), 90% calc(100% - 11px), 88% 100%, 86% calc(100% - 8px), 84% calc(100% - 12px), 82% 100%, 80% calc(100% - 10px), 78% calc(100% - 12px), 76% 100%, 74% calc(100% - 6px), 72% calc(100% - 11px), 70% 100%, 68% calc(100% - 9px), 66% calc(100% - 12px), 64% 100%, 62% calc(100% - 7px), 60% calc(100% - 11px), 58% 100%, 56% calc(100% - 8px), 54% calc(100% - 13px), 52% 100%, 50% calc(100% - 10px), 48% calc(100% - 12px), 46% 100%, 44% calc(100% - 7px), 42% calc(100% - 11px), 40% 100%, 38% calc(100% - 9px), 36% calc(100% - 12px), 34% 100%, 32% calc(100% - 8px), 30% calc(100% - 13px), 28% 100%, 26% calc(100% - 10px), 24% calc(100% - 12px), 22% 100%, 20% calc(100% - 7px), 18% calc(100% - 11px), 16% 100%, 14% calc(100% - 9px), 12% calc(100% - 12px), 10% 100%, 8% calc(100% - 8px), 6% calc(100% - 13px), 4% 100%, 2% calc(100% - 10px), 0% calc(100% - 12px)
+      );
+    }
+
+    /* ==================== JAGGED TORN WASHI TAPE ==================== */
     .washi-tape {
       position: absolute;
       top: -12px;
       left: 50%;
       transform: translateX(-50%) rotate(-1.5deg);
-      width: 76px;
+      width: 78px;
       height: 22px;
-      background: rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.78);
       backdrop-filter: blur(1px);
-      border-left: 2px dashed rgba(203, 213, 225, 0.85);
-      border-right: 2px dashed rgba(203, 213, 225, 0.85);
+      clip-path: polygon(
+        0% 0%, 4% 20%, 0% 40%, 5% 60%, 0% 80%, 4% 100%,
+        100% 100%, 96% 80%, 100% 60%, 95% 40%, 100% 20%, 96% 0%
+      );
       box-shadow: 0 1px 2px rgba(0,0,0,0.06);
       pointer-events: none;
       z-index: 20;
@@ -208,11 +218,13 @@
       top: -11px;
       left: 50%;
       transform: translateX(-50%) rotate(2deg);
-      width: 70px;
+      width: 74px;
       height: 22px;
-      background: rgba(254, 240, 138, 0.8);
-      border-left: 2px dashed rgba(234, 179, 8, 0.6);
-      border-right: 2px dashed rgba(234, 179, 8, 0.6);
+      background: rgba(254, 240, 138, 0.82);
+      clip-path: polygon(
+        0% 0%, 5% 25%, 0% 50%, 4% 75%, 0% 100%,
+        100% 100%, 95% 75%, 100% 50%, 96% 25%, 100% 0%
+      );
       box-shadow: 0 1px 2px rgba(0,0,0,0.06);
       pointer-events: none;
       z-index: 20;
@@ -421,7 +433,7 @@
     </div>
 
     <!-- ==================== CALL TO ACTION / BOTTOM WORKSHOP BANNER ==================== -->
-    <section id="cta-contact" class="no-print relative flipchart-sheet p-6 sm:p-8 text-center rotate-[-0.5deg]">
+    <section id="cta-contact" class="no-print relative flipchart-sheet flipchart-torn-bottom p-6 sm:p-8 text-center rotate-[-0.5deg]">
       <div class="washi-tape-amber"></div>
 
       <div class="max-w-xl mx-auto space-y-3">
