@@ -367,7 +367,7 @@ function renderWork(workList) {
           : '<span class="kanban-stamp-done font-marker">DONE</span>';
 
         return `
-          <article class="relative ${cStyle.bg} border ${cStyle.border} ${cStyle.rot} p-5 pt-6 rounded-lg shadow-sm transition hover:rotate-0 hover:shadow-md print-break-avoid overflow-hidden">
+          <article class="relative ${cStyle.bg} border ${cStyle.border} ${cStyle.rot} p-5 pt-6 rounded-lg shadow-sm transition hover:rotate-0 hover:shadow-md print-break-avoid">
             <div class="${cStyle.tape} no-print" aria-hidden="true"></div>
             
             ${assignmentStatusBadge}
