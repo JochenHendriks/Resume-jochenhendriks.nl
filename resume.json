@@ -1,0 +1,215 @@
+{
+  "basics": {
+    "name": "Jochen Hendriks",
+    "label": "Scrum Master bij Capgemini Nederland",
+    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+    "email": "jochen.e.hendriks@gmail.com",
+    "phone": "",
+    "url": "https://www.jochenhendriks.nl",
+    "summary": "Ervaren Scrum Master met expertise in diverse sectoren. Sterk in het creëren van een transparante cultuur waarin teams continu leren, zich aanpassen en échte waarde leveren. Ik hou van een uitdaging en pak deze met veel positieve energie aan.",
+    "location": {
+      "city": "Amersfoort",
+      "countryCode": "NL",
+      "region": "Utrecht"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "jochenh",
+        "url": "https://www.linkedin.com/in/jochenh"
+      },
+      {
+        "network": "Personal",
+        "username": "jochenhendriks.nl",
+        "url": "https://www.jochenhendriks.nl"
+      }
+    ]
+  },
+  "coachHighlights": [
+    {
+      "icon": "lego",
+      "title": "Lego® Serious Play®",
+      "badge": "Certified Facilitator",
+      "color": "amber",
+      "description": "3D-modelleren en storytelling om visies, teamuitdagingen en strategische doelen tastbaar te maken."
+    },
+    {
+      "icon": "sparkles",
+      "title": "Faciliteren",
+      "badge": "Master Facilitator",
+      "color": "emerald",
+      "description": "Sessies en ceremonies interactief, doelgericht en energiek faciliteren voor maximale betrokkenheid."
+    },
+    {
+      "icon": "users",
+      "title": "Teambuilding",
+      "badge": "Scrum & DevOps",
+      "color": "indigo",
+      "description": "Creëren van een veilige, transparante leercultuur waarin teams continu groeien en waarde leveren."
+    },
+    {
+      "icon": "palette",
+      "title": "Serious Gaming",
+      "badge": "Agile Games",
+      "color": "rose",
+      "description": "Spelenderwijs complexe concepten, wendbaarheid en samenwerking in de praktijk ervaren."
+    }
+  ],
+  "work": [
+    {
+      "name": "Capgemini",
+      "position": "Managing Consultant / Agile Trainer / Senior Consultant",
+      "url": "https://www.capgemini.com/nl-nl/",
+      "startDate": "2021-05",
+      "endDate": "Present",
+      "summary": "Managing Consultant (juli 2026 - heden), Agile Trainer (januari 2026 - heden) en Senior Consultant (mei 2021 - juli 2026) bij Capgemini Nederland in Utrecht.",
+      "highlights": [
+        "Managing consultant (juli 2026 - heden)",
+        "Agile trainer (januari 2026 - heden)",
+        "Senior Consultant (mei 2021 - juli 2026)"
+      ],
+      "assignments": [
+        {
+          "client": "Politie Nederland",
+          "role": "Scrum Master (via Capgemini)",
+          "startDate": "2025-10",
+          "endDate": "Present",
+          "summary": "Scrum Master via Capgemini bij Politie Nederland in Utrecht.",
+          "highlights": [
+            "Begeleiden van teams bij wendbaar werken binnen het politiedomein."
+          ]
+        },
+        {
+          "client": "ABN AMRO Bank N.V.",
+          "role": "DevOps/Scrum Coach (via Capgemini)",
+          "startDate": "2023-02",
+          "endDate": "2025-07",
+          "summary": "DevOps en Scrum coaching via Capgemini bij ABN AMRO Bank N.V.",
+          "highlights": [
+            "Coaching van DevOps- en Scrum-teams naar continue verbetering en hogere leverbetrouwbaarheid."
+          ]
+        },
+        {
+          "client": "UWV",
+          "role": "Scrum Master bij UWV Klant&Service (via Capgemini)",
+          "startDate": "2021-06",
+          "endDate": "2022-10",
+          "summary": "Scrum Master van een team Functioneel Beheerders binnen UWV Klant&Service.",
+          "highlights": [
+            "Scrum Master van een team Functioneel Beheerders"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Intergamma",
+      "position": "Scrum Master & Business analist E-commerce",
+      "url": "https://www.intergamma.nl",
+      "startDate": "2015-11",
+      "endDate": "2021-05",
+      "summary": "Scrum Master (januari 2016 - mei 2021) en Business analist E-commerce (november 2015 - mei 2021) in Leusden, Utrecht.",
+      "highlights": [
+        "Scrum Master (januari 2016 - mei 2021)",
+        "Business analist E-commerce (november 2015 - mei 2021)"
+      ]
+    },
+    {
+      "name": "Hulpstudent.nl",
+      "position": "Digitale Communicatie",
+      "url": "https://www.hulpstudent.nl",
+      "startDate": "2011-07",
+      "endDate": "2015-10",
+      "summary": "Verantwoordelijk voor digitale communicatie in regio Utrecht.",
+      "highlights": []
+    },
+    {
+      "name": "Koot & Be Present",
+      "position": "Afstudeerproject",
+      "url": "",
+      "startDate": "2011-02",
+      "endDate": "2011-07",
+      "summary": "Afstudeerproject in Amersfoort.",
+      "highlights": []
+    },
+    {
+      "name": "Plus Magazine",
+      "position": "(stagiair) Online Marketing",
+      "url": "",
+      "startDate": "2009-08",
+      "endDate": "2010-01",
+      "summary": "Stage op de afdeling Online Marketing.",
+      "highlights": []
+    }
+  ],
+  "skills": [
+    {
+      "name": "Top Skills",
+      "level": "Master",
+      "keywords": [
+        "Faciliteren",
+        "Teambuilding",
+        "Serious Gaming"
+      ]
+    }
+  ],
+  "certificates": [
+    {
+      "name": "DASA DevOps Fundamentals",
+      "date": "",
+      "issuer": "DASA (DevOps Agile Skills Association)",
+      "url": ""
+    },
+    {
+      "name": "Professional Scrum Master II (PSM II)",
+      "date": "",
+      "issuer": "Scrum.org",
+      "url": "https://www.scrum.org"
+    },
+    {
+      "name": "Certified Facilitator of the Lego® Serious Play® Method",
+      "date": "",
+      "issuer": "Association of Master Trainers in the LEGO® SERIOUS PLAY® Method",
+      "url": ""
+    },
+    {
+      "name": "Certified SAFe 5 Agilist",
+      "date": "",
+      "issuer": "Scaled Agile, Inc.",
+      "url": "https://scaledagile.com"
+    },
+    {
+      "name": "Professional Scrum Master I (PSM I)",
+      "date": "",
+      "issuer": "Scrum.org",
+      "url": "https://www.scrum.org"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Hogeschool van Utrecht",
+      "area": "Digitale communicatie",
+      "studyType": "Bachelor of Communication",
+      "startDate": "2007",
+      "endDate": "2011",
+      "courses": []
+    },
+    {
+      "institution": "Hogeschool van Arnhem en Nijmegen",
+      "area": "Commerciele economie",
+      "studyType": "HBO",
+      "startDate": "2006",
+      "endDate": "2007",
+      "courses": []
+    }
+  ],
+  "languages": [
+    {
+      "language": "Engels",
+      "fluency": "Professional Working"
+    },
+    {
+      "language": "Nederlands",
+      "fluency": "Full Professional"
+    }
+  ]
+}
