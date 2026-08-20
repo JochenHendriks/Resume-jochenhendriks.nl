@@ -213,16 +213,14 @@
       clip-path: polygon(0% 3%, 100% 0%, 98% 95%, 85% 98%, 70% 94%, 55% 99%, 40% 95%, 25% 98%, 10% 94%, 0% 97%);
     }
 
-    /* ==================== DOT VOTING STICKERS ==================== */
+    /* ==================== FLAT DOT VOTING STICKERS ==================== */
     .voting-dot {
       display: inline-block;
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
-      box-shadow: 
-        inset -2px -2px 4px rgba(0, 0, 0, 0.35),
-        inset 1.5px 1.5px 2px rgba(255, 255, 255, 0.5),
-        0 2px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      border: 1.5px solid rgba(255, 255, 255, 0.6);
       position: relative;
       flex-shrink: 0;
       transition: transform 0.15s ease;
@@ -231,16 +229,16 @@
       transform: scale(1.2) !important;
     }
     .voting-dot-red {
-      background: radial-gradient(circle at 35% 35%, #f87171 0%, #ef4444 60%, #b91c1c 100%);
+      background-color: #ef4444;
     }
     .voting-dot-blue {
-      background: radial-gradient(circle at 35% 35%, #60a5fa 0%, #2563eb 60%, #1d4ed8 100%);
+      background-color: #2563eb;
     }
     .voting-dot-green {
-      background: radial-gradient(circle at 35% 35%, #4ade80 0%, #16a34a 60%, #15803d 100%);
+      background-color: #10b981;
     }
     .voting-dot-yellow {
-      background: radial-gradient(circle at 35% 35%, #fde047 0%, #eab308 60%, #a16207 100%);
+      background-color: #f59e0b;
     }
 
     /* ==================== WASHI / MASKING TAPE KEYWORD STRIPS ==================== */
