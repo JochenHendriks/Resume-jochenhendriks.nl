@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const MONTH_NAMES = ['Jan', 'Feb', 'Mrt', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
 
@@ -785,6 +786,18 @@ async function build() {
     html = html.replace('<!-- SLOT_LANGUAGES -->', renderLanguages(resumeObj.languages || []));
     html = html.replace('<!-- SLOT_PUBLICATIONS -->', renderPublications(resumeObj.publications || []));
     html = html.replace('<!-- SLOT_INTERESTS -->', renderInterests(resumeObj.interests || []));
+
+    // Compile production-grade minified Tailwind CSS bundle and inject inline
+    console.log('📦 Compileren van standalone Tailwind CSS productiebundle...');
+    const inputCssPath = path.join(__dirname, 'src', 'input.css');
+    let compiledCss = '';
+    try {
+      compiledCss = execSync(`npx tailwindcss -i "${inputCssPath}" --minify`, { encoding: 'utf-8', cwd: __dirname });
+    } catch (e) {
+      console.warn('⚠️ Tailwind compilatie fallback:', e.message);
+    }
+
+    html = html.replace('/* SLOT_TAILWIND_CSS */', compiledCss);
 
     await fs.promises.writeFile(outputPath, html, 'utf-8');
     console.log(`✅ Succes! Flipchart CV samengesteld en 100% statisch geschreven naar ${outputPath}`);
