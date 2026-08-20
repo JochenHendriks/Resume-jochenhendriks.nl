@@ -46,20 +46,27 @@ function renderMetrics(metricsList) {
   if (!metricsList || metricsList.length === 0) return '';
 
   const colorStyles = [
-    { bg: 'bg-paper-amber/90 text-slate-950 border-slate-800 shadow-[3px_4px_0px_#1e293b] -rotate-1.5', magnet: '<div class="magnet magnet-red -top-2.5 left-4 no-print"></div>' },
-    { bg: 'bg-paper-teal/90 text-teal-950 border-slate-800 shadow-[3px_4px_0px_#1e293b] rotate-1.5', magnet: '<div class="magnet magnet-green -top-2.5 right-4 no-print"></div>' },
-    { bg: 'bg-paper-yellow/95 text-amber-950 border-slate-800 shadow-[3px_4px_0px_#1e293b] -rotate-1', magnet: '<div class="magnet magnet-yellow -top-2.5 left-4 no-print"></div>' },
-    { bg: 'bg-paper-rose/90 text-rose-950 border-slate-800 shadow-[3px_4px_0px_#1e293b] rotate-2', magnet: '<div class="magnet magnet-blue -top-2.5 right-4 no-print"></div>' }
+    { bg: 'bg-[#fef3c7] text-amber-950 -rotate-1', border: 'border-amber-300' },
+    { bg: 'bg-[#ccfbf1] text-teal-950 rotate-1', border: 'border-teal-300' },
+    { bg: 'bg-[#fef08a] text-yellow-950 -rotate-1', border: 'border-yellow-300' },
+    { bg: 'bg-[#ffe4e6] text-rose-950 rotate-1.5', border: 'border-rose-300' }
   ];
 
   const cardsHtml = metricsList.map((m, idx) => {
     const style = colorStyles[idx % colorStyles.length];
     const isFirst = idx === 0;
-    const valueContent = isFirst ? `<span class="hand-drawn-circle">${m.value}</span>` : m.value;
+
+    const valueContent = isFirst ? `
+      <span class="marker-circle-red font-extrabold">
+        ${m.value}
+        <svg viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 25 C 10 10, 45 4, 85 12 C 95 15, 96 35, 75 42 C 45 48, 8 42, 6 24 C 5 15, 25 8, 48 7" stroke="#dc2626" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    ` : m.value;
 
     return `
-      <div class="${style.bg} relative p-3.5 border-2 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] flex flex-col justify-center items-center group hover:scale-105 transition-transform">
-        ${style.magnet}
+      <div class="${style.bg} border ${style.border} relative p-4 rounded-lg shadow-sm flex flex-col justify-center items-center hover:scale-105 transition-transform">
         <div class="text-xl sm:text-2xl font-extrabold font-sans py-1">${valueContent}</div>
         <div class="text-xs font-bold text-slate-800 leading-snug text-center mt-1">${m.label}</div>
       </div>
@@ -67,7 +74,7 @@ function renderMetrics(metricsList) {
   }).join('');
 
   return `
-    <div class="no-print mt-8 pt-6 border-t-2 border-dashed border-slate-300 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+    <div class="no-print mt-8 pt-6 border-t-2 border-dashed border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
       ${cardsHtml}
     </div>
   `;
@@ -105,7 +112,7 @@ function renderHero(basics, uiConfig = {}) {
     }
 
     return `
-      <a href="${p.url || '#'}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-800 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2.5px_0px_#1e293b] hover:bg-teal-50 hover:text-teal-900 transition">
+      <a href="${p.url || '#'}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-slate-300 rounded-md shadow-xs hover:bg-teal-50 hover:text-teal-900 transition">
         ${iconHtml}<span>${p.network}</span>
       </a>
     `;
@@ -113,8 +120,7 @@ function renderHero(basics, uiConfig = {}) {
 
   const quote = uiConfig.quote;
   const quoteHtml = quote && quote.text ? `
-    <div class="no-print hidden xl:block absolute -right-8 -top-8 w-48 sticky-note bg-paper-yellow p-3.5 border-2 border-slate-800 rotate-6 shadow-md z-30">
-      <div class="washi-tape-amber"></div>
+    <div class="no-print hidden xl:block absolute -right-6 -top-6 w-48 sticky-yellow-tl p-4 rotate-3 z-30">
       <div class="font-hand font-bold text-slate-900 text-lg leading-tight">
         "${quote.text}"
       </div>
@@ -123,27 +129,26 @@ function renderHero(basics, uiConfig = {}) {
   ` : '';
 
   return `
-    <section id="over-mij" class="relative sketch-card-static p-6 sm:p-8 lg:p-10 print-break-avoid">
-      <div class="magnet magnet-red -top-2.5 left-10 no-print"></div>
-      <div class="magnet magnet-blue -top-2.5 right-10 no-print"></div>
+    <section id="over-mij" class="relative flipchart-sheet p-6 sm:p-8 lg:p-10 print-break-avoid">
+      <div class="washi-tape-amber no-print"></div>
 
       ${quoteHtml}
 
       <div class="flex flex-col md:flex-row items-start md:items-center gap-6 lg:gap-10">
         <div class="relative shrink-0 mx-auto md:mx-0">
-          <div class="relative p-2 bg-white border-2 border-slate-900 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-[4px_5px_0px_#0f172a] rotate-[-2.5deg] hover:rotate-0 transition-transform duration-300">
-            <div class="pushpin no-print"></div>
+          <div class="relative p-2.5 bg-white border border-slate-200 rounded-lg shadow-md rotate-[-2deg] hover:rotate-0 transition-transform duration-300">
+            <div class="washi-tape no-print"></div>
             
-            <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-[220px_20px_240px_25px/20px_240px_25px_220px] overflow-hidden bg-gradient-to-br from-amber-100 via-teal-50 to-slate-200 border border-slate-300 relative group">
+            <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-md overflow-hidden bg-gradient-to-br from-amber-50 via-teal-50 to-slate-100 border border-slate-200 relative group">
               <img 
                 src="${image}" 
                 alt="${name}" 
                 class="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition duration-300"
               />
-              <div class="absolute inset-0 bg-teal-900/10 pointer-events-none"></div>
+              <div class="absolute inset-0 bg-teal-900/5 pointer-events-none"></div>
             </div>
 
-            <div class="text-center pt-1.5 pb-0.5">
+            <div class="text-center pt-2 pb-0.5">
               <span class="font-hand font-bold text-slate-800 text-lg tracking-wide">Jochen ✌️</span>
             </div>
           </div>
@@ -177,17 +182,17 @@ function renderHero(basics, uiConfig = {}) {
 
           <div class="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3 text-xs sm:text-sm text-slate-700 font-bold">
             ${locStr ? `
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-800 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2.5px_0px_#1e293b]">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-slate-300 rounded-md shadow-xs">
                 <i class="fa-solid fa-location-dot text-rose-500"></i>
                 <span>${locStr}</span>
               </div>
             ` : ''}
             ${profilesHtml}
-            <a href="${linkedinUrl}" target="_blank" rel="noopener noreferrer" class="sketch-card inline-flex items-center gap-1.5 px-3.5 py-1 bg-amber-300 hover:bg-amber-400 text-slate-950 transition" title="Neem contact op via LinkedIn">
+            <a href="${linkedinUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-1 bg-amber-300 hover:bg-amber-400 text-slate-950 rounded-md shadow-xs transition" title="Neem contact op via LinkedIn">
               <i class="fa-brands fa-linkedin text-sm text-[#0a66c2]"></i>
               <span>Contact</span>
             </a>
-            <button onclick="window.print()" class="sketch-card no-print inline-flex items-center gap-1.5 px-3.5 py-1 bg-slate-900 hover:bg-teal-800 text-white transition" title="Print of bewaar dit CV als PDF">
+            <button onclick="window.print()" class="no-print inline-flex items-center gap-1.5 px-3.5 py-1 bg-slate-900 hover:bg-teal-800 text-white rounded-md shadow-xs transition" title="Print of bewaar dit CV als PDF">
               <i class="fa-solid fa-print text-amber-400"></i>
               <span>Print CV</span>
             </button>
@@ -203,11 +208,12 @@ function renderHero(basics, uiConfig = {}) {
 function renderCoachHighlights(highlights) {
   if (!highlights || highlights.length === 0) return '';
 
+  // Implemented with the exact pure CSS Folded Corner technique from dev.to
   const styles = [
-    { bg: 'bg-[#fffbeb]', border: 'border-amber-500', fastener: '<div class="magnet magnet-red -top-2.5 left-6 no-print"></div>', iconBg: 'bg-amber-100 text-amber-900', badge: 'bg-amber-200 text-amber-950 border-amber-500', rot: '-rotate-2' },
-    { bg: 'bg-[#f0fdf4]', border: 'border-emerald-500', fastener: '<div class="washi-tape no-print"></div>', iconBg: 'bg-emerald-100 text-emerald-900', badge: 'bg-emerald-200 text-emerald-950 border-emerald-500', rot: 'rotate-1.5' },
-    { bg: 'bg-[#eef2ff]', border: 'border-indigo-500', fastener: '<div class="pushpin no-print"></div>', iconBg: 'bg-indigo-100 text-indigo-900', badge: 'bg-indigo-200 text-indigo-950 border-indigo-500', rot: '-rotate-1.5' },
-    { bg: 'bg-[#fff1f2]', border: 'border-rose-400', fastener: '<div class="magnet magnet-blue -top-2.5 right-6 no-print"></div>', iconBg: 'bg-rose-100 text-rose-900', badge: 'bg-rose-200 text-rose-950 border-rose-500', rot: 'rotate-2' }
+    { class: 'sticky-fold-br sticky-yellow -rotate-1', iconBg: 'bg-amber-200 text-amber-950', badge: 'bg-white/80 text-amber-950 border-amber-300' },
+    { class: 'sticky-fold-br sticky-emerald rotate-1', iconBg: 'bg-emerald-200 text-emerald-950', badge: 'bg-white/80 text-emerald-950 border-emerald-300' },
+    { class: 'sticky-fold-br sticky-indigo -rotate-1.5', iconBg: 'bg-indigo-200 text-indigo-950', badge: 'bg-white/80 text-indigo-950 border-indigo-300' },
+    { class: 'sticky-fold-br sticky-rose rotate-1.5', iconBg: 'bg-rose-200 text-rose-950', badge: 'bg-white/80 text-rose-950 border-rose-300' }
   ];
 
   const iconFa = {
@@ -222,11 +228,10 @@ function renderCoachHighlights(highlights) {
     const style = styles[idx % styles.length];
     const faIcon = iconFa[item.icon] || 'fa-solid fa-lightbulb';
     return `
-      <div class="sticky-note ${style.bg} border-2 ${style.border} p-5 ${style.rot} flex flex-col justify-between relative">
-        ${style.fastener}
+      <div class="${style.class} p-5 pb-8 flex flex-col justify-between rounded-sm min-h-[190px]">
         <div>
           <div class="flex items-center justify-between gap-2 mb-3">
-            <div class="w-10 h-10 rounded-lg ${style.iconBg} border border-slate-700/40 flex items-center justify-center text-lg shadow-xs">
+            <div class="w-10 h-10 rounded-lg ${style.iconBg} flex items-center justify-center text-lg shadow-xs">
               <i class="${faIcon}"></i>
             </div>
             <span class="font-hand font-bold text-sm px-2 py-0.5 border ${style.badge} rounded shadow-2xs">
@@ -256,7 +261,7 @@ function renderCoachHighlights(highlights) {
           </h2>
         </div>
 
-        <div class="no-print font-hand font-bold text-lg sm:text-xl text-slate-700 rotate-[-2deg] bg-amber-100/90 border border-slate-700 px-3 py-1 rounded shadow-xs">
+        <div class="no-print font-hand font-bold text-lg sm:text-xl text-slate-700 rotate-[-1.5deg] bg-amber-100 border border-amber-300 px-3 py-1 rounded shadow-xs">
           💡 "100% betrokkenheid, 0% saaie vergaderingen!"
         </div>
       </div>
@@ -274,7 +279,7 @@ function renderWork(workList) {
   return workList.map(job => {
     const periodStr = `${formatDate(job.startDate)} – ${formatDate(job.endDate)}`;
 
-    // 1. Roles Timeline View (for employers with multiple positions like Capgemini & Intergamma)
+    // 1. Roles Timeline View (Capgemini & Intergamma)
     let rolesTimelineHtml = '';
     if (job.roles && Array.isArray(job.roles) && job.roles.length > 0) {
       rolesTimelineHtml = `
@@ -285,8 +290,8 @@ function renderWork(workList) {
                 <span class="w-2.5 h-2.5 rounded-full bg-teal-800 -ml-[20px] ring-4 ring-white shadow-2xs"></span>
                 <span class="font-bold text-slate-950 text-sm sm:text-base">${r.title}</span>
               </div>
-              <span class="text-xs text-slate-700 font-bold bg-slate-50 px-2 py-0.5 border border-slate-300 rounded self-start sm:self-auto">
-                <i class="fa-regular fa-calendar text-[11px] mr-1 text-slate-500"></i>${formatDate(r.startDate)} – ${formatDate(r.endDate)}
+              <span class="text-xs text-slate-600 font-bold bg-slate-50 px-2 py-0.5 border border-slate-200 rounded self-start sm:self-auto">
+                <i class="fa-regular fa-calendar text-[11px] mr-1 text-slate-400"></i>${formatDate(r.startDate)} – ${formatDate(r.endDate)}
               </span>
             </div>
           `).join('')}
@@ -294,22 +299,22 @@ function renderWork(workList) {
       `;
     }
 
-    // 2. Client Assignments & Detacheringen (e.g. Capgemini)
+    // 2. Client Assignments (Detacheringen)
     let assignmentsHtml = '';
     if (job.assignments && Array.isArray(job.assignments) && job.assignments.length > 0) {
       const itemsHtml = job.assignments.map(assignment => `
-        <div class="sketch-card-subtle bg-slate-50/90 p-4 sm:p-5 transition shadow-xs print-break-avoid">
+        <div class="bg-slate-50/80 p-4 sm:p-5 rounded-lg border border-slate-200 transition shadow-xs print-break-avoid">
           <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
             <div>
               <div class="flex items-center gap-2 flex-wrap">
                 <h5 class="font-bold text-slate-950 text-base sm:text-lg">${assignment.client || 'Klantopdracht'}</h5>
-                <span class="font-hand font-bold text-sm px-2 py-0.5 rounded bg-amber-200 border border-slate-700 text-slate-950 shadow-2xs">
+                <span class="font-hand font-bold text-sm px-2 py-0.5 rounded bg-amber-200 text-slate-950 shadow-2xs">
                   ${assignment.role || 'Consultant'}
                 </span>
               </div>
             </div>
-            <span class="text-xs text-slate-600 font-bold whitespace-nowrap bg-white px-2 py-0.5 border border-slate-300 rounded">
-              <i class="fa-regular fa-calendar text-[11px] mr-1 text-slate-500"></i>${formatDate(assignment.startDate)} – ${formatDate(assignment.endDate)}
+            <span class="text-xs text-slate-600 font-bold whitespace-nowrap bg-white px-2 py-0.5 border border-slate-200 rounded">
+              <i class="fa-regular fa-calendar text-[11px] mr-1 text-slate-400"></i>${formatDate(assignment.startDate)} – ${formatDate(assignment.endDate)}
             </span>
           </div>
 
@@ -329,7 +334,7 @@ function renderWork(workList) {
           ${assignment.keywords && assignment.keywords.length > 0 ? `
             <div class="mt-3.5 pt-3 border-t border-slate-200 flex flex-wrap gap-1.5">
               ${assignment.keywords.map(kw => `
-                <span class="px-2 py-0.5 bg-white border border-slate-400 text-slate-700 rounded text-[11px] font-bold">
+                <span class="px-2 py-0.5 bg-white border border-slate-300 text-slate-700 rounded text-[11px] font-bold">
                   ${kw}
                 </span>
               `).join('')}
@@ -339,7 +344,7 @@ function renderWork(workList) {
       `).join('');
 
       assignmentsHtml = `
-        <div class="mt-6 pt-5 border-t-2 border-dashed border-slate-300">
+        <div class="mt-6 pt-5 border-t-2 border-dashed border-slate-200">
           <div class="flex items-center justify-between mb-4">
             <div class="flex items-center gap-2">
               <span class="font-hand font-bold text-lg text-teal-900">
@@ -348,7 +353,7 @@ function renderWork(workList) {
             </div>
           </div>
 
-          <div class="space-y-4 pl-0 sm:pl-3 sm:border-l-2 sm:border-slate-300">
+          <div class="space-y-4 pl-0 sm:pl-3 sm:border-l-2 sm:border-slate-200">
             ${itemsHtml}
           </div>
         </div>
@@ -360,13 +365,13 @@ function renderWork(workList) {
     ` : '';
 
     return `
-      <div class="sketch-card-static p-6 sm:p-7 print-break-avoid relative">
+      <div class="flipchart-sheet p-6 sm:p-7 print-break-avoid relative">
         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
           <div>
             <h3 class="text-xl sm:text-2xl font-extrabold text-slate-950">${job.name || 'Werkgever'}</h3>
             ${singlePositionHtml}
           </div>
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 border border-slate-700 rounded text-xs font-bold text-slate-900 whitespace-nowrap self-start shadow-2xs">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 border border-amber-300 rounded-md text-xs font-bold text-slate-900 whitespace-nowrap self-start shadow-xs">
             <i class="fa-regular fa-calendar text-slate-600"></i>
             <span>${periodStr}</span>
           </div>
@@ -403,22 +408,22 @@ function renderSkills(skillsList) {
   return skillsList.map((skillGroup, idx) => {
     const icon = iconList[idx % iconList.length];
     const keywordsHtml = (skillGroup.keywords || []).map(kw => `
-      <span class="px-2.5 py-1 bg-slate-50 border border-slate-400 rounded text-xs font-bold text-slate-800 hover:bg-amber-100 transition">
+      <span class="px-2.5 py-1 bg-slate-50 border border-slate-200 rounded-md text-xs font-bold text-slate-800 hover:bg-amber-100 transition">
         ${kw}
       </span>
     `).join('');
 
     return `
-      <div class="sketch-card-subtle bg-white p-5 flex flex-col justify-between">
+      <div class="flipchart-sheet p-5 flex flex-col justify-between">
         <div>
           <div class="flex items-center justify-between mb-3">
             <div class="flex items-center gap-2.5">
-              <div class="w-8 h-8 rounded bg-teal-100 text-teal-900 border border-slate-700 flex items-center justify-center text-sm shadow-2xs">
+              <div class="w-8 h-8 rounded-lg bg-teal-100 text-teal-900 flex items-center justify-center text-sm shadow-xs">
                 <i class="${icon}"></i>
               </div>
               <h3 class="font-bold text-slate-950 text-base">${skillGroup.name}</h3>
             </div>
-            <span class="font-hand font-bold text-sm px-2 py-0.5 rounded bg-amber-100 border border-slate-700 text-slate-900">
+            <span class="font-hand font-bold text-sm px-2.5 py-0.5 rounded bg-amber-100 text-slate-900 border border-amber-200">
               ${skillGroup.level || 'Expert'}
             </span>
           </div>
@@ -435,8 +440,8 @@ function renderCertificates(certs) {
   if (!certs || certs.length === 0) return '';
 
   return certs.map(cert => `
-    <div class="sketch-card-subtle bg-white p-4 flex items-start gap-3">
-      <div class="w-8 h-8 rounded bg-amber-100 text-amber-800 border border-slate-700 flex items-center justify-center shrink-0 mt-0.5 text-sm shadow-2xs">
+    <div class="flipchart-sheet p-4 flex items-start gap-3">
+      <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 mt-0.5 text-sm shadow-xs">
         <i class="fa-solid fa-award"></i>
       </div>
       <div class="min-w-0">
@@ -454,7 +459,7 @@ function renderEducation(eduList) {
   if (!eduList || eduList.length === 0) return '';
 
   return eduList.map(edu => `
-    <div class="sketch-card-subtle bg-white p-4">
+    <div class="flipchart-sheet p-4">
       <div class="flex items-center justify-between">
         <h4 class="font-bold text-slate-950 text-xs sm:text-sm">${edu.studyType || ''} ${edu.area ? '– ' + edu.area : ''}</h4>
         <span class="text-xs text-slate-600 font-bold">${edu.startDate || ''} – ${edu.endDate || ''}</span>
@@ -462,7 +467,7 @@ function renderEducation(eduList) {
       <p class="text-xs font-bold text-teal-900 mt-1">${edu.institution || ''}</p>
       ${edu.courses && edu.courses.length > 0 ? `
         <div class="mt-2 text-[11px] text-slate-600 flex flex-wrap gap-1 font-medium">
-          ${edu.courses.map(c => `<span class="bg-slate-100 border border-slate-300 px-1.5 py-0.5 rounded">${c}</span>`).join('')}
+          ${edu.courses.map(c => `<span class="bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded">${c}</span>`).join('')}
         </div>
       ` : ''}
     </div>
@@ -481,7 +486,7 @@ function renderLanguages(langList) {
 }
 
 async function build() {
-  console.log('🚀 Starten van asynchrone statische CV Pre-render build...');
+  console.log('🚀 Starten van asynchrone statische Flipchart CV Pre-render build...');
 
   const resumePath = path.join(__dirname, 'resume.json');
   const uiConfigPath = path.join(__dirname, 'ui-config.json');
@@ -525,7 +530,7 @@ async function build() {
     html = html.replace('<!-- SLOT_LANGUAGES -->', renderLanguages(resumeObj.languages || []));
 
     await fs.promises.writeFile(outputPath, html, 'utf-8');
-    console.log(`✅ Succes! Data uit resume.json + ui-config.json samengevoegd en 100% statisch geschreven naar ${outputPath}`);
+    console.log(`✅ Succes! Flipchart CV samengesteld en 100% statisch geschreven naar ${outputPath}`);
   } catch (err) {
     console.error('❌ Fout tijdens build proces:', err.message);
     process.exit(1);

@@ -6,10 +6,10 @@
   <title>Jochen Hendriks - Scrum Master & Agile Coach | Capgemini Nederland</title>
   <meta name="description" content="Interactief, creatief CV van Jochen Hendriks: Scrum Master & Agile Coach bij Capgemini Nederland. Specialismen: LEGO® Serious Play®, Faciliteren, Teambuilding en Serious Gaming.">
 
-  <!-- Google Fonts: Plus Jakarta Sans (Body) + Caveat (Handwritten Coach Notes & Markers) -->
+  <!-- Google Fonts: Plus Jakarta Sans (Formal Body) + Caveat (Handwritten Coach Notes) + Permanent Marker (Headings) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Permanent+Marker&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -24,6 +24,7 @@
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
             hand: ['"Caveat"', 'cursive', 'sans-serif'],
+            marker: ['"Permanent Marker"', 'cursive', 'sans-serif'],
           },
           colors: {
             brand: {
@@ -49,151 +50,140 @@
   </script>
 
   <style>
-    /* ==================== WHITEBOARD & WORKSHOP CANVAS TEXTURE ==================== */
-    .workshop-bg {
-      background-color: #f7f6f1;
+    /* ==================== WARM FLIPCHART WORKSHOP PAPER ==================== */
+    .flipchart-bg {
+      background-color: #faf7f2;
       background-image: 
-        /* Subtle dry-erase marker wipe / eraser clouds */
-        radial-gradient(ellipse at 12% 15%, rgba(203, 213, 225, 0.45) 0%, transparent 55%),
-        radial-gradient(ellipse at 88% 30%, rgba(254, 240, 138, 0.25) 0%, transparent 50%),
-        radial-gradient(ellipse at 75% 85%, rgba(204, 251, 241, 0.35) 0%, transparent 60%),
-        radial-gradient(ellipse at 25% 75%, rgba(226, 232, 240, 0.4) 0%, transparent 55%),
-        /* Whiteboard dot grid */
-        radial-gradient(#94a3b8 1.4px, transparent 1.4px);
-      background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 28px 28px;
+        /* Subtle paper fiber warmth */
+        radial-gradient(ellipse at 10% 10%, rgba(254, 243, 199, 0.35) 0%, transparent 60%),
+        radial-gradient(ellipse at 90% 90%, rgba(204, 251, 241, 0.3) 0%, transparent 60%),
+        /* Flipchart light blue/gray grid pattern */
+        linear-gradient(rgba(186, 210, 240, 0.28) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(186, 210, 240, 0.28) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
     }
 
-    /* ==================== 3D MAGNETS & PUSHPINS ==================== */
-    /* 3D Round Glossy Whiteboard Magnet */
-    .magnet {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
+    /* Flipchart Paper Sheet Container */
+    .flipchart-sheet {
+      background: #ffffff;
       box-shadow: 
-        0 3px 5px rgba(0,0,0,0.35),
-        inset 0 2px 3px rgba(255,255,255,0.7),
-        inset 0 -2px 3px rgba(0,0,0,0.45);
-      z-index: 25;
-      pointer-events: none;
-    }
-    .magnet::after {
-      content: '';
-      position: absolute;
-      top: 3px;
-      left: 4px;
-      width: 6px;
-      height: 4px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.85);
-      transform: rotate(-35deg);
-    }
-    .magnet-red { background: radial-gradient(circle at 35% 35%, #ef4444, #991b1b); }
-    .magnet-blue { background: radial-gradient(circle at 35% 35%, #3b82f6, #1e40af); }
-    .magnet-green { background: radial-gradient(circle at 35% 35%, #10b981, #065f46); }
-    .magnet-yellow { background: radial-gradient(circle at 35% 35%, #facc15, #854d0e); }
-
-    /* Pushpin with pin shadow */
-    .pushpin {
-      position: absolute;
-      top: -9px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #f43f5e, #881337);
-      box-shadow: 
-        2px 4px 6px rgba(0,0,0,0.35),
-        inset 0 2px 2px rgba(255,255,255,0.75),
-        inset 0 -2px 3px rgba(0,0,0,0.5);
-      z-index: 25;
-      pointer-events: none;
-    }
-    .pushpin::after {
-      content: '';
-      position: absolute;
-      top: 3px;
-      left: 4px;
-      width: 5px;
-      height: 3px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.9);
-      transform: rotate(-30deg);
+        0 1px 3px rgba(0,0,0,0.05),
+        0 10px 25px -5px rgba(0,0,0,0.06),
+        0 8px 10px -6px rgba(0,0,0,0.04);
+      border-radius: 8px;
     }
 
-    /* ==================== THICK WHITEBOARD MARKER BORDERS ==================== */
-    .sketch-card {
-      background: #ffffff;
-      border: 3px solid #1e293b;
-      border-radius: 255px 18px 225px 16px/18px 225px 16px 255px;
-      box-shadow: 3px 4px 0px #1e293b;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .sketch-card:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 5px 6px 0px #0f766e;
-      border-color: #0f766e;
-    }
-
-    .sketch-card-static {
-      background: #ffffff;
-      border: 3px solid #1e293b;
-      border-radius: 255px 18px 225px 16px/18px 225px 16px 255px;
-      box-shadow: 4px 5px 0px #1e293b;
-    }
-
-    .sketch-card-subtle {
-      background: #ffffff;
-      border: 2px solid #334155;
-      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-      box-shadow: 2.5px 3.5px 0px #334155;
-    }
-
-    .marker-border-teal {
-      border: 3px solid #0f766e !important;
-      box-shadow: 3.5px 4.5px 0px #115e59 !important;
-    }
-
-    /* ==================== REALISTIC CURLED POST-ITS ==================== */
-    .sticky-note {
+    /* ==================== PURE CSS FOLDED STICKY NOTES (DEV.TO TECHNIQUE) ==================== */
+    .sticky-fold-br {
       position: relative;
-      border-radius: 2px 3px 4px 2px;
-      box-shadow: 
-        0 1px 3px rgba(0,0,0,0.06),
-        0 6px 12px -2px rgba(0,0,0,0.12),
-        2px 4px 0px rgba(0,0,0,0.18);
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+      filter: drop-shadow(2px 5px 6px rgba(0, 0, 0, 0.08));
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease;
     }
-    /* 3D curled bottom corner shadows */
-    .sticky-note::after {
-      content: '';
+    .sticky-fold-br:hover {
+      transform: scale(1.025) translateY(-3px) rotate(0deg) !important;
+      filter: drop-shadow(3px 10px 14px rgba(0, 0, 0, 0.14));
+      z-index: 30;
+    }
+
+    /* Yellow Sticky Note */
+    .sticky-yellow {
+      background: #fef08a;
+      background: linear-gradient(-135deg, transparent 26px, #fef08a 26px);
+    }
+    .sticky-yellow::after {
+      content: "";
       position: absolute;
-      bottom: 6px;
-      right: 8px;
-      width: 45%;
-      height: 14px;
-      box-shadow: 0 10px 14px rgba(0, 0, 0, 0.22);
-      transform: rotate(3deg) skew(4deg);
-      z-index: -1;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 26px 26px 0 0;
+      border-color: #eab308 transparent transparent transparent;
+      filter: drop-shadow(-1px -1px 2px rgba(0,0,0,0.18));
+      border-bottom-left-radius: 3px;
       pointer-events: none;
     }
-    .sticky-note::before {
-      content: '';
+
+    /* Emerald / Green Sticky Note */
+    .sticky-emerald {
+      background: #d1fae5;
+      background: linear-gradient(-135deg, transparent 26px, #d1fae5 26px);
+    }
+    .sticky-emerald::after {
+      content: "";
       position: absolute;
-      bottom: 6px;
-      left: 8px;
-      width: 45%;
-      height: 14px;
-      box-shadow: 0 10px 14px rgba(0, 0, 0, 0.16);
-      transform: rotate(-3deg) skew(-4deg);
-      z-index: -1;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 26px 26px 0 0;
+      border-color: #34d399 transparent transparent transparent;
+      filter: drop-shadow(-1px -1px 2px rgba(0,0,0,0.18));
+      border-bottom-left-radius: 3px;
       pointer-events: none;
     }
-    .sticky-note:hover {
-      transform: scale(1.03) translateY(-3px) rotate(0deg) !important;
-      box-shadow: 0 14px 24px -3px rgba(0,0,0,0.2), 3px 6px 0px rgba(0,0,0,0.25) !important;
-      z-index: 35;
+
+    /* Indigo / Blue Sticky Note */
+    .sticky-indigo {
+      background: #e0e7ff;
+      background: linear-gradient(-135deg, transparent 26px, #e0e7ff 26px);
+    }
+    .sticky-indigo::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 26px 26px 0 0;
+      border-color: #818cf8 transparent transparent transparent;
+      filter: drop-shadow(-1px -1px 2px rgba(0,0,0,0.18));
+      border-bottom-left-radius: 3px;
+      pointer-events: none;
+    }
+
+    /* Rose / Pink Sticky Note */
+    .sticky-rose {
+      background: #ffe4e6;
+      background: linear-gradient(-135deg, transparent 26px, #ffe4e6 26px);
+    }
+    .sticky-rose::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 26px 26px 0 0;
+      border-color: #fb7185 transparent transparent transparent;
+      filter: drop-shadow(-1px -1px 2px rgba(0,0,0,0.18));
+      border-bottom-left-radius: 3px;
+      pointer-events: none;
+    }
+
+    /* Top Left Fold (Hero Quote Note) */
+    .sticky-yellow-tl {
+      background: #fef08a;
+      background: linear-gradient(135deg, transparent 24px, #fef08a 24px);
+      filter: drop-shadow(2px 5px 8px rgba(0, 0, 0, 0.1));
+    }
+    .sticky-yellow-tl::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 0 24px 24px;
+      border-color: transparent transparent #eab308 transparent;
+      filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.18));
+      border-bottom-right-radius: 3px;
+      pointer-events: none;
     }
 
     /* ==================== WASHI TAPE STRIPS ==================== */
@@ -202,13 +192,13 @@
       top: -12px;
       left: 50%;
       transform: translateX(-50%) rotate(-1.5deg);
-      width: 72px;
+      width: 76px;
       height: 22px;
-      background: rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.75);
       backdrop-filter: blur(1px);
-      border-left: 2px dashed rgba(148, 163, 184, 0.7);
-      border-right: 2px dashed rgba(148, 163, 184, 0.7);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+      border-left: 2px dashed rgba(203, 213, 225, 0.85);
+      border-right: 2px dashed rgba(203, 213, 225, 0.85);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
       pointer-events: none;
       z-index: 20;
     }
@@ -218,17 +208,17 @@
       top: -11px;
       left: 50%;
       transform: translateX(-50%) rotate(2deg);
-      width: 68px;
-      height: 21px;
-      background: rgba(254, 240, 138, 0.85);
-      border-left: 2px dashed rgba(202, 138, 4, 0.6);
-      border-right: 2px dashed rgba(202, 138, 4, 0.6);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+      width: 70px;
+      height: 22px;
+      background: rgba(254, 240, 138, 0.8);
+      border-left: 2px dashed rgba(234, 179, 8, 0.6);
+      border-right: 2px dashed rgba(234, 179, 8, 0.6);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
       pointer-events: none;
       z-index: 20;
     }
 
-    /* ==================== MARKER ACCENTS & CIRCLES ==================== */
+    /* ==================== MARKER ACCENTS & SVG UNDERLINES ==================== */
     .marker-yellow {
       background: linear-gradient(104deg, rgba(254,240,138,0) 0.5%, rgba(254,240,138,0.95) 2.5%, rgba(254,240,138,0.85) 94%, rgba(254,240,138,0) 98%);
       padding: 0.1em 0.35em;
@@ -245,19 +235,20 @@
       -webkit-box-decoration-break: clone;
     }
 
-    /* Hand-drawn red marker circle around key numbers */
-    .hand-drawn-circle {
+    /* Irregular Red Marker Circle for Key Metric */
+    .marker-circle-red {
       position: relative;
       display: inline-block;
+      z-index: 1;
     }
-    .hand-drawn-circle::after {
-      content: '';
+    .marker-circle-red svg {
       position: absolute;
-      inset: -6px -10px;
-      border: 2.5px solid #ef4444;
-      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-      transform: rotate(-2deg);
+      top: -30%;
+      left: -20%;
+      width: 140%;
+      height: 160%;
       pointer-events: none;
+      z-index: -1;
     }
 
     /* Print Specific Clean A4 Styles */
@@ -274,17 +265,13 @@
         line-height: 1.35;
       }
 
-      .workshop-bg {
+      .flipchart-bg {
         background: #ffffff !important;
       }
 
       .no-print,
-      #web-header,
       .washi-tape,
       .washi-tape-amber,
-      .margin-note,
-      .doodle-svg,
-      #filter-bar,
       #cta-contact {
         display: none !important;
       }
@@ -293,13 +280,12 @@
         display: block !important;
       }
 
-      .sketch-card, .sketch-card-static, .sketch-card-subtle {
-        border: 1px solid #cbd5e1 !important;
-        border-radius: 4px !important;
+      .flipchart-sheet,
+      .sticky-fold-br {
         box-shadow: none !important;
-        padding: 8px 12px !important;
-        margin-bottom: 8px !important;
-        page-break-inside: avoid;
+        border: 1px solid #cbd5e1 !important;
+        background: #ffffff !important;
+        padding: 10px !important;
         break-inside: avoid;
       }
 
@@ -320,12 +306,12 @@
   </style>
 </head>
 
-<body class="workshop-bg text-slate-800 antialiased min-h-screen flex flex-col font-sans selection:bg-teal-200">
+<body class="flipchart-bg text-slate-800 antialiased min-h-screen flex flex-col font-sans selection:bg-teal-200">
 
   <!-- ==================== PRINT ONLY HEADER (A4 PDF) ==================== -->
   <!-- SLOT_PRINT_HEADER -->
 
-  <!-- ==================== MAIN CONTENT CONTAINER ==================== -->
+  <!-- ==================== MAIN FLIPCHART WORKSHOP CANVAS ==================== -->
   <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-12">
 
     <!-- HERO SECTION / ASYMMETRICAL PROFILE CARD -->
@@ -337,7 +323,7 @@
     <!-- ==================== WERKVERLEDEN & OPDRACHTEN (CONSULTANCY ASSIGNMENTS) ==================== -->
     <section id="ervaring" class="space-y-6 relative">
       
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b-2 border-slate-800">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b-2 border-slate-300">
         <div>
           <span class="font-hand font-bold text-lg text-teal-800">#TrackRecord</span>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 flex items-center gap-2">
@@ -346,7 +332,7 @@
           </h2>
         </div>
 
-        <!-- Puur handgeschreven coach notitie met doodle pijl zonder boxy kader -->
+        <!-- Puur handgeschreven coach notitie met doodle pijl -->
         <div class="no-print hidden sm:flex items-center gap-2 font-hand text-teal-900 -rotate-2 select-none pointer-events-none self-end sm:self-auto pb-0.5">
           <span class="text-base sm:text-lg font-bold">✏️ Focus op meetbare flow & team autonomie</span>
           <svg class="w-8 h-7 text-teal-700 rotate-12 shrink-0" viewBox="0 0 50 40" fill="none">
@@ -355,7 +341,7 @@
         </div>
       </div>
 
-      <!-- Experience Timeline / Card Container -->
+      <!-- Experience Timeline Container -->
       <div id="work-container" class="space-y-8">
         <!-- SLOT_WORK -->
       </div>
@@ -363,7 +349,7 @@
 
     <!-- ==================== EXPERTISE & VAARDIGHEDEN ==================== -->
     <section id="vaardigheden" class="space-y-6 print-break-avoid">
-      <div class="pb-2 border-b-2 border-slate-800 flex items-center justify-between">
+      <div class="pb-2 border-b-2 border-slate-300 flex items-center justify-between">
         <div>
           <span class="font-hand font-bold text-lg text-teal-800">#Competenties</span>
           <h2 class="text-2xl font-extrabold text-slate-900 flex items-center gap-2">
@@ -376,7 +362,7 @@
         </span>
       </div>
 
-      <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+      <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <!-- SLOT_SKILLS -->
       </div>
     </section>
@@ -386,7 +372,7 @@
       
       <!-- CERTIFICATEN (2 Cols on large) -->
       <section id="certificaten" class="lg:col-span-2 space-y-4 print-break-avoid">
-        <div class="pb-2 border-b-2 border-slate-800">
+        <div class="pb-2 border-b-2 border-slate-300">
           <span class="font-hand font-bold text-lg text-teal-800">#Accreditaties</span>
           <h2 class="text-2xl font-extrabold text-slate-900 flex items-center gap-2">
             <i class="fa-solid fa-award text-amber-500"></i>
@@ -400,60 +386,60 @@
       </section>
 
       <!-- OPLEIDING & TALEN (1 Col on large) -->
-      <div class="space-y-6 print-break-avoid">
-        <!-- Education -->
-        <section id="opleiding" class="space-y-3">
-          <div class="pb-2 border-b-2 border-slate-800">
-            <h3 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
+      <section id="opleiding-talen" class="space-y-6 print-break-avoid">
+        
+        <!-- Opleiding -->
+        <div class="space-y-3">
+          <div class="pb-2 border-b-2 border-slate-300">
+            <span class="font-hand font-bold text-lg text-teal-800">#Achtergrond</span>
+            <h2 class="text-2xl font-extrabold text-slate-900 flex items-center gap-2">
               <i class="fa-solid fa-graduation-cap text-teal-700"></i>
               Opleiding
-            </h3>
+            </h2>
           </div>
+
           <div id="education-container" class="space-y-3">
             <!-- SLOT_EDUCATION -->
           </div>
-        </section>
+        </div>
 
-        <!-- Languages -->
-        <section id="talen" class="space-y-3">
-          <div class="pb-2 border-b-2 border-slate-800">
-            <h3 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
-              <i class="fa-solid fa-language text-brand-700"></i>
-              Talenkennis
+        <!-- Talen -->
+        <div class="space-y-3">
+          <div class="pb-1 border-b border-slate-300">
+            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-language text-teal-700"></i>
+              Talen
             </h3>
           </div>
-          <div id="languages-container" class="sketch-card-subtle bg-white p-4 space-y-2">
+
+          <div id="languages-container" class="space-y-2">
             <!-- SLOT_LANGUAGES -->
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
     </div>
 
-    <!-- ==================== CALL TO ACTION / INTERACTION FOOTER (WEB-ONLY) ==================== -->
-    <section id="cta-contact" class="no-print sketch-card-static bg-slate-900 text-white p-8 sm:p-10 text-center relative overflow-hidden">
-      <!-- Tape and handwritten doodle note on corner -->
+    <!-- ==================== CALL TO ACTION / BOTTOM WORKSHOP BANNER ==================== -->
+    <section id="cta-contact" class="no-print relative flipchart-sheet p-6 sm:p-8 text-center rotate-[-0.5deg]">
       <div class="washi-tape-amber"></div>
-      
-      <div class="max-w-2xl mx-auto space-y-4 relative z-10">
-        <div class="inline-block px-3 py-1 bg-amber-300 text-slate-950 font-hand font-bold text-lg rounded -rotate-2 border border-slate-900">
-          ☕ Samenwerken of sparren?
-        </div>
-        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
-          Klaar voor meer wendbaarheid, plezier en teamflow?
-        </h2>
-        <p class="text-slate-300 text-sm sm:text-base">
-          Op zoek naar een hands-on Agile Coach, ervaren Scrum Master of facilitator voor een impactvolle LEGO® Serious Play® werksessie? Laten we kennismaken!
+
+      <div class="max-w-xl mx-auto space-y-3">
+        <h3 class="text-xl sm:text-2xl font-extrabold text-slate-950">
+          Klaar om samen échte impact te maken?
+        </h3>
+        <p class="text-sm text-slate-600 font-medium">
+          Laten we kennismaken en ontdekken hoe we jouw teams naar een hoger niveau tillen.
         </p>
 
-        <div class="pt-4 flex flex-wrap items-center justify-center gap-3">
-          <a href="https://www.linkedin.com/in/jochenh" target="_blank" rel="noopener noreferrer" class="sketch-card px-6 py-2.5 bg-amber-300 hover:bg-amber-400 text-slate-950 font-bold transition inline-flex items-center gap-2">
-            <i class="fa-brands fa-linkedin text-lg text-[#0a66c2]"></i>
-            Neem contact op via LinkedIn
+        <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
+          <a href="https://www.linkedin.com/in/jochenh/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-amber-300 hover:bg-amber-400 text-slate-950 font-bold rounded-lg shadow-sm transition">
+            <i class="fa-brands fa-linkedin text-[#0a66c2]"></i>
+            <span>Stuur een bericht via LinkedIn</span>
           </a>
-          <button onclick="window.print()" class="sketch-card px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-bold border-2 border-slate-500 transition inline-flex items-center gap-2">
-            <i class="fa-solid fa-print text-amber-300"></i>
-            Print CV
+          <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 hover:bg-teal-800 text-white font-bold rounded-lg shadow-sm transition">
+            <i class="fa-solid fa-print text-amber-400"></i>
+            <span>Print CV</span>
           </button>
         </div>
       </div>
@@ -462,8 +448,8 @@
   </main>
 
   <!-- ==================== FOOTER ==================== -->
-  <footer class="no-print bg-[#f6f5f1] border-t-2 border-slate-700/80 mt-12 py-6 text-center text-xs text-slate-600 font-medium">
-    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+  <footer class="no-print mt-12 py-6 border-t border-slate-300 bg-white/50 text-slate-600 text-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
       <p>© <span id="current-year">2026</span> Jochen Hendriks • Gebaseerd op het open <a href="https://jsonresume.org" target="_blank" class="underline hover:text-slate-900">JSON Resume</a> schema.</p>
       <p class="flex items-center gap-2">
         <span class="font-hand text-sm font-bold text-teal-800">Geen cookies, pure code & koffie ☕</span>
