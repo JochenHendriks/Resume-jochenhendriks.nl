@@ -85,10 +85,10 @@
       z-index: 30;
     }
 
-    /* Yellow Sticky Note */
+    /* Yellow Sticky Note (Bottom-Right Fold) */
     .sticky-yellow {
       background: #fef08a;
-      background: linear-gradient(-135deg, transparent 26px, #fef08a 26px);
+      background: linear-gradient(315deg, transparent 24px, #fef08a 24px);
     }
     .sticky-yellow::after {
       content: "";
@@ -98,17 +98,17 @@
       width: 0;
       height: 0;
       border-style: solid;
-      border-width: 26px 26px 0 0;
+      border-width: 24px 24px 0 0;
       border-color: #eab308 transparent transparent transparent;
       filter: drop-shadow(-1px -1px 2px rgba(0,0,0,0.18));
-      border-bottom-left-radius: 3px;
+      border-top-left-radius: 4px;
       pointer-events: none;
     }
 
-    /* Emerald / Green Sticky Note */
+    /* Emerald / Green Sticky Note (Bottom-Right Fold) */
     .sticky-emerald {
       background: #d1fae5;
-      background: linear-gradient(-135deg, transparent 26px, #d1fae5 26px);
+      background: linear-gradient(315deg, transparent 24px, #d1fae5 24px);
     }
     .sticky-emerald::after {
       content: "";
@@ -118,17 +118,17 @@
       width: 0;
       height: 0;
       border-style: solid;
-      border-width: 26px 26px 0 0;
+      border-width: 24px 24px 0 0;
       border-color: #34d399 transparent transparent transparent;
       filter: drop-shadow(-1px -1px 2px rgba(0,0,0,0.18));
-      border-bottom-left-radius: 3px;
+      border-top-left-radius: 4px;
       pointer-events: none;
     }
 
-    /* Indigo / Blue Sticky Note */
+    /* Indigo / Blue Sticky Note (Bottom-Right Fold) */
     .sticky-indigo {
       background: #e0e7ff;
-      background: linear-gradient(-135deg, transparent 26px, #e0e7ff 26px);
+      background: linear-gradient(315deg, transparent 24px, #e0e7ff 24px);
     }
     .sticky-indigo::after {
       content: "";
@@ -138,17 +138,17 @@
       width: 0;
       height: 0;
       border-style: solid;
-      border-width: 26px 26px 0 0;
+      border-width: 24px 24px 0 0;
       border-color: #818cf8 transparent transparent transparent;
       filter: drop-shadow(-1px -1px 2px rgba(0,0,0,0.18));
-      border-bottom-left-radius: 3px;
+      border-top-left-radius: 4px;
       pointer-events: none;
     }
 
-    /* Rose / Pink Sticky Note */
+    /* Rose / Pink Sticky Note (Bottom-Right Fold) */
     .sticky-rose {
       background: #ffe4e6;
-      background: linear-gradient(-135deg, transparent 26px, #ffe4e6 26px);
+      background: linear-gradient(315deg, transparent 24px, #ffe4e6 24px);
     }
     .sticky-rose::after {
       content: "";
@@ -158,10 +158,10 @@
       width: 0;
       height: 0;
       border-style: solid;
-      border-width: 26px 26px 0 0;
+      border-width: 24px 24px 0 0;
       border-color: #fb7185 transparent transparent transparent;
       filter: drop-shadow(-1px -1px 2px rgba(0,0,0,0.18));
-      border-bottom-left-radius: 3px;
+      border-top-left-radius: 4px;
       pointer-events: none;
     }
 
@@ -182,7 +182,7 @@
       border-width: 0 0 24px 24px;
       border-color: transparent transparent #eab308 transparent;
       filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.18));
-      border-bottom-right-radius: 3px;
+      border-bottom-right-radius: 4px;
       pointer-events: none;
     }
 
@@ -342,27 +342,27 @@
   <div class="relative max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
 
     <!-- ==================== LINKERMARGE (STICKY TIJDLIJN MILESTONES) ==================== -->
-    <aside class="no-print hidden xl:block absolute -left-28 top-28 bottom-28 w-24 pointer-events-none z-10">
-      <div class="sticky top-20 space-y-6">
+    <aside class="no-print hidden xl:block absolute -left-32 top-28 bottom-28 w-28 pointer-events-none z-10">
+      <div class="sticky top-20 space-y-5">
         <!-- Milestone 1 -->
-        <div class="sticky-yellow p-2.5 rounded shadow-sm text-center rotate-[-3deg]">
-          <div class="font-hand font-bold text-base text-slate-950 leading-tight">2026</div>
-          <div class="text-[10px] font-bold text-slate-700 leading-tight">Managing Consultant</div>
+        <div class="bg-[#fef08a] border border-amber-300 p-2.5 rounded shadow-sm text-center rotate-[-2.5deg]">
+          <div class="font-hand font-bold text-lg text-slate-950 leading-tight">2026</div>
+          <div class="text-[11px] font-bold text-slate-800 leading-tight mt-0.5">Managing Consultant</div>
         </div>
         <!-- Milestone 2 -->
-        <div class="sticky-emerald p-2.5 rounded shadow-sm text-center rotate-[2deg]">
-          <div class="font-hand font-bold text-base text-slate-950 leading-tight">2021</div>
-          <div class="text-[10px] font-bold text-slate-700 leading-tight">Capgemini</div>
+        <div class="bg-[#d1fae5] border border-emerald-300 p-2.5 rounded shadow-sm text-center rotate-[2deg]">
+          <div class="font-hand font-bold text-lg text-slate-950 leading-tight">2021</div>
+          <div class="text-[11px] font-bold text-slate-800 leading-tight mt-0.5">Capgemini</div>
         </div>
         <!-- Milestone 3 -->
-        <div class="sticky-indigo p-2.5 rounded shadow-sm text-center rotate-[-2deg]">
-          <div class="font-hand font-bold text-base text-slate-950 leading-tight">2016</div>
-          <div class="text-[10px] font-bold text-slate-700 leading-tight">Scrum Master Intergamma</div>
+        <div class="bg-[#e0e7ff] border border-indigo-300 p-2.5 rounded shadow-sm text-center rotate-[-2deg]">
+          <div class="font-hand font-bold text-lg text-slate-950 leading-tight">2016</div>
+          <div class="text-[11px] font-bold text-slate-800 leading-tight mt-0.5">Scrum Master Intergamma</div>
         </div>
         <!-- Milestone 4 -->
-        <div class="sticky-rose p-2.5 rounded shadow-sm text-center rotate-[3deg]">
-          <div class="font-hand font-bold text-base text-slate-950 leading-tight">2011</div>
-          <div class="text-[10px] font-bold text-slate-700 leading-tight">HBO Bachelor</div>
+        <div class="bg-[#ffe4e6] border border-rose-300 p-2.5 rounded shadow-sm text-center rotate-[2.5deg]">
+          <div class="font-hand font-bold text-lg text-slate-950 leading-tight">2011</div>
+          <div class="text-[11px] font-bold text-slate-800 leading-tight mt-0.5">HBO Bachelor</div>
         </div>
       </div>
     </aside>
@@ -510,9 +510,6 @@
           <i class="fa-solid fa-newspaper text-teal-700"></i>
           Publicaties & Video's
         </h2>
-        <span class="no-print font-hand font-bold text-base text-slate-600 hidden sm:inline">
-          📰 Kennisdeling in de community
-        </span>
       </div>
 
       <div id="publications-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
@@ -520,16 +517,13 @@
       </div>
     </section>
 
-    <!-- ==================== BRAINSTORM HOEKJE (INTERESSES & HOBBY'S) ==================== -->
+    <!-- ==================== HOBBY'S ==================== -->
     <section id="interesses" class="space-y-4 print-break-avoid relative">
       <div class="pb-2 border-b-2 border-slate-300 flex items-center justify-between">
         <h2 class="text-2xl font-extrabold text-slate-900 flex items-center gap-2">
-          <i class="fa-solid fa-lightbulb text-amber-500"></i>
-          Brainstorm Hoekje & Hobby's
+          <i class="fa-solid fa-gamepad text-amber-500"></i>
+          Hobby's
         </h2>
-        <span class="no-print font-hand font-bold text-base text-teal-800 hidden sm:inline">
-          🎲 Energie, spel & beweging
-        </span>
       </div>
 
       <div id="interests-container" class="pt-2">

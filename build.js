@@ -611,14 +611,19 @@ function renderInterests(interestsList) {
     const angle = idx % 2 === 0 ? '-rotate-1' : 'rotate-1';
     const icon = isGaming ? 'fa-solid fa-gamepad' : 'fa-solid fa-person-running';
     
-    const stickyColors = ['sticky-yellow', 'sticky-emerald', 'sticky-indigo', 'sticky-rose'];
-    const rotations = ['rotate-[-2deg]', 'rotate-[3deg]', 'rotate-[-1.5deg]', 'rotate-[2.5deg]'];
+    const tagStyles = [
+      'bg-[#fef08a] border border-amber-300 text-slate-900',
+      'bg-[#d1fae5] border border-emerald-300 text-slate-900',
+      'bg-[#e0e7ff] border border-indigo-300 text-slate-900',
+      'bg-[#ffe4e6] border border-rose-300 text-slate-900'
+    ];
+    const rotations = ['rotate-[-2deg]', 'rotate-[2.5deg]', 'rotate-[-1.5deg]', 'rotate-[2deg]'];
 
     const tagsHtml = (item.keywords || []).map((kw, kIdx) => {
-      const sColor = stickyColors[kIdx % stickyColors.length];
+      const sStyle = tagStyles[kIdx % tagStyles.length];
       const sRot = rotations[kIdx % rotations.length];
       return `
-        <span class="${sColor} ${sRot} inline-block px-3 py-1.5 rounded text-xs font-extrabold text-slate-900 shadow-xs transition hover:scale-110 hover:rotate-0">
+        <span class="${sStyle} ${sRot} inline-block px-3 py-1 rounded text-xs font-bold shadow-2xs transition hover:scale-105 hover:rotate-0">
           ${kw}
         </span>
       `;
