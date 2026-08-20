@@ -367,33 +367,37 @@
       </div>
     </aside>
 
-    <!-- ==================== RECHTERMARGE (WERKTAFEL EASTER EGGS) ==================== -->
-    <aside class="no-print hidden xl:block absolute -right-36 top-16 w-32 space-y-12 pointer-events-none z-10">
-      <!-- ☕ SVG Coffee Ring Stain -->
-      <div class="relative w-28 h-28 opacity-75 select-none" style="mix-blend-mode: multiply;" title="Verse workshop koffie ☕">
-        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full text-amber-900">
-          <path d="M50 8 C25 8, 8 26, 9 52 C10 76, 28 92, 53 91 C77 90, 93 72, 91 48 C89 24, 73 8, 50 8 Z" stroke="#78350f" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="14 4 28 6 12 3" opacity="0.65"/>
-          <path d="M50 14 C29 14, 15 29, 16 51 C17 71, 32 85, 52 84 C72 83, 86 68, 84 48 C83 28, 69 14, 50 14 Z" stroke="#92400e" stroke-width="2.5" opacity="0.5"/>
-          <circle cx="88" cy="65" r="2.5" fill="#78350f" opacity="0.55"/>
-          <circle cx="92" cy="72" r="1.5" fill="#78350f" opacity="0.45"/>
-          <circle cx="12" cy="38" r="2" fill="#78350f" opacity="0.5"/>
-          <path d="M78 45 Q82 58 79 66" stroke="#78350f" stroke-width="1.8" stroke-linecap="round" opacity="0.45"/>
-        </svg>
-        <span class="font-hand text-[11px] text-amber-950/70 block text-center -mt-6 rotate-[-6deg]">☕ espresso double</span>
-      </div>
+    <!-- ==================== REALISTIC COFFEE STAIN (BEHIND / OVERLAPPING CONTENT) ==================== -->
+    <div class="no-print absolute -right-20 -top-8 w-72 sm:w-96 pointer-events-none select-none z-0 opacity-85" style="mix-blend-mode: multiply;">
+      <img src="coffee-stain.png" alt="Verse workshop koffie" class="w-full h-auto transform rotate-[12deg]">
+    </div>
 
-      <!-- 📋 Afgescheurd Boodschappenlijstje -->
-      <div class="relative bg-[#fef9c3] p-3 shadow-md border border-amber-300/80 rotate-6 text-slate-800 rounded-sm"
-           style="clip-path: polygon(0% 4%, 100% 0%, 98% 95%, 85% 98%, 70% 93%, 55% 99%, 40% 94%, 25% 98%, 10% 94%, 0% 98%);">
-        <div class="washi-tape-amber -top-2.5 left-1/2 -translate-x-1/2 w-12 h-3.5"></div>
-        <div class="font-hand font-bold text-xs text-slate-900 border-b border-amber-300 pb-0.5 mb-1 flex items-center gap-1">
+    <!-- ==================== RECHTERMARGE (WERKTAFEL EASTER EGGS) ==================== -->
+    <aside class="no-print hidden xl:block absolute -right-44 top-36 w-44 space-y-6 pointer-events-none z-20">
+      <!-- 📋 Afgescheurd Boodschappenlijstje (Groter & Doorgestreept) -->
+      <div class="relative bg-[#fef9c3] p-4 shadow-md border border-amber-300 rotate-6 text-slate-900 rounded-sm"
+           style="clip-path: polygon(0% 3%, 100% 0%, 98% 95%, 85% 98%, 70% 94%, 55% 99%, 40% 95%, 25% 98%, 10% 94%, 0% 97%);">
+        <div class="washi-tape-amber -top-2.5 left-1/2 -translate-x-1/2 w-14 h-4"></div>
+        
+        <div class="font-hand font-bold text-base text-slate-950 border-b-2 border-amber-400 pb-1 mb-2 flex items-center justify-between">
           <span>📋 Workshop Prep:</span>
         </div>
-        <ul class="font-hand text-[11px] text-slate-700 space-y-0.5 font-bold">
-          <li>✓ Stiften (zwart & rood)</li>
-          <li>✓ Post-its (geel & groen)</li>
-          <li>✓ LEGO® Serious Play®</li>
-          <li>✓ Extra koffiebonen! ☕</li>
+
+        <ul class="font-hand text-sm space-y-1.5 font-bold">
+          <li class="relative">
+            <span class="line-through decoration-red-600 decoration-2 text-slate-500">Stiften (zwart & rood)</span>
+            <span class="text-xs text-red-600 ml-1">✓</span>
+          </li>
+          <li class="relative">
+            <span class="line-through decoration-red-600 decoration-2 text-slate-500">Post-its (geel & groen)</span>
+            <span class="text-xs text-red-600 ml-1">✓</span>
+          </li>
+          <li class="text-slate-900 flex items-center gap-1 text-base font-extrabold text-teal-900">
+            <span>➜ LEGO® sets</span>
+          </li>
+          <li class="text-slate-900 flex items-center gap-1 text-base font-extrabold text-amber-900">
+            <span>➜ Extra koffie! ☕</span>
+          </li>
         </ul>
       </div>
     </aside>
