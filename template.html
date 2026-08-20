@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jochen Hendriks - Senior IT Consultant, Scrum Master & Agile Coach</title>
-  <meta name="description" content="Interactief, creatief CV van Jochen Hendriks: Senior IT Consultant, Scrum Master en Agile Coach. Specialismen: LEGO® Serious Play®, Liberating Structures en Deep Democracy.">
+  <title>Jochen Hendriks - Scrum Master & Agile Coach | Capgemini Nederland</title>
+  <meta name="description" content="Interactief, creatief CV van Jochen Hendriks: Scrum Master & Agile Coach bij Capgemini Nederland. Specialismen: LEGO® Serious Play®, Faciliteren, Teambuilding en Serious Gaming.">
 
   <!-- Google Fonts: Plus Jakarta Sans (Body) + Caveat (Handwritten Coach Notes & Markers) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -173,7 +173,6 @@
         background: #ffffff !important;
       }
 
-      /* Hide web-only doodles, tape, floating notes & navbar */
       .no-print,
       #web-header,
       .washi-tape,
@@ -189,7 +188,6 @@
         display: block !important;
       }
 
-      /* Remove heavy borders and drop-shadows for ink-friendly print */
       .sketch-card, .sketch-card-static, .sketch-card-subtle {
         border: 1px solid #cbd5e1 !important;
         border-radius: 4px !important;
@@ -263,177 +261,22 @@
           <span class="hidden sm:inline">PDF</span> Export
         </button>
 
-        <a id="btn-contact-nav" href="mailto:jochen.e.hendriks@gmail.com" class="sketch-card inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-amber-300 hover:bg-amber-400 text-slate-950 text-xs sm:text-sm font-bold transition">
-          <i class="fa-solid fa-paper-plane text-xs"></i>
-          <span>Contact</span>
-        </a>
+        <!-- SLOT_HEADER_CONTACT -->
       </div>
     </div>
   </header>
 
   <!-- ==================== PRINT ONLY HEADER (A4 PDF) ==================== -->
-  <div class="print-only mb-6 border-b-2 border-slate-800 pb-3">
-    <div class="flex justify-between items-start">
-      <div>
-        <h1 class="text-2xl font-extrabold text-slate-950 tracking-tight" id="print-name">Jochen Hendriks</h1>
-        <p class="text-sm font-bold text-teal-800 mt-0.5" id="print-label">Scrum Master bij Capgemini Nederland</p>
-        <p class="text-xs text-slate-600 mt-2 max-w-2xl" id="print-summary"></p>
-      </div>
-      <div class="text-right text-xs space-y-1 text-slate-700 shrink-0 ml-4">
-        <div id="print-email"><i class="fa-solid fa-envelope mr-1.5 text-slate-400"></i>jochen.e.hendriks@gmail.com</div>
-        <div id="print-phone" class="hidden"><i class="fa-solid fa-phone mr-1.5 text-slate-400"></i></div>
-        <div id="print-location"><i class="fa-solid fa-location-dot mr-1.5 text-slate-400"></i>Amersfoort, Utrecht, NL</div>
-        <div id="print-url"><i class="fa-solid fa-globe mr-1.5 text-slate-400"></i>jochenhendriks.nl</div>
-      </div>
-    </div>
-  </div>
+  <!-- SLOT_PRINT_HEADER -->
 
   <!-- ==================== MAIN CONTENT CONTAINER ==================== -->
   <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-12">
 
     <!-- HERO SECTION / ASYMMETRICAL PROFILE CARD -->
-    <section id="over-mij" class="relative sketch-card-static p-6 sm:p-8 lg:p-10 print-break-avoid">
-      
-      <!-- Washi Tape on Top -->
-      <div class="washi-tape-amber no-print"></div>
-
-      <!-- Handwritten Sticky Note in Margin -->
-      <div class="no-print hidden xl:block absolute -right-8 -top-8 w-44 sticky-note bg-paper-yellow p-3 border-2 border-slate-700 rotate-6 shadow-md z-30">
-        <div class="washi-tape"></div>
-        <div class="font-hand font-bold text-slate-900 text-lg leading-tight">
-          "Mensen boven processen, echte interactie boven dikke plannen!" ✨
-        </div>
-        <span class="block text-right font-hand text-xs text-slate-600 mt-1">— Agile Mindset</span>
-      </div>
-
-      <div class="flex flex-col md:flex-row items-start md:items-center gap-6 lg:gap-10">
-        
-        <!-- VRIJSTAANDE, ASYMMETRISCHE PROFIELFOTO / POLAROID FRAME -->
-        <div class="relative shrink-0 mx-auto md:mx-0">
-          <div class="relative p-2 bg-white border-2 border-slate-800 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-[4px_5px_0px_#1e293b] rotate-[-2.5deg] hover:rotate-0 transition-transform duration-300">
-            <!-- Washi tape at top of polaroid -->
-            <div class="washi-tape no-print"></div>
-            
-            <!-- Photo container (asymmetrical cutout) -->
-            <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-[220px_20px_240px_25px/20px_240px_25px_220px] overflow-hidden bg-gradient-to-br from-amber-100 via-teal-50 to-slate-200 border border-slate-300 relative group">
-              <img 
-                id="hero-avatar"
-                src="profile.jpg" 
-                alt="Jochen Hendriks" 
-                class="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition duration-300"
-              />
-              <!-- Subtle inner sketch overlay -->
-              <div class="absolute inset-0 bg-teal-900/10 pointer-events-none"></div>
-            </div>
-
-            <!-- Handwritten name tag on photo bottom -->
-            <div class="text-center pt-1.5 pb-0.5">
-              <span class="font-hand font-bold text-slate-800 text-lg tracking-wide">Jochen ✌️</span>
-            </div>
-          </div>
-
-          <!-- Hand-drawn Doodle Arrow pointing to Availability -->
-          <div class="no-print absolute -bottom-6 -right-6 flex items-center text-teal-800 pointer-events-none">
-            <svg class="w-10 h-8 text-teal-700 rotate-12" viewBox="0 0 50 40" fill="none">
-              <path d="M8 30 C 20 35 35 25 42 10 M 34 8 L 43 10 L 41 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="font-hand text-base font-bold whitespace-nowrap bg-amber-200 border border-slate-700 px-2 py-0.5 rounded -rotate-6 shadow-xs">
-              Beschikbaar voor opdrachten!
-            </span>
-          </div>
-        </div>
-
-        <!-- Bio & Details -->
-        <div class="flex-grow space-y-3.5 text-center md:text-left">
-          <div class="flex flex-wrap items-center justify-center md:justify-start gap-2.5">
-            <h1 id="hero-name" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-950 tracking-tight">
-              Jochen Hendriks
-            </h1>
-            
-            <!-- Organic Hand-sketched Pill Badge -->
-            <span class="inline-flex items-center px-3 py-0.5 text-xs font-bold bg-teal-100 text-teal-950 border-2 border-slate-800 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] rotate-1">
-              <i class="fa-solid fa-certificate mr-1.5 text-teal-700"></i> PSM II & SAFe Agilist
-            </span>
-          </div>
-
-          <p id="hero-label" class="text-base sm:text-lg font-bold text-teal-900">
-            <span class="marker-yellow">Scrum Master bij Capgemini Nederland</span>
-          </p>
-
-          <p id="hero-summary" class="text-sm sm:text-base text-slate-700 leading-relaxed max-w-3xl">
-            <!-- Populated via JSON -->
-          </p>
-
-          <!-- Contact & Social Badges with Organic Borders -->
-          <div class="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3 text-xs sm:text-sm text-slate-700 font-bold">
-            <a id="hero-location-link" href="#" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155] hover:bg-slate-50 transition">
-              <i class="fa-solid fa-location-dot text-rose-500"></i>
-              <span id="hero-location">Amersfoort, Utrecht, NL</span>
-            </a>
-            <a id="hero-email-link" href="mailto:jochen.e.hendriks@gmail.com" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155] hover:bg-amber-100 transition">
-              <i class="fa-solid fa-envelope text-teal-700"></i>
-              <span id="hero-email">jochen.e.hendriks@gmail.com</span>
-            </a>
-            <a id="hero-phone-link" href="#" class="hidden items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155] hover:bg-emerald-50 transition">
-              <i class="fa-solid fa-phone text-emerald-600"></i>
-              <span id="hero-phone"></span>
-            </a>
-            <div id="hero-profiles" class="flex items-center gap-1.5">
-              <!-- Populated via JS -->
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Quick Metrics Strip with Sticky Notes Feel -->
-      <div class="no-print mt-10 pt-6 border-t-2 border-dashed border-slate-300 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-center">
-        <div class="bg-paper-amber/80 p-3 border-2 border-slate-700 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-[2px_3px_0px_#334155] -rotate-1">
-          <div class="text-xl sm:text-2xl font-extrabold text-slate-900 font-sans">12+ Jaar</div>
-          <div class="text-xs font-bold text-slate-700">IT & Consultancy</div>
-        </div>
-        <div class="bg-paper-teal/80 p-3 border-2 border-slate-700 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-[2px_3px_0px_#334155] rotate-1">
-          <div class="text-xl sm:text-2xl font-extrabold text-teal-900 font-sans">33+</div>
-          <div class="text-xs font-bold text-slate-700">Liberating Structures</div>
-        </div>
-        <div class="bg-paper-yellow/90 p-3 border-2 border-slate-700 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-[2px_3px_0px_#334155] -rotate-1">
-          <div class="text-xl sm:text-2xl font-extrabold text-amber-900 font-sans">LSP</div>
-          <div class="text-xs font-bold text-slate-700">Certified LEGO® Facilitator</div>
-        </div>
-        <div class="bg-paper-rose/80 p-3 border-2 border-slate-700 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-[2px_3px_0px_#334155] rotate-1">
-          <div class="text-xl sm:text-2xl font-extrabold text-rose-900 font-sans">Level 1 & 2</div>
-          <div class="text-xs font-bold text-slate-700">Deep Democracy Lewis</div>
-        </div>
-      </div>
-    </section>
+    <!-- SLOT_HERO -->
 
     <!-- ==================== COACHING WERK VORMEN & FACILITATIE ==================== -->
-    <section id="werkvormen" class="space-y-4 print-break-avoid relative">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-        <div>
-          <div class="flex items-center gap-2">
-            <span class="font-hand font-bold text-xl text-teal-900">#HandsOnAgileToolbox</span>
-            <!-- Hand-drawn small star -->
-            <svg class="no-print w-5 h-5 text-amber-500" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L14.5 8.5L21 9.5L16 14.5L17.5 21L12 17.5L6.5 21L8 14.5L3 9.5L9.5 8.5L12 2Z"/>
-            </svg>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 flex items-center gap-2">
-            <i class="fa-solid fa-cubes-stacked text-amber-600"></i>
-            Facilitatie & Werkvormen
-          </h2>
-        </div>
-
-        <!-- Handwritten Annotation in Header -->
-        <div class="no-print font-hand font-bold text-lg sm:text-xl text-slate-700 rotate-[-2deg] bg-amber-100/90 border border-slate-700 px-3 py-1 rounded shadow-xs">
-          💡 "100% betrokkenheid, 0% saaie vergaderingen!"
-        </div>
-      </div>
-
-      <!-- Highlights Cards Grid (Organic Workshop Sticky Cards) -->
-      <div id="coach-highlights-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 pt-2">
-        <!-- Rendered dynamically via JS -->
-      </div>
-    </section>
+    <!-- SLOT_COACH_HIGHLIGHTS -->
 
     <!-- ==================== WERKVERLEDEN & OPDRACHTEN (CONSULTANCY ASSIGNMENTS) ==================== -->
     <section id="ervaring" class="space-y-6 relative">
@@ -466,7 +309,7 @@
 
       <!-- Experience Timeline / Card Container -->
       <div id="work-container" class="space-y-8">
-        <!-- Populated via JS -->
+        <!-- SLOT_WORK -->
       </div>
     </section>
 
@@ -486,7 +329,7 @@
       </div>
 
       <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
-        <!-- Populated via JS -->
+        <!-- SLOT_SKILLS -->
       </div>
     </section>
 
@@ -504,7 +347,7 @@
         </div>
 
         <div id="certificates-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-          <!-- Populated via JS -->
+          <!-- SLOT_CERTIFICATES -->
         </div>
       </section>
 
@@ -519,7 +362,7 @@
             </h3>
           </div>
           <div id="education-container" class="space-y-3">
-            <!-- Populated via JS -->
+            <!-- SLOT_EDUCATION -->
           </div>
         </section>
 
@@ -532,7 +375,7 @@
             </h3>
           </div>
           <div id="languages-container" class="sketch-card-subtle bg-white p-4 space-y-2">
-            <!-- Populated via JS -->
+            <!-- SLOT_LANGUAGES -->
           </div>
         </section>
       </div>
@@ -573,7 +416,7 @@
   <!-- ==================== FOOTER ==================== -->
   <footer class="no-print bg-[#f6f5f1] border-t-2 border-slate-700/80 mt-12 py-6 text-center text-xs text-slate-600 font-medium">
     <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-      <p>© <span id="current-year"></span> Jochen Hendriks • Gebaseerd op het open <a href="https://jsonresume.org" target="_blank" class="underline hover:text-slate-900">JSON Resume</a> schema.</p>
+      <p>© <span id="current-year">2026</span> Jochen Hendriks • Gebaseerd op het open <a href="https://jsonresume.org" target="_blank" class="underline hover:text-slate-900">JSON Resume</a> schema.</p>
       <p class="flex items-center gap-2">
         <span class="font-hand text-sm font-bold text-teal-800">Geen cookies, pure code & koffie ☕</span>
         <span>•</span>
@@ -582,396 +425,25 @@
     </div>
   </footer>
 
-  <!-- ==================== VANILLA JAVASCRIPT RENDERING LOGIC ==================== -->
+  <!-- ==================== CLIENT-SIDE MINIMAL INTERACTIVE SCRIPT ==================== -->
   <script>
-    // Data injected at build-time from resume.json
-    const resumeData = /* INJECT_JSON_HERE */;
-
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('current-year').textContent = new Date().getFullYear();
-      if (typeof resumeData !== 'undefined' && resumeData) {
-        renderResume(resumeData);
+      
+      const toggleBtn = document.getElementById('toggle-all-assignments');
+      if (toggleBtn) {
+        let allExpanded = true;
+        toggleBtn.addEventListener('click', () => {
+          const assignmentGroups = document.querySelectorAll('.assignments-group');
+          allExpanded = !allExpanded;
+          assignmentGroups.forEach(group => {
+            if (allExpanded) group.classList.remove('hidden');
+            else group.classList.add('hidden');
+          });
+          document.getElementById('toggle-all-text').textContent = allExpanded ? 'Alles inklappen' : 'Alles uitklappen';
+        });
       }
     });
-
-    function renderResume(data) {
-      renderBasics(data.basics);
-      renderCoachHighlights(data.coachHighlights);
-      renderWorkAndAssignments(data.work);
-      renderSkills(data.skills);
-      renderCertificates(data.certificates);
-      renderEducation(data.education);
-      renderLanguages(data.languages);
-    }
-
-    // 1. BASICS & HERO RENDERING
-    function renderBasics(basics) {
-      if (!basics) return;
-
-      document.getElementById('hero-name').textContent = basics.name || 'Jochen Hendriks';
-      if (basics.image) {
-        const avatarEl = document.getElementById('hero-avatar');
-        if (avatarEl) avatarEl.src = basics.image;
-      }
-      document.getElementById('hero-label').innerHTML = `<span class="marker-yellow">${basics.label || ''}</span>`;
-      document.getElementById('hero-summary').textContent = basics.summary || '';
-      
-      if (basics.location) {
-        const locStr = [basics.location.city, basics.location.region, basics.location.countryCode].filter(Boolean).join(', ');
-        document.getElementById('hero-location').textContent = locStr;
-      }
-      
-      if (basics.email) {
-        document.getElementById('hero-email').textContent = basics.email;
-        document.getElementById('hero-email-link').href = `mailto:${basics.email}`;
-        document.getElementById('btn-contact-nav').href = `mailto:${basics.email}`;
-      }
-
-      if (basics.phone) {
-        document.getElementById('hero-phone').textContent = basics.phone;
-        document.getElementById('hero-phone-link').href = `tel:${basics.phone.replace(/[^0-9+]/g, '')}`;
-        document.getElementById('hero-phone-link').classList.remove('hidden');
-        document.getElementById('hero-phone-link').classList.add('inline-flex');
-      }
-
-      // Profiles
-      const profilesContainer = document.getElementById('hero-profiles');
-      profilesContainer.innerHTML = '';
-      if (basics.profiles && Array.isArray(basics.profiles)) {
-        basics.profiles.forEach(p => {
-          let iconClass = 'fa-globe';
-          const net = (p.network || '').toLowerCase();
-          if (net.includes('linkedin')) iconClass = 'fa-brands fa-linkedin';
-          else if (net.includes('github')) iconClass = 'fa-brands fa-github';
-          else if (net.includes('twitter') || net.includes('x')) iconClass = 'fa-brands fa-x-twitter';
-          else if (net.includes('youtube')) iconClass = 'fa-brands fa-youtube';
-
-          const a = document.createElement('a');
-          a.href = p.url || '#';
-          a.target = '_blank';
-          a.rel = 'noopener noreferrer';
-          a.className = 'inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155] hover:bg-teal-50 hover:text-teal-900 transition';
-          a.innerHTML = `<i class="${iconClass}"></i><span>${p.network}</span>`;
-          profilesContainer.appendChild(a);
-        });
-      }
-
-      // Print Header
-      document.getElementById('print-name').textContent = basics.name || '';
-      document.getElementById('print-label').textContent = basics.label || '';
-      document.getElementById('print-summary').textContent = basics.summary || '';
-      document.getElementById('print-email').innerHTML = `<i class="fa-solid fa-envelope mr-1.5"></i>${basics.email || ''}`;
-      if (basics.phone) {
-        document.getElementById('print-phone').innerHTML = `<i class="fa-solid fa-phone mr-1.5"></i>${basics.phone}`;
-        document.getElementById('print-phone').classList.remove('hidden');
-      }
-      if (basics.location) {
-        document.getElementById('print-location').innerHTML = `<i class="fa-solid fa-location-dot mr-1.5"></i>${basics.location.city || ''}, NL`;
-      }
-      document.getElementById('print-url').innerHTML = `<i class="fa-solid fa-globe mr-1.5"></i>${basics.url ? basics.url.replace(/^https?:\/\//, '') : ''}`;
-    }
-
-    // 2. COACH HIGHLIGHTS / WERK VORMEN (Organic Sticky Workshop Cards)
-    function renderCoachHighlights(highlights) {
-      const container = document.getElementById('coach-highlights-container');
-      const section = document.getElementById('werkvormen');
-      if (!highlights || highlights.length === 0) {
-        if (section) section.classList.add('hidden');
-        return;
-      }
-      if (section) section.classList.remove('hidden');
-
-      container.innerHTML = '';
-      const styles = [
-        { bg: 'bg-[#fffbeb]', border: 'border-amber-500', tape: 'washi-tape-amber', iconBg: 'bg-amber-100 text-amber-800', badge: 'bg-amber-200 text-amber-950 border-amber-500', rot: '-rotate-1' },
-        { bg: 'bg-[#f0fdf4]', border: 'border-emerald-500', tape: 'washi-tape', iconBg: 'bg-emerald-100 text-emerald-800', badge: 'bg-emerald-200 text-emerald-950 border-emerald-500', rot: 'rotate-1' },
-        { bg: 'bg-[#eef2ff]', border: 'border-indigo-500', tape: 'washi-tape', iconBg: 'bg-indigo-100 text-indigo-800', badge: 'bg-indigo-200 text-indigo-950 border-indigo-500', rot: '-rotate-1.5' },
-        { bg: 'bg-[#fff1f2]', border: 'border-rose-400', tape: 'washi-tape-amber', iconBg: 'bg-rose-100 text-rose-800', badge: 'bg-rose-200 text-rose-950 border-rose-500', rot: 'rotate-1' }
-      ];
-
-      const iconFa = {
-        lego: 'fa-solid fa-cubes-stacked',
-        sparkles: 'fa-solid fa-wand-magic-sparkles',
-        users: 'fa-solid fa-people-arrows',
-        palette: 'fa-solid fa-pen-nib'
-      };
-
-      highlights.forEach((item, idx) => {
-        const style = styles[idx % styles.length];
-        const faIcon = iconFa[item.icon] || 'fa-solid fa-lightbulb';
-        const card = document.createElement('div');
-        card.className = `sticky-note ${style.bg} border-2 ${style.border} p-5 ${style.rot} flex flex-col justify-between relative`;
-        card.innerHTML = `
-          <div class="${style.tape} no-print"></div>
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-3">
-              <div class="w-10 h-10 rounded-lg ${style.iconBg} border border-slate-700/40 flex items-center justify-center text-lg shadow-xs">
-                <i class="${faIcon}"></i>
-              </div>
-              <span class="font-hand font-bold text-sm px-2 py-0.5 border ${style.badge} rounded shadow-2xs">
-                ${item.badge}
-              </span>
-            </div>
-            <h3 class="font-bold text-slate-950 text-base mb-1.5">${item.title}</h3>
-            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">${item.description}</p>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    // 3. WORK EXPERIENCE & CUSTOM NESTED ASSIGNMENTS
-    function renderWorkAndAssignments(workList) {
-      const container = document.getElementById('work-container');
-      if (!container || !workList) return;
-
-      container.innerHTML = '';
-
-      workList.forEach((job, jobIdx) => {
-        const jobCard = document.createElement('div');
-        jobCard.className = 'sketch-card-static p-6 sm:p-7 print-break-avoid relative';
-
-        const periodStr = `${formatDate(job.startDate)} – ${formatDate(job.endDate)}`;
-        
-        let assignmentsHtml = '';
-        if (job.assignments && Array.isArray(job.assignments) && job.assignments.length > 0) {
-          assignmentsHtml = `
-            <div class="mt-6 pt-5 border-t-2 border-dashed border-slate-300">
-              <div class="flex items-center justify-between mb-4">
-                <div class="flex items-center gap-2">
-                  <span class="font-hand font-bold text-lg text-teal-900">
-                    📌 Klantopdrachten & Detacheringen (${job.assignments.length})
-                  </span>
-                </div>
-              </div>
-
-              <div class="space-y-4 pl-0 sm:pl-3 sm:border-l-2 sm:border-slate-300 assignments-group">
-                ${job.assignments.map((assignment, assignIdx) => `
-                  <div class="sketch-card-subtle bg-slate-50/90 p-4 sm:p-5 transition shadow-xs print-break-avoid">
-                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
-                      <div>
-                        <div class="flex items-center gap-2 flex-wrap">
-                          <h5 class="font-bold text-slate-950 text-base sm:text-lg">${assignment.client || 'Klantopdracht'}</h5>
-                          <span class="font-hand font-bold text-sm px-2 py-0.5 rounded bg-amber-200 border border-slate-700 text-slate-950 shadow-2xs">
-                            ${assignment.role || 'Consultant'}
-                          </span>
-                        </div>
-                      </div>
-                      <span class="text-xs text-slate-600 font-bold whitespace-nowrap bg-white px-2 py-0.5 border border-slate-300 rounded">
-                        <i class="fa-regular fa-calendar text-[11px] mr-1 text-slate-500"></i>${formatDate(assignment.startDate)} – ${formatDate(assignment.endDate)}
-                      </span>
-                    </div>
-
-                    ${assignment.summary ? `<p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed font-sans">${assignment.summary}</p>` : ''}
-
-                    ${assignment.highlights && assignment.highlights.length > 0 ? `
-                      <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-800">
-                        ${assignment.highlights.map(h => `
-                          <li class="flex items-start gap-2">
-                            <span class="font-hand font-bold text-teal-800 text-base shrink-0 leading-none">✓</span>
-                            <span>${h}</span>
-                          </li>
-                        `).join('')}
-                      </ul>
-                    ` : ''}
-
-                    ${assignment.keywords && assignment.keywords.length > 0 ? `
-                      <div class="mt-3.5 pt-3 border-t border-slate-200 flex flex-wrap gap-1.5">
-                        ${assignment.keywords.map(kw => `
-                          <span class="px-2 py-0.5 bg-white border border-slate-400 text-slate-700 rounded text-[11px] font-bold">
-                            ${kw}
-                          </span>
-                        `).join('')}
-                      </div>
-                    ` : ''}
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          `;
-        }
-
-        jobCard.innerHTML = `
-          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
-            <div>
-              <div class="flex items-center gap-2 flex-wrap">
-                <h3 class="text-lg sm:text-xl font-extrabold text-slate-950">${job.position || 'Functie'}</h3>
-                ${job.url ? `<a href="${job.url}" target="_blank" rel="noopener noreferrer" class="text-xs text-teal-800 hover:underline font-bold flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> Website</a>` : ''}
-              </div>
-              <p class="text-sm font-bold text-teal-900 mt-0.5">${job.name || 'Werkgever'}</p>
-            </div>
-            <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 border border-slate-700 rounded text-xs font-bold text-slate-900 whitespace-nowrap self-start shadow-2xs">
-              <i class="fa-regular fa-calendar text-slate-600"></i>
-              <span>${periodStr}</span>
-            </div>
-          </div>
-
-          ${job.summary ? `<p class="text-sm text-slate-700 leading-relaxed mb-4">${job.summary}</p>` : ''}
-
-          ${job.highlights && job.highlights.length > 0 ? `
-            <div class="mb-4">
-              <h5 class="font-hand font-bold text-base text-slate-600 mb-1.5">Kernresultaten & Impact:</h5>
-              <ul class="space-y-1.5 text-xs sm:text-sm text-slate-800">
-                ${job.highlights.map(h => `
-                  <li class="flex items-start gap-2">
-                    <span class="font-hand font-bold text-emerald-700 text-base shrink-0 leading-none">➜</span>
-                    <span>${h}</span>
-                  </li>
-                `).join('')}
-              </ul>
-            </div>
-          ` : ''}
-
-          ${assignmentsHtml}
-        `;
-
-        container.appendChild(jobCard);
-      });
-
-      setupAssignmentToggle();
-    }
-
-    function setupAssignmentToggle() {
-      const toggleBtn = document.getElementById('toggle-all-assignments');
-      if (!toggleBtn) return;
-
-      let allExpanded = true;
-      toggleBtn.addEventListener('click', () => {
-        const assignmentGroups = document.querySelectorAll('.assignments-group');
-        allExpanded = !allExpanded;
-        
-        assignmentGroups.forEach(group => {
-          if (allExpanded) {
-            group.classList.remove('hidden');
-          } else {
-            group.classList.add('hidden');
-          }
-        });
-
-        document.getElementById('toggle-all-text').textContent = allExpanded ? 'Alles inklappen' : 'Alles uitklappen';
-      });
-    }
-
-    // 4. SKILLS & EXPERTISE MATRIX
-    function renderSkills(skillsList) {
-      const container = document.getElementById('skills-container');
-      if (!container || !skillsList) return;
-
-      container.innerHTML = '';
-      const iconList = ['fa-solid fa-compass-drafting', 'fa-solid fa-people-group', 'fa-solid fa-code-branch', 'fa-solid fa-chart-line'];
-
-      skillsList.forEach((skillGroup, idx) => {
-        const icon = iconList[idx % iconList.length];
-        const card = document.createElement('div');
-        card.className = 'sketch-card-subtle bg-white p-5 flex flex-col justify-between';
-        card.innerHTML = `
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <div class="flex items-center gap-2.5">
-                <div class="w-8 h-8 rounded bg-teal-100 text-teal-900 border border-slate-700 flex items-center justify-center text-sm shadow-2xs">
-                  <i class="${icon}"></i>
-                </div>
-                <h3 class="font-bold text-slate-950 text-base">${skillGroup.name}</h3>
-              </div>
-              <span class="font-hand font-bold text-sm px-2 py-0.5 rounded bg-amber-100 border border-slate-700 text-slate-900">
-                ${skillGroup.level || 'Expert'}
-              </span>
-            </div>
-            <div class="flex flex-wrap gap-1.5 mt-3">
-              ${(skillGroup.keywords || []).map(kw => `
-                <span class="px-2.5 py-1 bg-slate-50 border border-slate-400 rounded text-xs font-bold text-slate-800 hover:bg-amber-100 transition">
-                  ${kw}
-                </span>
-              `).join('')}
-            </div>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    // 5. CERTIFICATEN
-    function renderCertificates(certs) {
-      const container = document.getElementById('certificates-container');
-      if (!container || !certs) return;
-
-      container.innerHTML = '';
-      certs.forEach(cert => {
-        const item = document.createElement('div');
-        item.className = 'sketch-card-subtle bg-white p-4 flex items-start gap-3';
-        item.innerHTML = `
-          <div class="w-8 h-8 rounded bg-amber-100 text-amber-800 border border-slate-700 flex items-center justify-center shrink-0 mt-0.5 text-sm shadow-2xs">
-            <i class="fa-solid fa-award"></i>
-          </div>
-          <div class="min-w-0">
-            <h4 class="font-bold text-slate-950 text-xs sm:text-sm leading-snug">${cert.name}</h4>
-            <div class="flex items-center gap-2 mt-1 text-xs text-slate-600 font-medium">
-              <span class="font-bold text-teal-800">${cert.issuer || ''}</span>
-              ${cert.date ? `<span>•</span><span class="font-bold">${cert.date}</span>` : ''}
-            </div>
-          </div>
-        `;
-        container.appendChild(item);
-      });
-    }
-
-    // 6. EDUCATION
-    function renderEducation(eduList) {
-      const container = document.getElementById('education-container');
-      if (!container || !eduList) return;
-
-      container.innerHTML = '';
-      eduList.forEach(edu => {
-        const item = document.createElement('div');
-        item.className = 'sketch-card-subtle bg-white p-4';
-        item.innerHTML = `
-          <div class="flex items-center justify-between">
-            <h4 class="font-bold text-slate-950 text-xs sm:text-sm">${edu.studyType || ''} ${edu.area ? '– ' + edu.area : ''}</h4>
-            <span class="text-xs text-slate-600 font-bold">${edu.startDate || ''} – ${edu.endDate || ''}</span>
-          </div>
-          <p class="text-xs font-bold text-teal-900 mt-1">${edu.institution || ''}</p>
-          ${edu.courses && edu.courses.length > 0 ? `
-            <div class="mt-2 text-[11px] text-slate-600 flex flex-wrap gap-1 font-medium">
-              ${edu.courses.map(c => `<span class="bg-slate-100 border border-slate-300 px-1.5 py-0.5 rounded">${c}</span>`).join('')}
-            </div>
-          ` : ''}
-        `;
-        container.appendChild(item);
-      });
-    }
-
-    // 7. LANGUAGES
-    function renderLanguages(langList) {
-      const container = document.getElementById('languages-container');
-      if (!container || !langList) return;
-
-      container.innerHTML = '';
-      langList.forEach(lang => {
-        const row = document.createElement('div');
-        row.className = 'flex items-center justify-between text-xs sm:text-sm py-1.5 border-b border-dashed border-slate-300 last:border-0';
-        row.innerHTML = `
-          <span class="font-bold text-slate-900">${lang.language}</span>
-          <span class="font-hand font-bold text-base text-teal-800">${lang.fluency}</span>
-        `;
-        container.appendChild(row);
-      });
-    }
-
-    function formatDate(dateStr) {
-      if (!dateStr) return '';
-      if (dateStr.toLowerCase() === 'heden' || dateStr.toLowerCase() === 'present') return 'Heden';
-      
-      const parts = dateStr.split('-');
-      if (parts.length === 2) {
-        const monthNames = ['Jan', 'Feb', 'Mrt', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
-        const monthIdx = parseInt(parts[1], 10) - 1;
-        const year = parts[0];
-        if (monthIdx >= 0 && monthIdx < 12) {
-          return `${monthNames[monthIdx]} ${year}`;
-        }
-      }
-      return dateStr;
-    }
   </script>
 </body>
 </html>
