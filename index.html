@@ -315,6 +315,21 @@
     .print-only {
       display: none;
     }
+    /* Highlighter effect with multiply blend mode */
+    .date-highlight {
+      font-family: '"Caveat"', cursive, sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #0f172a;
+      background-color: rgba(254, 240, 138, 0.9);
+      mix-blend-mode: multiply;
+      padding: 0.05em 0.45em;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      line-height: 1.2;
+    }
   </style>
 </head>
 
@@ -338,8 +353,68 @@
     </div>
   
 
-  <!-- ==================== MAIN FLIPCHART WORKSHOP CANVAS ==================== -->
-  <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-12">
+  <!-- ==================== MAIN FLIPCHART WORKSHOP CANVAS WRAPPER ==================== -->
+  <div class="relative max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+
+    <!-- ==================== LINKERMARGE (STICKY TIJDLIJN MILESTONES) ==================== -->
+    <aside class="no-print hidden xl:block absolute -left-28 top-28 bottom-28 w-24 pointer-events-none z-10">
+      <div class="sticky top-20 space-y-6">
+        <!-- Milestone 1 -->
+        <div class="sticky-yellow p-2.5 rounded shadow-sm text-center rotate-[-3deg]">
+          <div class="font-hand font-bold text-base text-slate-950 leading-tight">2026</div>
+          <div class="text-[10px] font-bold text-slate-700 leading-tight">Managing Consultant</div>
+        </div>
+        <!-- Milestone 2 -->
+        <div class="sticky-emerald p-2.5 rounded shadow-sm text-center rotate-[2deg]">
+          <div class="font-hand font-bold text-base text-slate-950 leading-tight">2021</div>
+          <div class="text-[10px] font-bold text-slate-700 leading-tight">Capgemini</div>
+        </div>
+        <!-- Milestone 3 -->
+        <div class="sticky-indigo p-2.5 rounded shadow-sm text-center rotate-[-2deg]">
+          <div class="font-hand font-bold text-base text-slate-950 leading-tight">2016</div>
+          <div class="text-[10px] font-bold text-slate-700 leading-tight">Scrum Master Intergamma</div>
+        </div>
+        <!-- Milestone 4 -->
+        <div class="sticky-rose p-2.5 rounded shadow-sm text-center rotate-[3deg]">
+          <div class="font-hand font-bold text-base text-slate-950 leading-tight">2011</div>
+          <div class="text-[10px] font-bold text-slate-700 leading-tight">HBO Bachelor</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ==================== RECHTERMARGE (WERKTAFEL EASTER EGGS) ==================== -->
+    <aside class="no-print hidden xl:block absolute -right-36 top-16 w-32 space-y-12 pointer-events-none z-10">
+      <!-- ☕ SVG Coffee Ring Stain -->
+      <div class="relative w-28 h-28 opacity-75 select-none" style="mix-blend-mode: multiply;" title="Verse workshop koffie ☕">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full text-amber-900">
+          <path d="M50 8 C25 8, 8 26, 9 52 C10 76, 28 92, 53 91 C77 90, 93 72, 91 48 C89 24, 73 8, 50 8 Z" stroke="#78350f" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="14 4 28 6 12 3" opacity="0.65"/>
+          <path d="M50 14 C29 14, 15 29, 16 51 C17 71, 32 85, 52 84 C72 83, 86 68, 84 48 C83 28, 69 14, 50 14 Z" stroke="#92400e" stroke-width="2.5" opacity="0.5"/>
+          <circle cx="88" cy="65" r="2.5" fill="#78350f" opacity="0.55"/>
+          <circle cx="92" cy="72" r="1.5" fill="#78350f" opacity="0.45"/>
+          <circle cx="12" cy="38" r="2" fill="#78350f" opacity="0.5"/>
+          <path d="M78 45 Q82 58 79 66" stroke="#78350f" stroke-width="1.8" stroke-linecap="round" opacity="0.45"/>
+        </svg>
+        <span class="font-hand text-[11px] text-amber-950/70 block text-center -mt-6 rotate-[-6deg]">☕ espresso double</span>
+      </div>
+
+      <!-- 📋 Afgescheurd Boodschappenlijstje -->
+      <div class="relative bg-[#fef9c3] p-3 shadow-md border border-amber-300/80 rotate-6 text-slate-800 rounded-sm"
+           style="clip-path: polygon(0% 4%, 100% 0%, 98% 95%, 85% 98%, 70% 93%, 55% 99%, 40% 94%, 25% 98%, 10% 94%, 0% 98%);">
+        <div class="washi-tape-amber -top-2.5 left-1/2 -translate-x-1/2 w-12 h-3.5"></div>
+        <div class="font-hand font-bold text-xs text-slate-900 border-b border-amber-300 pb-0.5 mb-1 flex items-center gap-1">
+          <span>📋 Workshop Prep:</span>
+        </div>
+        <ul class="font-hand text-[11px] text-slate-700 space-y-0.5 font-bold">
+          <li>✓ Stiften (zwart & rood)</li>
+          <li>✓ Post-its (geel & groen)</li>
+          <li>✓ LEGO® Serious Play®</li>
+          <li>✓ Extra koffiebonen! ☕</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="flex-grow space-y-12">
 
     <!-- HERO SECTION / ASYMMETRICAL PROFILE CARD -->
     
@@ -612,10 +687,13 @@
       <!-- Experience Timeline Container -->
       <div id="work-container" class="space-y-8">
         
-      <div class="flipchart-sheet p-6 sm:p-7 print-break-avoid relative">
+      <div class="relative pl-6 sm:pl-8 border-l-[3.5px] border-teal-700/60 pb-10 last:pb-2 ml-1 sm:ml-2 print-break-avoid">
+        <!-- Organic Marker Timeline Dot -->
+        <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-800 border-2 border-white shadow-xs"></span>
+        
         
       <!-- Rocket Doodle (Acceleration & Agile Flow) -->
-      <div class="no-print hidden sm:block absolute -right-4 -top-5 pointer-events-none rotate-12 z-20" title="Accelerating Flow & Continuous Delivery">
+      <div class="no-print hidden sm:block absolute -right-3 -top-3 pointer-events-none rotate-12 z-20" title="Accelerating Flow & Continuous Delivery">
         <svg class="w-10 h-10" viewBox="0 0 50 50" fill="none">
           <path d="M25 6 C17 12, 16 26, 18 36 L32 36 C34 26, 33 12, 25 6 Z" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(37, 99, 235, 0.08)"/>
           <circle cx="25" cy="20" r="3.5" stroke="#2563eb" stroke-width="2" fill="#ffffff"/>
@@ -624,59 +702,63 @@
         </svg>
       </div>
     
-        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
           <div>
-            <h3 class="text-xl sm:text-2xl font-extrabold text-slate-950">Capgemini</h3>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight">Capgemini</h3>
             
           </div>
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 border border-amber-300 rounded-md text-xs font-bold text-slate-900 whitespace-nowrap self-start shadow-xs">
-            <i class="fa-regular fa-calendar text-slate-600"></i>
+          <div class="date-highlight text-base sm:text-lg self-start sm:self-auto">
+            <i class="fa-regular fa-calendar text-xs opacity-70"></i>
             <span>Mei 2021 – Heden</span>
           </div>
         </div>
 
         
-        <div class="mt-3.5 mb-4 pl-3.5 border-l-2 border-teal-700/60 space-y-2.5">
+        <div class="mt-3.5 mb-4 pl-3.5 border-l-2 border-teal-700/50 space-y-2.5">
           
-            <div class="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-xs sm:text-sm">
+            <div class="relative flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 text-xs sm:text-sm">
               <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-teal-800 -ml-[20px] ring-4 ring-white shadow-2xs"></span>
-                <span class="font-bold text-slate-950 text-sm sm:text-base">Managing Consultant</span>
+                <span class="w-2.5 h-2.5 rounded-full bg-teal-700 -ml-[20px] ring-4 ring-[#faf7f2] shadow-2xs"></span>
+                <span class="font-bold text-slate-900 text-sm sm:text-base">Managing Consultant</span>
               </div>
-              <span class="text-xs text-slate-600 font-bold bg-slate-50 px-2 py-0.5 border border-slate-200 rounded self-start sm:self-auto">
-                <i class="fa-regular fa-calendar text-[11px] mr-1 text-slate-400"></i>Jul 2026 – Heden
-              </span>
+              <div class="date-highlight text-sm self-start sm:self-auto">
+                <i class="fa-regular fa-calendar text-[10px] opacity-70"></i>
+                <span>Jul 2026 – Heden</span>
+              </div>
             </div>
           
-            <div class="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-xs sm:text-sm">
+            <div class="relative flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 text-xs sm:text-sm">
               <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-teal-800 -ml-[20px] ring-4 ring-white shadow-2xs"></span>
-                <span class="font-bold text-slate-950 text-sm sm:text-base">Agile Trainer</span>
+                <span class="w-2.5 h-2.5 rounded-full bg-teal-700 -ml-[20px] ring-4 ring-[#faf7f2] shadow-2xs"></span>
+                <span class="font-bold text-slate-900 text-sm sm:text-base">Agile Trainer</span>
               </div>
-              <span class="text-xs text-slate-600 font-bold bg-slate-50 px-2 py-0.5 border border-slate-200 rounded self-start sm:self-auto">
-                <i class="fa-regular fa-calendar text-[11px] mr-1 text-slate-400"></i>Jan 2026 – Heden
-              </span>
+              <div class="date-highlight text-sm self-start sm:self-auto">
+                <i class="fa-regular fa-calendar text-[10px] opacity-70"></i>
+                <span>Jan 2026 – Heden</span>
+              </div>
             </div>
           
-            <div class="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-xs sm:text-sm">
+            <div class="relative flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 text-xs sm:text-sm">
               <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-teal-800 -ml-[20px] ring-4 ring-white shadow-2xs"></span>
-                <span class="font-bold text-slate-950 text-sm sm:text-base">Senior Consultant</span>
+                <span class="w-2.5 h-2.5 rounded-full bg-teal-700 -ml-[20px] ring-4 ring-[#faf7f2] shadow-2xs"></span>
+                <span class="font-bold text-slate-900 text-sm sm:text-base">Senior Consultant</span>
               </div>
-              <span class="text-xs text-slate-600 font-bold bg-slate-50 px-2 py-0.5 border border-slate-200 rounded self-start sm:self-auto">
-                <i class="fa-regular fa-calendar text-[11px] mr-1 text-slate-400"></i>Mei 2021 – Jul 2026
-              </span>
+              <div class="date-highlight text-sm self-start sm:self-auto">
+                <i class="fa-regular fa-calendar text-[10px] opacity-70"></i>
+                <span>Mei 2021 – Jul 2026</span>
+              </div>
             </div>
           
         </div>
       
 
-        <p class="text-sm text-slate-700 leading-relaxed mb-4">Actief in consultancy, agile transformaties en teamcoaching.</p>
+        <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-4 font-sans">Actief in consultancy, agile transformaties en teamcoaching.</p>
 
         
 
         
-        <div class="mt-6 pt-5 border-t-2 border-dashed border-slate-200 relative">
+        <div class="mt-6 pt-5 border-t-2 border-dashed border-slate-300/80 relative">
           <!-- Gift Box Doodle (Delivering Business Value) -->
           <div class="no-print hidden sm:block absolute right-2 -top-4 pointer-events-none rotate-6" title="Delivering Value!">
             <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none">
@@ -696,218 +778,245 @@
             </div>
           </div>
 
-          <div class="space-y-4 pl-0 sm:pl-3 sm:border-l-2 sm:border-slate-200">
+          <div class="grid grid-cols-1 gap-4">
             
-        <div class="bg-slate-50/80 p-4 sm:p-5 rounded-lg border border-slate-200 transition shadow-xs print-break-avoid">
-          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
-            <div>
-              <div class="flex items-center gap-2 flex-wrap">
-                <h5 class="font-bold text-slate-950 text-base sm:text-lg">Politie Nederland</h5>
-                <span class="font-hand font-bold text-sm px-2 py-0.5 rounded bg-amber-200 text-slate-950 shadow-2xs">
-                  Scrum Master (via Capgemini)
-                </span>
+          <div class="relative bg-[#fefce8] border border-amber-200 rotate-[-1deg] p-5 pt-6 rounded-lg shadow-sm transition hover:rotate-0 hover:shadow-md print-break-avoid">
+            <div class="washi-tape-amber no-print"></div>
+            
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h5 class="font-extrabold text-slate-950 text-base sm:text-lg">Politie Nederland</h5>
+                  <span class="font-hand font-bold text-sm px-2 py-0.5 rounded bg-amber-200/90 text-slate-950 shadow-2xs">
+                    Scrum Master (via Capgemini)
+                  </span>
+                </div>
+              </div>
+              <div class="date-highlight text-xs self-start sm:self-auto">
+                <i class="fa-regular fa-calendar text-[10px] opacity-70"></i>
+                <span>Okt 2025 – Heden</span>
               </div>
             </div>
-            <span class="text-xs text-slate-600 font-bold whitespace-nowrap bg-white px-2 py-0.5 border border-slate-200 rounded">
-              <i class="fa-regular fa-calendar text-[11px] mr-1 text-slate-400"></i>Okt 2025 – Heden
-            </span>
+
+            <p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed font-sans">Scrum Master via Capgemini bij Politie Nederland in Utrecht.</p>
+
+            
+              <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-800">
+                
+                  <li class="flex items-start gap-2">
+                    <span class="font-hand font-bold text-teal-800 text-base shrink-0 leading-none">✓</span>
+                    <span>Begeleiden van teams bij wendbaar werken binnen het politiedomein.</span>
+                  </li>
+                
+              </ul>
+            
+
+            
           </div>
-
-          <p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed font-sans">Scrum Master via Capgemini bij Politie Nederland in Utrecht.</p>
-
-          
-            <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-800">
-              
-                <li class="flex items-start gap-2">
-                  <span class="font-hand font-bold text-teal-800 text-base shrink-0 leading-none">✓</span>
-                  <span>Begeleiden van teams bij wendbaar werken binnen het politiedomein.</span>
-                </li>
-              
-            </ul>
-          
-
-          
-        </div>
-      
-        <div class="bg-slate-50/80 p-4 sm:p-5 rounded-lg border border-slate-200 transition shadow-xs print-break-avoid">
-          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
-            <div>
-              <div class="flex items-center gap-2 flex-wrap">
-                <h5 class="font-bold text-slate-950 text-base sm:text-lg">ABN AMRO Bank N.V.</h5>
-                <span class="font-hand font-bold text-sm px-2 py-0.5 rounded bg-amber-200 text-slate-950 shadow-2xs">
-                  DevOps/Scrum Coach (via Capgemini)
-                </span>
+        
+          <div class="relative bg-[#f0fdfa] border border-teal-200 rotate-[1.2deg] p-5 pt-6 rounded-lg shadow-sm transition hover:rotate-0 hover:shadow-md print-break-avoid">
+            <div class="washi-tape no-print"></div>
+            
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h5 class="font-extrabold text-slate-950 text-base sm:text-lg">ABN AMRO Bank N.V.</h5>
+                  <span class="font-hand font-bold text-sm px-2 py-0.5 rounded bg-amber-200/90 text-slate-950 shadow-2xs">
+                    DevOps/Scrum Coach (via Capgemini)
+                  </span>
+                </div>
+              </div>
+              <div class="date-highlight text-xs self-start sm:self-auto">
+                <i class="fa-regular fa-calendar text-[10px] opacity-70"></i>
+                <span>Feb 2023 – Jul 2025</span>
               </div>
             </div>
-            <span class="text-xs text-slate-600 font-bold whitespace-nowrap bg-white px-2 py-0.5 border border-slate-200 rounded">
-              <i class="fa-regular fa-calendar text-[11px] mr-1 text-slate-400"></i>Feb 2023 – Jul 2025
-            </span>
+
+            <p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed font-sans">DevOps en Scrum coaching via Capgemini bij ABN AMRO Bank N.V.</p>
+
+            
+              <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-800">
+                
+                  <li class="flex items-start gap-2">
+                    <span class="font-hand font-bold text-teal-800 text-base shrink-0 leading-none">✓</span>
+                    <span>Coaching van DevOps- en Scrum-teams naar continue verbetering en hogere leverbetrouwbaarheid.</span>
+                  </li>
+                
+              </ul>
+            
+
+            
           </div>
-
-          <p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed font-sans">DevOps en Scrum coaching via Capgemini bij ABN AMRO Bank N.V.</p>
-
-          
-            <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-800">
-              
-                <li class="flex items-start gap-2">
-                  <span class="font-hand font-bold text-teal-800 text-base shrink-0 leading-none">✓</span>
-                  <span>Coaching van DevOps- en Scrum-teams naar continue verbetering en hogere leverbetrouwbaarheid.</span>
-                </li>
-              
-            </ul>
-          
-
-          
-        </div>
-      
-        <div class="bg-slate-50/80 p-4 sm:p-5 rounded-lg border border-slate-200 transition shadow-xs print-break-avoid">
-          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
-            <div>
-              <div class="flex items-center gap-2 flex-wrap">
-                <h5 class="font-bold text-slate-950 text-base sm:text-lg">UWV</h5>
-                <span class="font-hand font-bold text-sm px-2 py-0.5 rounded bg-amber-200 text-slate-950 shadow-2xs">
-                  Scrum Master bij UWV Klant&Service (via Capgemini)
-                </span>
+        
+          <div class="relative bg-[#f8fafc] border border-slate-300 rotate-[-0.8deg] p-5 pt-6 rounded-lg shadow-sm transition hover:rotate-0 hover:shadow-md print-break-avoid">
+            <div class="washi-tape no-print"></div>
+            
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h5 class="font-extrabold text-slate-950 text-base sm:text-lg">UWV</h5>
+                  <span class="font-hand font-bold text-sm px-2 py-0.5 rounded bg-amber-200/90 text-slate-950 shadow-2xs">
+                    Scrum Master bij UWV Klant&Service (via Capgemini)
+                  </span>
+                </div>
+              </div>
+              <div class="date-highlight text-xs self-start sm:self-auto">
+                <i class="fa-regular fa-calendar text-[10px] opacity-70"></i>
+                <span>Jun 2021 – Okt 2022</span>
               </div>
             </div>
-            <span class="text-xs text-slate-600 font-bold whitespace-nowrap bg-white px-2 py-0.5 border border-slate-200 rounded">
-              <i class="fa-regular fa-calendar text-[11px] mr-1 text-slate-400"></i>Jun 2021 – Okt 2022
-            </span>
+
+            <p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed font-sans">Scrum Master van een team Functioneel Beheerders binnen UWV Klant&Service.</p>
+
+            
+              <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-800">
+                
+                  <li class="flex items-start gap-2">
+                    <span class="font-hand font-bold text-teal-800 text-base shrink-0 leading-none">✓</span>
+                    <span>Scrum Master van een team Functioneel Beheerders</span>
+                  </li>
+                
+              </ul>
+            
+
+            
           </div>
-
-          <p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed font-sans">Scrum Master van een team Functioneel Beheerders binnen UWV Klant&Service.</p>
-
-          
-            <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-800">
-              
-                <li class="flex items-start gap-2">
-                  <span class="font-hand font-bold text-teal-800 text-base shrink-0 leading-none">✓</span>
-                  <span>Scrum Master van een team Functioneel Beheerders</span>
-                </li>
-              
-            </ul>
-          
-
-          
-        </div>
-      
+        
           </div>
         </div>
       
       </div>
     
-      <div class="flipchart-sheet p-6 sm:p-7 print-break-avoid relative">
+      <div class="relative pl-6 sm:pl-8 border-l-[3.5px] border-teal-700/60 pb-10 last:pb-2 ml-1 sm:ml-2 print-break-avoid">
+        <!-- Organic Marker Timeline Dot -->
+        <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-800 border-2 border-white shadow-xs"></span>
         
-        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+        
+
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
           <div>
-            <h3 class="text-xl sm:text-2xl font-extrabold text-slate-950">Intergamma</h3>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight">Intergamma</h3>
             
           </div>
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 border border-amber-300 rounded-md text-xs font-bold text-slate-900 whitespace-nowrap self-start shadow-xs">
-            <i class="fa-regular fa-calendar text-slate-600"></i>
+          <div class="date-highlight text-base sm:text-lg self-start sm:self-auto">
+            <i class="fa-regular fa-calendar text-xs opacity-70"></i>
             <span>Nov 2015 – Mei 2021</span>
           </div>
         </div>
 
         
-        <div class="mt-3.5 mb-4 pl-3.5 border-l-2 border-teal-700/60 space-y-2.5">
+        <div class="mt-3.5 mb-4 pl-3.5 border-l-2 border-teal-700/50 space-y-2.5">
           
-            <div class="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-xs sm:text-sm">
+            <div class="relative flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 text-xs sm:text-sm">
               <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-teal-800 -ml-[20px] ring-4 ring-white shadow-2xs"></span>
-                <span class="font-bold text-slate-950 text-sm sm:text-base">Scrum Master</span>
+                <span class="w-2.5 h-2.5 rounded-full bg-teal-700 -ml-[20px] ring-4 ring-[#faf7f2] shadow-2xs"></span>
+                <span class="font-bold text-slate-900 text-sm sm:text-base">Scrum Master</span>
               </div>
-              <span class="text-xs text-slate-600 font-bold bg-slate-50 px-2 py-0.5 border border-slate-200 rounded self-start sm:self-auto">
-                <i class="fa-regular fa-calendar text-[11px] mr-1 text-slate-400"></i>Jan 2016 – Mei 2021
-              </span>
+              <div class="date-highlight text-sm self-start sm:self-auto">
+                <i class="fa-regular fa-calendar text-[10px] opacity-70"></i>
+                <span>Jan 2016 – Mei 2021</span>
+              </div>
             </div>
           
-            <div class="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-xs sm:text-sm">
+            <div class="relative flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 text-xs sm:text-sm">
               <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-teal-800 -ml-[20px] ring-4 ring-white shadow-2xs"></span>
-                <span class="font-bold text-slate-950 text-sm sm:text-base">Business analist E-commerce</span>
+                <span class="w-2.5 h-2.5 rounded-full bg-teal-700 -ml-[20px] ring-4 ring-[#faf7f2] shadow-2xs"></span>
+                <span class="font-bold text-slate-900 text-sm sm:text-base">Business analist E-commerce</span>
               </div>
-              <span class="text-xs text-slate-600 font-bold bg-slate-50 px-2 py-0.5 border border-slate-200 rounded self-start sm:self-auto">
-                <i class="fa-regular fa-calendar text-[11px] mr-1 text-slate-400"></i>Nov 2015 – Mei 2021
-              </span>
+              <div class="date-highlight text-sm self-start sm:self-auto">
+                <i class="fa-regular fa-calendar text-[10px] opacity-70"></i>
+                <span>Nov 2015 – Mei 2021</span>
+              </div>
             </div>
           
         </div>
       
 
-        <p class="text-sm text-slate-700 leading-relaxed mb-4">E-commerce platformontwikkeling, Scrum ceremonies en agile samenwerking in Leusden.</p>
+        <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-4 font-sans">E-commerce platformontwikkeling, Scrum ceremonies en agile samenwerking in Leusden.</p>
 
         
 
         
       </div>
     
-      <div class="flipchart-sheet p-6 sm:p-7 print-break-avoid relative">
+      <div class="relative pl-6 sm:pl-8 border-l-[3.5px] border-teal-700/60 pb-10 last:pb-2 ml-1 sm:ml-2 print-break-avoid">
+        <!-- Organic Marker Timeline Dot -->
+        <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-800 border-2 border-white shadow-xs"></span>
         
-        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+        
+
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
           <div>
-            <h3 class="text-xl sm:text-2xl font-extrabold text-slate-950">Hulpstudent.nl</h3>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight">Hulpstudent.nl</h3>
             
       <p class="text-sm font-bold text-teal-900 mt-0.5">Digitale Communicatie</p>
     
           </div>
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 border border-amber-300 rounded-md text-xs font-bold text-slate-900 whitespace-nowrap self-start shadow-xs">
-            <i class="fa-regular fa-calendar text-slate-600"></i>
+          <div class="date-highlight text-base sm:text-lg self-start sm:self-auto">
+            <i class="fa-regular fa-calendar text-xs opacity-70"></i>
             <span>Jul 2011 – Okt 2015</span>
           </div>
         </div>
 
         
 
-        <p class="text-sm text-slate-700 leading-relaxed mb-4">Verantwoordelijk voor digitale communicatie in regio Utrecht.</p>
+        <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-4 font-sans">Verantwoordelijk voor digitale communicatie in regio Utrecht.</p>
 
         
 
         
       </div>
     
-      <div class="flipchart-sheet p-6 sm:p-7 print-break-avoid relative">
+      <div class="relative pl-6 sm:pl-8 border-l-[3.5px] border-teal-700/60 pb-10 last:pb-2 ml-1 sm:ml-2 print-break-avoid">
+        <!-- Organic Marker Timeline Dot -->
+        <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-800 border-2 border-white shadow-xs"></span>
         
-        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+        
+
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
           <div>
-            <h3 class="text-xl sm:text-2xl font-extrabold text-slate-950">Koot & Be Present</h3>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight">Koot & Be Present</h3>
             
       <p class="text-sm font-bold text-teal-900 mt-0.5">Afstudeerproject</p>
     
           </div>
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 border border-amber-300 rounded-md text-xs font-bold text-slate-900 whitespace-nowrap self-start shadow-xs">
-            <i class="fa-regular fa-calendar text-slate-600"></i>
+          <div class="date-highlight text-base sm:text-lg self-start sm:self-auto">
+            <i class="fa-regular fa-calendar text-xs opacity-70"></i>
             <span>Feb 2011 – Jul 2011</span>
           </div>
         </div>
 
         
 
-        <p class="text-sm text-slate-700 leading-relaxed mb-4">Afstudeerproject in Amersfoort.</p>
+        <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-4 font-sans">Afstudeerproject in Amersfoort.</p>
 
         
 
         
       </div>
     
-      <div class="flipchart-sheet p-6 sm:p-7 print-break-avoid relative">
+      <div class="relative pl-6 sm:pl-8 border-l-[3.5px] border-teal-700/60 pb-10 last:pb-2 ml-1 sm:ml-2 print-break-avoid">
+        <!-- Organic Marker Timeline Dot -->
+        <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-800 border-2 border-white shadow-xs"></span>
         
-        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+        
+
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
           <div>
-            <h3 class="text-xl sm:text-2xl font-extrabold text-slate-950">Plus Magazine</h3>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight">Plus Magazine</h3>
             
       <p class="text-sm font-bold text-teal-900 mt-0.5">(stagiair) Online Marketing</p>
     
           </div>
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 border border-amber-300 rounded-md text-xs font-bold text-slate-900 whitespace-nowrap self-start shadow-xs">
-            <i class="fa-regular fa-calendar text-slate-600"></i>
+          <div class="date-highlight text-base sm:text-lg self-start sm:self-auto">
+            <i class="fa-regular fa-calendar text-xs opacity-70"></i>
             <span>Aug 2009 – Jan 2010</span>
           </div>
         </div>
 
         
 
-        <p class="text-sm text-slate-700 leading-relaxed mb-4">Stage op de afdeling Online Marketing.</p>
+        <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-4 font-sans">Stage op de afdeling Online Marketing.</p>
 
         
 
@@ -1137,6 +1246,7 @@
     </section>
 
   </main>
+  </div>
 
   <!-- ==================== FOOTER ==================== -->
   <footer class="no-print mt-12 py-6 border-t border-slate-300 bg-white/50 text-slate-600 text-xs">

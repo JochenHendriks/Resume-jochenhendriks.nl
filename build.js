@@ -307,75 +307,88 @@ function renderCoachHighlights(highlights) {
 function renderWork(workList) {
   if (!workList || workList.length === 0) return '';
 
-  return workList.map(job => {
+  return workList.map((job, jobIdx) => {
     const periodStr = `${formatDate(job.startDate)} – ${formatDate(job.endDate)}`;
 
     // 1. Roles Timeline View (Capgemini & Intergamma)
     let rolesTimelineHtml = '';
     if (job.roles && Array.isArray(job.roles) && job.roles.length > 0) {
       rolesTimelineHtml = `
-        <div class="mt-3.5 mb-4 pl-3.5 border-l-2 border-teal-700/60 space-y-2.5">
+        <div class="mt-3.5 mb-4 pl-3.5 border-l-2 border-teal-700/50 space-y-2.5">
           ${job.roles.map(r => `
-            <div class="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-xs sm:text-sm">
+            <div class="relative flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 text-xs sm:text-sm">
               <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-teal-800 -ml-[20px] ring-4 ring-white shadow-2xs"></span>
-                <span class="font-bold text-slate-950 text-sm sm:text-base">${r.title}</span>
+                <span class="w-2.5 h-2.5 rounded-full bg-teal-700 -ml-[20px] ring-4 ring-[#faf7f2] shadow-2xs"></span>
+                <span class="font-bold text-slate-900 text-sm sm:text-base">${r.title}</span>
               </div>
-              <span class="text-xs text-slate-600 font-bold bg-slate-50 px-2 py-0.5 border border-slate-200 rounded self-start sm:self-auto">
-                <i class="fa-regular fa-calendar text-[11px] mr-1 text-slate-400"></i>${formatDate(r.startDate)} – ${formatDate(r.endDate)}
-              </span>
+              <div class="date-highlight text-sm self-start sm:self-auto">
+                <i class="fa-regular fa-calendar text-[10px] opacity-70"></i>
+                <span>${formatDate(r.startDate)} – ${formatDate(r.endDate)}</span>
+              </div>
             </div>
           `).join('')}
         </div>
       `;
     }
 
-    // 2. Client Assignments (Detacheringen)
+    // 2. Client Assignments (Detacheringen als geneste indexkaartjes)
     let assignmentsHtml = '';
     if (job.assignments && Array.isArray(job.assignments) && job.assignments.length > 0) {
-      const itemsHtml = job.assignments.map(assignment => `
-        <div class="bg-slate-50/80 p-4 sm:p-5 rounded-lg border border-slate-200 transition shadow-xs print-break-avoid">
-          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
-            <div>
-              <div class="flex items-center gap-2 flex-wrap">
-                <h5 class="font-bold text-slate-950 text-base sm:text-lg">${assignment.client || 'Klantopdracht'}</h5>
-                <span class="font-hand font-bold text-sm px-2 py-0.5 rounded bg-amber-200 text-slate-950 shadow-2xs">
-                  ${assignment.role || 'Consultant'}
-                </span>
+      const cardStyles = [
+        { bg: 'bg-[#fefce8]', border: 'border-amber-200', rot: 'rotate-[-1deg]', tape: 'washi-tape-amber' },
+        { bg: 'bg-[#f0fdfa]', border: 'border-teal-200', rot: 'rotate-[1.2deg]', tape: 'washi-tape' },
+        { bg: 'bg-[#f8fafc]', border: 'border-slate-300', rot: 'rotate-[-0.8deg]', tape: 'washi-tape' }
+      ];
+
+      const itemsHtml = job.assignments.map((assignment, aIdx) => {
+        const cStyle = cardStyles[aIdx % cardStyles.length];
+        return `
+          <div class="relative ${cStyle.bg} border ${cStyle.border} ${cStyle.rot} p-5 pt-6 rounded-lg shadow-sm transition hover:rotate-0 hover:shadow-md print-break-avoid">
+            <div class="${cStyle.tape} no-print"></div>
+            
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h5 class="font-extrabold text-slate-950 text-base sm:text-lg">${assignment.client || 'Klantopdracht'}</h5>
+                  <span class="font-hand font-bold text-sm px-2 py-0.5 rounded bg-amber-200/90 text-slate-950 shadow-2xs">
+                    ${assignment.role || 'Consultant'}
+                  </span>
+                </div>
+              </div>
+              <div class="date-highlight text-xs self-start sm:self-auto">
+                <i class="fa-regular fa-calendar text-[10px] opacity-70"></i>
+                <span>${formatDate(assignment.startDate)} – ${formatDate(assignment.endDate)}</span>
               </div>
             </div>
-            <span class="text-xs text-slate-600 font-bold whitespace-nowrap bg-white px-2 py-0.5 border border-slate-200 rounded">
-              <i class="fa-regular fa-calendar text-[11px] mr-1 text-slate-400"></i>${formatDate(assignment.startDate)} – ${formatDate(assignment.endDate)}
-            </span>
+
+            ${assignment.summary ? `<p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed font-sans">${assignment.summary}</p>` : ''}
+
+            ${assignment.highlights && assignment.highlights.length > 0 ? `
+              <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-800">
+                ${assignment.highlights.map(h => `
+                  <li class="flex items-start gap-2">
+                    <span class="font-hand font-bold text-teal-800 text-base shrink-0 leading-none">✓</span>
+                    <span>${h}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            ` : ''}
+
+            ${assignment.keywords && assignment.keywords.length > 0 ? `
+              <div class="mt-3.5 pt-3 border-t border-slate-200/70 flex flex-wrap gap-1.5">
+                ${assignment.keywords.map(kw => `
+                  <span class="px-2 py-0.5 bg-white border border-slate-300 text-slate-700 rounded text-[11px] font-bold">
+                    ${kw}
+                  </span>
+                `).join('')}
+              </div>
+            ` : ''}
           </div>
-
-          ${assignment.summary ? `<p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed font-sans">${assignment.summary}</p>` : ''}
-
-          ${assignment.highlights && assignment.highlights.length > 0 ? `
-            <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-800">
-              ${assignment.highlights.map(h => `
-                <li class="flex items-start gap-2">
-                  <span class="font-hand font-bold text-teal-800 text-base shrink-0 leading-none">✓</span>
-                  <span>${h}</span>
-                </li>
-              `).join('')}
-            </ul>
-          ` : ''}
-
-          ${assignment.keywords && assignment.keywords.length > 0 ? `
-            <div class="mt-3.5 pt-3 border-t border-slate-200 flex flex-wrap gap-1.5">
-              ${assignment.keywords.map(kw => `
-                <span class="px-2 py-0.5 bg-white border border-slate-300 text-slate-700 rounded text-[11px] font-bold">
-                  ${kw}
-                </span>
-              `).join('')}
-            </div>
-          ` : ''}
-        </div>
-      `).join('');
+        `;
+      }).join('');
 
       assignmentsHtml = `
-        <div class="mt-6 pt-5 border-t-2 border-dashed border-slate-200 relative">
+        <div class="mt-6 pt-5 border-t-2 border-dashed border-slate-300/80 relative">
           <!-- Gift Box Doodle (Delivering Business Value) -->
           <div class="no-print hidden sm:block absolute right-2 -top-4 pointer-events-none rotate-6" title="Delivering Value!">
             <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none">
@@ -395,7 +408,7 @@ function renderWork(workList) {
             </div>
           </div>
 
-          <div class="space-y-4 pl-0 sm:pl-3 sm:border-l-2 sm:border-slate-200">
+          <div class="grid grid-cols-1 gap-4">
             ${itemsHtml}
           </div>
         </div>
@@ -408,7 +421,7 @@ function renderWork(workList) {
 
     const rocketDoodle = job.name === 'Capgemini' ? `
       <!-- Rocket Doodle (Acceleration & Agile Flow) -->
-      <div class="no-print hidden sm:block absolute -right-4 -top-5 pointer-events-none rotate-12 z-20" title="Accelerating Flow & Continuous Delivery">
+      <div class="no-print hidden sm:block absolute -right-3 -top-3 pointer-events-none rotate-12 z-20" title="Accelerating Flow & Continuous Delivery">
         <svg class="w-10 h-10" viewBox="0 0 50 50" fill="none">
           <path d="M25 6 C17 12, 16 26, 18 36 L32 36 C34 26, 33 12, 25 6 Z" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(37, 99, 235, 0.08)"/>
           <circle cx="25" cy="20" r="3.5" stroke="#2563eb" stroke-width="2" fill="#ffffff"/>
@@ -419,22 +432,26 @@ function renderWork(workList) {
     ` : '';
 
     return `
-      <div class="flipchart-sheet p-6 sm:p-7 print-break-avoid relative">
+      <div class="relative pl-6 sm:pl-8 border-l-[3.5px] border-teal-700/60 pb-10 last:pb-2 ml-1 sm:ml-2 print-break-avoid">
+        <!-- Organic Marker Timeline Dot -->
+        <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal-800 border-2 border-white shadow-xs"></span>
+        
         ${rocketDoodle}
-        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+
+        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
           <div>
-            <h3 class="text-xl sm:text-2xl font-extrabold text-slate-950">${job.name || 'Werkgever'}</h3>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight">${job.name || 'Werkgever'}</h3>
             ${singlePositionHtml}
           </div>
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 border border-amber-300 rounded-md text-xs font-bold text-slate-900 whitespace-nowrap self-start shadow-xs">
-            <i class="fa-regular fa-calendar text-slate-600"></i>
+          <div class="date-highlight text-base sm:text-lg self-start sm:self-auto">
+            <i class="fa-regular fa-calendar text-xs opacity-70"></i>
             <span>${periodStr}</span>
           </div>
         </div>
 
         ${rolesTimelineHtml}
 
-        ${job.summary ? `<p class="text-sm text-slate-700 leading-relaxed mb-4">${job.summary}</p>` : ''}
+        ${job.summary ? `<p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-4 font-sans">${job.summary}</p>` : ''}
 
         ${job.highlights && job.highlights.length > 0 && (!job.roles || job.roles.length === 0) ? `
           <div class="mb-4">
