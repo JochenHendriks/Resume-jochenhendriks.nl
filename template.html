@@ -49,21 +49,85 @@
   </script>
 
   <style>
-    /* Workshop / Flipover Canvas Background */
+    /* ==================== WHITEBOARD & WORKSHOP CANVAS TEXTURE ==================== */
     .workshop-bg {
-      background-color: #f6f5f1;
+      background-color: #f7f6f1;
       background-image: 
-        radial-gradient(#cbd5e1 1.4px, transparent 1.4px),
-        linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
-      background-size: 26px 26px, 100% 26px;
+        /* Subtle dry-erase marker wipe / eraser clouds */
+        radial-gradient(ellipse at 12% 15%, rgba(203, 213, 225, 0.45) 0%, transparent 55%),
+        radial-gradient(ellipse at 88% 30%, rgba(254, 240, 138, 0.25) 0%, transparent 50%),
+        radial-gradient(ellipse at 75% 85%, rgba(204, 251, 241, 0.35) 0%, transparent 60%),
+        radial-gradient(ellipse at 25% 75%, rgba(226, 232, 240, 0.4) 0%, transparent 55%),
+        /* Whiteboard dot grid */
+        radial-gradient(#94a3b8 1.4px, transparent 1.4px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 28px 28px;
     }
 
-    /* Hand-drawn / Asymmetrical Organic Borders (Wobbly / Sketched) */
+    /* ==================== 3D MAGNETS & PUSHPINS ==================== */
+    /* 3D Round Glossy Whiteboard Magnet */
+    .magnet {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      box-shadow: 
+        0 3px 5px rgba(0,0,0,0.35),
+        inset 0 2px 3px rgba(255,255,255,0.7),
+        inset 0 -2px 3px rgba(0,0,0,0.45);
+      z-index: 25;
+      pointer-events: none;
+    }
+    .magnet::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 4px;
+      width: 6px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.85);
+      transform: rotate(-35deg);
+    }
+    .magnet-red { background: radial-gradient(circle at 35% 35%, #ef4444, #991b1b); }
+    .magnet-blue { background: radial-gradient(circle at 35% 35%, #3b82f6, #1e40af); }
+    .magnet-green { background: radial-gradient(circle at 35% 35%, #10b981, #065f46); }
+    .magnet-yellow { background: radial-gradient(circle at 35% 35%, #facc15, #854d0e); }
+
+    /* Pushpin with pin shadow */
+    .pushpin {
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #f43f5e, #881337);
+      box-shadow: 
+        2px 4px 6px rgba(0,0,0,0.35),
+        inset 0 2px 2px rgba(255,255,255,0.75),
+        inset 0 -2px 3px rgba(0,0,0,0.5);
+      z-index: 25;
+      pointer-events: none;
+    }
+    .pushpin::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 4px;
+      width: 5px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      transform: rotate(-30deg);
+    }
+
+    /* ==================== THICK WHITEBOARD MARKER BORDERS ==================== */
     .sketch-card {
       background: #ffffff;
-      border: 2px solid #334155;
+      border: 3px solid #1e293b;
       border-radius: 255px 18px 225px 16px/18px 225px 16px 255px;
-      box-shadow: 3px 4px 0px #334155;
+      box-shadow: 3px 4px 0px #1e293b;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .sketch-card:hover {
@@ -74,51 +138,77 @@
 
     .sketch-card-static {
       background: #ffffff;
-      border: 2px solid #334155;
+      border: 3px solid #1e293b;
       border-radius: 255px 18px 225px 16px/18px 225px 16px 255px;
-      box-shadow: 3px 4px 0px #334155;
+      box-shadow: 4px 5px 0px #1e293b;
     }
 
     .sketch-card-subtle {
       background: #ffffff;
-      border: 1.5px solid #475569;
+      border: 2px solid #334155;
       border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-      box-shadow: 2px 3px 0px rgba(71, 85, 105, 0.4);
+      box-shadow: 2.5px 3.5px 0px #334155;
     }
 
-    .sketch-badge {
-      border: 1.5px solid currentColor;
-      border-radius: 255px 12px 225px 10px/10px 225px 12px 255px;
+    .marker-border-teal {
+      border: 3px solid #0f766e !important;
+      box-shadow: 3.5px 4.5px 0px #115e59 !important;
     }
 
-    /* Organic Sticky Notes with Tape */
+    /* ==================== REALISTIC CURLED POST-ITS ==================== */
     .sticky-note {
       position: relative;
       border-radius: 2px 3px 4px 2px;
       box-shadow: 
-        2px 4px 8px rgba(0,0,0,0.08),
-        3px 4px 0px rgba(0,0,0,0.15);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+        0 1px 3px rgba(0,0,0,0.06),
+        0 6px 12px -2px rgba(0,0,0,0.12),
+        2px 4px 0px rgba(0,0,0,0.18);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+    }
+    /* 3D curled bottom corner shadows */
+    .sticky-note::after {
+      content: '';
+      position: absolute;
+      bottom: 6px;
+      right: 8px;
+      width: 45%;
+      height: 14px;
+      box-shadow: 0 10px 14px rgba(0, 0, 0, 0.22);
+      transform: rotate(3deg) skew(4deg);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .sticky-note::before {
+      content: '';
+      position: absolute;
+      bottom: 6px;
+      left: 8px;
+      width: 45%;
+      height: 14px;
+      box-shadow: 0 10px 14px rgba(0, 0, 0, 0.16);
+      transform: rotate(-3deg) skew(-4deg);
+      z-index: -1;
+      pointer-events: none;
     }
     .sticky-note:hover {
-      transform: scale(1.02) rotate(0deg) !important;
-      box-shadow: 4px 8px 16px rgba(0,0,0,0.15);
-      z-index: 30;
+      transform: scale(1.03) translateY(-3px) rotate(0deg) !important;
+      box-shadow: 0 14px 24px -3px rgba(0,0,0,0.2), 3px 6px 0px rgba(0,0,0,0.25) !important;
+      z-index: 35;
     }
 
-    /* Washi Tape Strip */
+    /* ==================== WASHI TAPE STRIPS ==================== */
     .washi-tape {
       position: absolute;
       top: -12px;
       left: 50%;
-      transform: translateX(-50%) rotate(-1deg);
-      width: 70px;
+      transform: translateX(-50%) rotate(-1.5deg);
+      width: 72px;
       height: 22px;
-      background: rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.78);
       backdrop-filter: blur(1px);
-      border-left: 2px dashed rgba(148, 163, 184, 0.6);
-      border-right: 2px dashed rgba(148, 163, 184, 0.6);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border-left: 2px dashed rgba(148, 163, 184, 0.7);
+      border-right: 2px dashed rgba(148, 163, 184, 0.7);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
       pointer-events: none;
       z-index: 20;
     }
@@ -128,19 +218,19 @@
       top: -11px;
       left: 50%;
       transform: translateX(-50%) rotate(2deg);
-      width: 65px;
-      height: 20px;
-      background: rgba(254, 240, 138, 0.8);
-      border-left: 2px dashed rgba(202, 138, 4, 0.5);
-      border-right: 2px dashed rgba(202, 138, 4, 0.5);
-      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      width: 68px;
+      height: 21px;
+      background: rgba(254, 240, 138, 0.85);
+      border-left: 2px dashed rgba(202, 138, 4, 0.6);
+      border-right: 2px dashed rgba(202, 138, 4, 0.6);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
       pointer-events: none;
       z-index: 20;
     }
 
-    /* Marker Highlight Effect */
+    /* ==================== MARKER ACCENTS & CIRCLES ==================== */
     .marker-yellow {
-      background: linear-gradient(104deg, rgba(254,240,138,0) 0.5%, rgba(254,240,138,0.9) 2.5%, rgba(254,240,138,0.75) 94%, rgba(254,240,138,0) 98%);
+      background: linear-gradient(104deg, rgba(254,240,138,0) 0.5%, rgba(254,240,138,0.95) 2.5%, rgba(254,240,138,0.85) 94%, rgba(254,240,138,0) 98%);
       padding: 0.1em 0.35em;
       border-radius: 4px;
       box-decoration-break: clone;
@@ -148,11 +238,26 @@
     }
 
     .marker-teal {
-      background: linear-gradient(104deg, rgba(153,246,228,0) 0.5%, rgba(153,246,228,0.8) 2.5%, rgba(153,246,228,0.65) 94%, rgba(153,246,228,0) 98%);
+      background: linear-gradient(104deg, rgba(153,246,228,0) 0.5%, rgba(153,246,228,0.85) 2.5%, rgba(153,246,228,0.7) 94%, rgba(153,246,228,0) 98%);
       padding: 0.1em 0.35em;
       border-radius: 4px;
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;
+    }
+
+    /* Hand-drawn red marker circle around key numbers */
+    .hand-drawn-circle {
+      position: relative;
+      display: inline-block;
+    }
+    .hand-drawn-circle::after {
+      content: '';
+      position: absolute;
+      inset: -6px -10px;
+      border: 2.5px solid #ef4444;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+      transform: rotate(-2deg);
+      pointer-events: none;
     }
 
     /* Print Specific Clean A4 Styles */

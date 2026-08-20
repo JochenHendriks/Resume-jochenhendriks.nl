@@ -49,21 +49,85 @@
   </script>
 
   <style>
-    /* Workshop / Flipover Canvas Background */
+    /* ==================== WHITEBOARD & WORKSHOP CANVAS TEXTURE ==================== */
     .workshop-bg {
-      background-color: #f6f5f1;
+      background-color: #f7f6f1;
       background-image: 
-        radial-gradient(#cbd5e1 1.4px, transparent 1.4px),
-        linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
-      background-size: 26px 26px, 100% 26px;
+        /* Subtle dry-erase marker wipe / eraser clouds */
+        radial-gradient(ellipse at 12% 15%, rgba(203, 213, 225, 0.45) 0%, transparent 55%),
+        radial-gradient(ellipse at 88% 30%, rgba(254, 240, 138, 0.25) 0%, transparent 50%),
+        radial-gradient(ellipse at 75% 85%, rgba(204, 251, 241, 0.35) 0%, transparent 60%),
+        radial-gradient(ellipse at 25% 75%, rgba(226, 232, 240, 0.4) 0%, transparent 55%),
+        /* Whiteboard dot grid */
+        radial-gradient(#94a3b8 1.4px, transparent 1.4px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 28px 28px;
     }
 
-    /* Hand-drawn / Asymmetrical Organic Borders (Wobbly / Sketched) */
+    /* ==================== 3D MAGNETS & PUSHPINS ==================== */
+    /* 3D Round Glossy Whiteboard Magnet */
+    .magnet {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      box-shadow: 
+        0 3px 5px rgba(0,0,0,0.35),
+        inset 0 2px 3px rgba(255,255,255,0.7),
+        inset 0 -2px 3px rgba(0,0,0,0.45);
+      z-index: 25;
+      pointer-events: none;
+    }
+    .magnet::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 4px;
+      width: 6px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.85);
+      transform: rotate(-35deg);
+    }
+    .magnet-red { background: radial-gradient(circle at 35% 35%, #ef4444, #991b1b); }
+    .magnet-blue { background: radial-gradient(circle at 35% 35%, #3b82f6, #1e40af); }
+    .magnet-green { background: radial-gradient(circle at 35% 35%, #10b981, #065f46); }
+    .magnet-yellow { background: radial-gradient(circle at 35% 35%, #facc15, #854d0e); }
+
+    /* Pushpin with pin shadow */
+    .pushpin {
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #f43f5e, #881337);
+      box-shadow: 
+        2px 4px 6px rgba(0,0,0,0.35),
+        inset 0 2px 2px rgba(255,255,255,0.75),
+        inset 0 -2px 3px rgba(0,0,0,0.5);
+      z-index: 25;
+      pointer-events: none;
+    }
+    .pushpin::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 4px;
+      width: 5px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      transform: rotate(-30deg);
+    }
+
+    /* ==================== THICK WHITEBOARD MARKER BORDERS ==================== */
     .sketch-card {
       background: #ffffff;
-      border: 2px solid #334155;
+      border: 3px solid #1e293b;
       border-radius: 255px 18px 225px 16px/18px 225px 16px 255px;
-      box-shadow: 3px 4px 0px #334155;
+      box-shadow: 3px 4px 0px #1e293b;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .sketch-card:hover {
@@ -74,51 +138,77 @@
 
     .sketch-card-static {
       background: #ffffff;
-      border: 2px solid #334155;
+      border: 3px solid #1e293b;
       border-radius: 255px 18px 225px 16px/18px 225px 16px 255px;
-      box-shadow: 3px 4px 0px #334155;
+      box-shadow: 4px 5px 0px #1e293b;
     }
 
     .sketch-card-subtle {
       background: #ffffff;
-      border: 1.5px solid #475569;
+      border: 2px solid #334155;
       border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-      box-shadow: 2px 3px 0px rgba(71, 85, 105, 0.4);
+      box-shadow: 2.5px 3.5px 0px #334155;
     }
 
-    .sketch-badge {
-      border: 1.5px solid currentColor;
-      border-radius: 255px 12px 225px 10px/10px 225px 12px 255px;
+    .marker-border-teal {
+      border: 3px solid #0f766e !important;
+      box-shadow: 3.5px 4.5px 0px #115e59 !important;
     }
 
-    /* Organic Sticky Notes with Tape */
+    /* ==================== REALISTIC CURLED POST-ITS ==================== */
     .sticky-note {
       position: relative;
       border-radius: 2px 3px 4px 2px;
       box-shadow: 
-        2px 4px 8px rgba(0,0,0,0.08),
-        3px 4px 0px rgba(0,0,0,0.15);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+        0 1px 3px rgba(0,0,0,0.06),
+        0 6px 12px -2px rgba(0,0,0,0.12),
+        2px 4px 0px rgba(0,0,0,0.18);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+    }
+    /* 3D curled bottom corner shadows */
+    .sticky-note::after {
+      content: '';
+      position: absolute;
+      bottom: 6px;
+      right: 8px;
+      width: 45%;
+      height: 14px;
+      box-shadow: 0 10px 14px rgba(0, 0, 0, 0.22);
+      transform: rotate(3deg) skew(4deg);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .sticky-note::before {
+      content: '';
+      position: absolute;
+      bottom: 6px;
+      left: 8px;
+      width: 45%;
+      height: 14px;
+      box-shadow: 0 10px 14px rgba(0, 0, 0, 0.16);
+      transform: rotate(-3deg) skew(-4deg);
+      z-index: -1;
+      pointer-events: none;
     }
     .sticky-note:hover {
-      transform: scale(1.02) rotate(0deg) !important;
-      box-shadow: 4px 8px 16px rgba(0,0,0,0.15);
-      z-index: 30;
+      transform: scale(1.03) translateY(-3px) rotate(0deg) !important;
+      box-shadow: 0 14px 24px -3px rgba(0,0,0,0.2), 3px 6px 0px rgba(0,0,0,0.25) !important;
+      z-index: 35;
     }
 
-    /* Washi Tape Strip */
+    /* ==================== WASHI TAPE STRIPS ==================== */
     .washi-tape {
       position: absolute;
       top: -12px;
       left: 50%;
-      transform: translateX(-50%) rotate(-1deg);
-      width: 70px;
+      transform: translateX(-50%) rotate(-1.5deg);
+      width: 72px;
       height: 22px;
-      background: rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.78);
       backdrop-filter: blur(1px);
-      border-left: 2px dashed rgba(148, 163, 184, 0.6);
-      border-right: 2px dashed rgba(148, 163, 184, 0.6);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border-left: 2px dashed rgba(148, 163, 184, 0.7);
+      border-right: 2px dashed rgba(148, 163, 184, 0.7);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
       pointer-events: none;
       z-index: 20;
     }
@@ -128,19 +218,19 @@
       top: -11px;
       left: 50%;
       transform: translateX(-50%) rotate(2deg);
-      width: 65px;
-      height: 20px;
-      background: rgba(254, 240, 138, 0.8);
-      border-left: 2px dashed rgba(202, 138, 4, 0.5);
-      border-right: 2px dashed rgba(202, 138, 4, 0.5);
-      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      width: 68px;
+      height: 21px;
+      background: rgba(254, 240, 138, 0.85);
+      border-left: 2px dashed rgba(202, 138, 4, 0.6);
+      border-right: 2px dashed rgba(202, 138, 4, 0.6);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
       pointer-events: none;
       z-index: 20;
     }
 
-    /* Marker Highlight Effect */
+    /* ==================== MARKER ACCENTS & CIRCLES ==================== */
     .marker-yellow {
-      background: linear-gradient(104deg, rgba(254,240,138,0) 0.5%, rgba(254,240,138,0.9) 2.5%, rgba(254,240,138,0.75) 94%, rgba(254,240,138,0) 98%);
+      background: linear-gradient(104deg, rgba(254,240,138,0) 0.5%, rgba(254,240,138,0.95) 2.5%, rgba(254,240,138,0.85) 94%, rgba(254,240,138,0) 98%);
       padding: 0.1em 0.35em;
       border-radius: 4px;
       box-decoration-break: clone;
@@ -148,11 +238,26 @@
     }
 
     .marker-teal {
-      background: linear-gradient(104deg, rgba(153,246,228,0) 0.5%, rgba(153,246,228,0.8) 2.5%, rgba(153,246,228,0.65) 94%, rgba(153,246,228,0) 98%);
+      background: linear-gradient(104deg, rgba(153,246,228,0) 0.5%, rgba(153,246,228,0.85) 2.5%, rgba(153,246,228,0.7) 94%, rgba(153,246,228,0) 98%);
       padding: 0.1em 0.35em;
       border-radius: 4px;
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;
+    }
+
+    /* Hand-drawn red marker circle around key numbers */
+    .hand-drawn-circle {
+      position: relative;
+      display: inline-block;
+    }
+    .hand-drawn-circle::after {
+      content: '';
+      position: absolute;
+      inset: -6px -10px;
+      border: 2.5px solid #ef4444;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+      transform: rotate(-2deg);
+      pointer-events: none;
     }
 
     /* Print Specific Clean A4 Styles */
@@ -241,11 +346,12 @@
     <!-- HERO SECTION / ASYMMETRICAL PROFILE CARD -->
     
     <section id="over-mij" class="relative sketch-card-static p-6 sm:p-8 lg:p-10 print-break-avoid">
-      <div class="washi-tape-amber no-print"></div>
+      <div class="magnet magnet-red -top-2.5 left-10 no-print"></div>
+      <div class="magnet magnet-blue -top-2.5 right-10 no-print"></div>
 
       
-    <div class="no-print hidden xl:block absolute -right-8 -top-8 w-44 sticky-note bg-paper-yellow p-3 border-2 border-slate-700 rotate-6 shadow-md z-30">
-      <div class="washi-tape"></div>
+    <div class="no-print hidden xl:block absolute -right-8 -top-8 w-48 sticky-note bg-paper-yellow p-3.5 border-2 border-slate-800 rotate-6 shadow-md z-30">
+      <div class="washi-tape-amber"></div>
       <div class="font-hand font-bold text-slate-900 text-lg leading-tight">
         "Mensen boven processen, echte interactie boven dikke plannen!"
       </div>
@@ -255,8 +361,8 @@
 
       <div class="flex flex-col md:flex-row items-start md:items-center gap-6 lg:gap-10">
         <div class="relative shrink-0 mx-auto md:mx-0">
-          <div class="relative p-2 bg-white border-2 border-slate-800 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-[4px_5px_0px_#1e293b] rotate-[-2.5deg] hover:rotate-0 transition-transform duration-300">
-            <div class="washi-tape no-print"></div>
+          <div class="relative p-2 bg-white border-2 border-slate-900 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-[4px_5px_0px_#0f172a] rotate-[-2.5deg] hover:rotate-0 transition-transform duration-300">
+            <div class="pushpin no-print"></div>
             
             <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-[220px_20px_240px_25px/20px_240px_25px_220px] overflow-hidden bg-gradient-to-br from-amber-100 via-teal-50 to-slate-200 border border-slate-300 relative group">
               <img 
@@ -292,33 +398,33 @@
 
           <div class="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3 text-xs sm:text-sm text-slate-700 font-bold">
             
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155]">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-800 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2.5px_0px_#1e293b]">
                 <i class="fa-solid fa-location-dot text-rose-500"></i>
                 <span>Amersfoort, Utrecht, NL</span>
               </div>
             
             
-      <a href="https://www.linkedin.com/in/jochenh/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155] hover:bg-teal-50 hover:text-teal-900 transition">
+      <a href="https://www.linkedin.com/in/jochenh/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-800 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2.5px_0px_#1e293b] hover:bg-teal-50 hover:text-teal-900 transition">
         <i class="fa-brands fa-linkedin text-[#0a66c2]"></i><span>LinkedIn</span>
       </a>
     
-      <a href="https://github.com/JochenHendriks" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155] hover:bg-teal-50 hover:text-teal-900 transition">
+      <a href="https://github.com/JochenHendriks" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-800 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2.5px_0px_#1e293b] hover:bg-teal-50 hover:text-teal-900 transition">
         <i class="fa-brands fa-github text-slate-800"></i><span>GitHub</span>
       </a>
     
-      <a href="https://www.meetup.com/nl-NL/members/251564166/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155] hover:bg-teal-50 hover:text-teal-900 transition">
+      <a href="https://www.meetup.com/nl-NL/members/251564166/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-800 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2.5px_0px_#1e293b] hover:bg-teal-50 hover:text-teal-900 transition">
         <i class="fa-brands fa-meetup text-[#f64060]"></i><span>Meetup</span>
       </a>
     
-      <a href="https://www.twitch.tv/supergr0ver_" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155] hover:bg-teal-50 hover:text-teal-900 transition">
+      <a href="https://www.twitch.tv/supergr0ver_" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-800 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2.5px_0px_#1e293b] hover:bg-teal-50 hover:text-teal-900 transition">
         <i class="fa-brands fa-twitch text-[#9146ff]"></i><span>Twitch</span>
       </a>
     
-      <a href="https://steamcommunity.com/id/SUPERGR0VER/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155] hover:bg-teal-50 hover:text-teal-900 transition">
+      <a href="https://steamcommunity.com/id/SUPERGR0VER/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-800 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2.5px_0px_#1e293b] hover:bg-teal-50 hover:text-teal-900 transition">
         <i class="fa-brands fa-steam text-[#171a21]"></i><span>Steam</span>
       </a>
     
-      <a href="https://tweakers.net/gallery/587601/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155] hover:bg-teal-50 hover:text-teal-900 transition">
+      <a href="https://tweakers.net/gallery/587601/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-800 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2.5px_0px_#1e293b] hover:bg-teal-50 hover:text-teal-900 transition">
         <span class="inline-flex items-center justify-center w-4 h-4 bg-[#4c9bd4] text-white text-[10px] font-black rounded-[2px] leading-none shadow-2xs">T</span><span>Tweakers</span>
       </a>
     
@@ -335,26 +441,30 @@
       </div>
 
       
-    <div class="no-print mt-8 pt-6 border-t-2 border-dashed border-slate-300 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-center">
+    <div class="no-print mt-8 pt-6 border-t-2 border-dashed border-slate-300 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
       
-      <div class="bg-paper-amber/80 text-slate-900 border-slate-700 shadow-[2px_3px_0px_#334155] -rotate-1 p-3.5 border-2 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] flex flex-col justify-center items-center">
-        <div class="text-xl sm:text-2xl font-extrabold font-sans">10+ Jaar</div>
-        <div class="text-xs font-bold text-slate-700 leading-snug text-center mt-1">Scrum Master</div>
+      <div class="bg-paper-amber/90 text-slate-950 border-slate-800 shadow-[3px_4px_0px_#1e293b] -rotate-1.5 relative p-3.5 border-2 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] flex flex-col justify-center items-center group hover:scale-105 transition-transform">
+        <div class="magnet magnet-red -top-2.5 left-4 no-print"></div>
+        <div class="text-xl sm:text-2xl font-extrabold font-sans py-1"><span class="hand-drawn-circle">10+ Jaar</span></div>
+        <div class="text-xs font-bold text-slate-800 leading-snug text-center mt-1">Scrum Master</div>
       </div>
     
-      <div class="bg-paper-teal/80 text-teal-900 border-slate-700 shadow-[2px_3px_0px_#334155] rotate-1 p-3.5 border-2 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] flex flex-col justify-center items-center">
-        <div class="text-xl sm:text-2xl font-extrabold font-sans">33+</div>
-        <div class="text-xs font-bold text-slate-700 leading-snug text-center mt-1">Liberating Structures</div>
+      <div class="bg-paper-teal/90 text-teal-950 border-slate-800 shadow-[3px_4px_0px_#1e293b] rotate-1.5 relative p-3.5 border-2 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] flex flex-col justify-center items-center group hover:scale-105 transition-transform">
+        <div class="magnet magnet-green -top-2.5 right-4 no-print"></div>
+        <div class="text-xl sm:text-2xl font-extrabold font-sans py-1">33+</div>
+        <div class="text-xs font-bold text-slate-800 leading-snug text-center mt-1">Liberating Structures</div>
       </div>
     
-      <div class="bg-paper-yellow/90 text-amber-950 border-slate-700 shadow-[2px_3px_0px_#334155] -rotate-1 p-3.5 border-2 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] flex flex-col justify-center items-center">
-        <div class="text-xl sm:text-2xl font-extrabold font-sans">LSP</div>
-        <div class="text-xs font-bold text-slate-700 leading-snug text-center mt-1">Certified Facilitator of the Lego® Serious Play® Method</div>
+      <div class="bg-paper-yellow/95 text-amber-950 border-slate-800 shadow-[3px_4px_0px_#1e293b] -rotate-1 relative p-3.5 border-2 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] flex flex-col justify-center items-center group hover:scale-105 transition-transform">
+        <div class="magnet magnet-yellow -top-2.5 left-4 no-print"></div>
+        <div class="text-xl sm:text-2xl font-extrabold font-sans py-1">LSP</div>
+        <div class="text-xs font-bold text-slate-800 leading-snug text-center mt-1">Certified Facilitator of the Lego® Serious Play® Method</div>
       </div>
     
-      <div class="bg-paper-rose/80 text-rose-950 border-slate-700 shadow-[2px_3px_0px_#334155] rotate-1 p-3.5 border-2 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] flex flex-col justify-center items-center">
-        <div class="text-xl sm:text-2xl font-extrabold font-sans">PSM II</div>
-        <div class="text-xs font-bold text-slate-700 leading-snug text-center mt-1">Professional Scrum Master & DevOps</div>
+      <div class="bg-paper-rose/90 text-rose-950 border-slate-800 shadow-[3px_4px_0px_#1e293b] rotate-2 relative p-3.5 border-2 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] flex flex-col justify-center items-center group hover:scale-105 transition-transform">
+        <div class="magnet magnet-blue -top-2.5 right-4 no-print"></div>
+        <div class="text-xl sm:text-2xl font-extrabold font-sans py-1">PSM II</div>
+        <div class="text-xs font-bold text-slate-800 leading-snug text-center mt-1">Professional Scrum Master & DevOps</div>
       </div>
     
     </div>
@@ -386,11 +496,11 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 pt-2">
         
-      <div class="sticky-note bg-[#fffbeb] border-2 border-amber-500 p-5 -rotate-1 flex flex-col justify-between relative">
-        <div class="washi-tape-amber no-print"></div>
+      <div class="sticky-note bg-[#fffbeb] border-2 border-amber-500 p-5 -rotate-2 flex flex-col justify-between relative">
+        <div class="magnet magnet-red -top-2.5 left-6 no-print"></div>
         <div>
           <div class="flex items-center justify-between gap-2 mb-3">
-            <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-800 border border-slate-700/40 flex items-center justify-center text-lg shadow-xs">
+            <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-900 border border-slate-700/40 flex items-center justify-center text-lg shadow-xs">
               <i class="fa-solid fa-cubes-stacked"></i>
             </div>
             <span class="font-hand font-bold text-sm px-2 py-0.5 border bg-amber-200 text-amber-950 border-amber-500 rounded shadow-2xs">
@@ -402,11 +512,11 @@
         </div>
       </div>
     
-      <div class="sticky-note bg-[#f0fdf4] border-2 border-emerald-500 p-5 rotate-1 flex flex-col justify-between relative">
+      <div class="sticky-note bg-[#f0fdf4] border-2 border-emerald-500 p-5 rotate-1.5 flex flex-col justify-between relative">
         <div class="washi-tape no-print"></div>
         <div>
           <div class="flex items-center justify-between gap-2 mb-3">
-            <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-800 border border-slate-700/40 flex items-center justify-center text-lg shadow-xs">
+            <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-900 border border-slate-700/40 flex items-center justify-center text-lg shadow-xs">
               <i class="fa-solid fa-wand-magic-sparkles"></i>
             </div>
             <span class="font-hand font-bold text-sm px-2 py-0.5 border bg-emerald-200 text-emerald-950 border-emerald-500 rounded shadow-2xs">
@@ -419,10 +529,10 @@
       </div>
     
       <div class="sticky-note bg-[#eef2ff] border-2 border-indigo-500 p-5 -rotate-1.5 flex flex-col justify-between relative">
-        <div class="washi-tape no-print"></div>
+        <div class="pushpin no-print"></div>
         <div>
           <div class="flex items-center justify-between gap-2 mb-3">
-            <div class="w-10 h-10 rounded-lg bg-indigo-100 text-indigo-800 border border-slate-700/40 flex items-center justify-center text-lg shadow-xs">
+            <div class="w-10 h-10 rounded-lg bg-indigo-100 text-indigo-900 border border-slate-700/40 flex items-center justify-center text-lg shadow-xs">
               <i class="fa-solid fa-people-arrows"></i>
             </div>
             <span class="font-hand font-bold text-sm px-2 py-0.5 border bg-indigo-200 text-indigo-950 border-indigo-500 rounded shadow-2xs">
@@ -434,11 +544,11 @@
         </div>
       </div>
     
-      <div class="sticky-note bg-[#fff1f2] border-2 border-rose-400 p-5 rotate-1 flex flex-col justify-between relative">
-        <div class="washi-tape-amber no-print"></div>
+      <div class="sticky-note bg-[#fff1f2] border-2 border-rose-400 p-5 rotate-2 flex flex-col justify-between relative">
+        <div class="magnet magnet-blue -top-2.5 right-6 no-print"></div>
         <div>
           <div class="flex items-center justify-between gap-2 mb-3">
-            <div class="w-10 h-10 rounded-lg bg-rose-100 text-rose-800 border border-slate-700/40 flex items-center justify-center text-lg shadow-xs">
+            <div class="w-10 h-10 rounded-lg bg-rose-100 text-rose-900 border border-slate-700/40 flex items-center justify-center text-lg shadow-xs">
               <i class="fa-solid fa-dice"></i>
             </div>
             <span class="font-hand font-bold text-sm px-2 py-0.5 border bg-rose-200 text-rose-950 border-rose-500 rounded shadow-2xs">

@@ -45,25 +45,29 @@ function renderPrintHeader(basics) {
 function renderMetrics(metricsList) {
   if (!metricsList || metricsList.length === 0) return '';
 
-  const colorStyles = {
-    amber: 'bg-paper-amber/80 text-slate-900 border-slate-700 shadow-[2px_3px_0px_#334155] -rotate-1',
-    teal: 'bg-paper-teal/80 text-teal-900 border-slate-700 shadow-[2px_3px_0px_#334155] rotate-1',
-    yellow: 'bg-paper-yellow/90 text-amber-950 border-slate-700 shadow-[2px_3px_0px_#334155] -rotate-1',
-    rose: 'bg-paper-rose/80 text-rose-950 border-slate-700 shadow-[2px_3px_0px_#334155] rotate-1'
-  };
+  const colorStyles = [
+    { bg: 'bg-paper-amber/90 text-slate-950 border-slate-800 shadow-[3px_4px_0px_#1e293b] -rotate-1.5', magnet: '<div class="magnet magnet-red -top-2.5 left-4 no-print"></div>' },
+    { bg: 'bg-paper-teal/90 text-teal-950 border-slate-800 shadow-[3px_4px_0px_#1e293b] rotate-1.5', magnet: '<div class="magnet magnet-green -top-2.5 right-4 no-print"></div>' },
+    { bg: 'bg-paper-yellow/95 text-amber-950 border-slate-800 shadow-[3px_4px_0px_#1e293b] -rotate-1', magnet: '<div class="magnet magnet-yellow -top-2.5 left-4 no-print"></div>' },
+    { bg: 'bg-paper-rose/90 text-rose-950 border-slate-800 shadow-[3px_4px_0px_#1e293b] rotate-2', magnet: '<div class="magnet magnet-blue -top-2.5 right-4 no-print"></div>' }
+  ];
 
-  const cardsHtml = metricsList.map((m) => {
-    const styleClass = colorStyles[m.color] || colorStyles.amber;
+  const cardsHtml = metricsList.map((m, idx) => {
+    const style = colorStyles[idx % colorStyles.length];
+    const isFirst = idx === 0;
+    const valueContent = isFirst ? `<span class="hand-drawn-circle">${m.value}</span>` : m.value;
+
     return `
-      <div class="${styleClass} p-3.5 border-2 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] flex flex-col justify-center items-center">
-        <div class="text-xl sm:text-2xl font-extrabold font-sans">${m.value}</div>
-        <div class="text-xs font-bold text-slate-700 leading-snug text-center mt-1">${m.label}</div>
+      <div class="${style.bg} relative p-3.5 border-2 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] flex flex-col justify-center items-center group hover:scale-105 transition-transform">
+        ${style.magnet}
+        <div class="text-xl sm:text-2xl font-extrabold font-sans py-1">${valueContent}</div>
+        <div class="text-xs font-bold text-slate-800 leading-snug text-center mt-1">${m.label}</div>
       </div>
     `;
   }).join('');
 
   return `
-    <div class="no-print mt-8 pt-6 border-t-2 border-dashed border-slate-300 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-center">
+    <div class="no-print mt-8 pt-6 border-t-2 border-dashed border-slate-300 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
       ${cardsHtml}
     </div>
   `;
@@ -101,7 +105,7 @@ function renderHero(basics, uiConfig = {}) {
     }
 
     return `
-      <a href="${p.url || '#'}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155] hover:bg-teal-50 hover:text-teal-900 transition">
+      <a href="${p.url || '#'}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-800 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2.5px_0px_#1e293b] hover:bg-teal-50 hover:text-teal-900 transition">
         ${iconHtml}<span>${p.network}</span>
       </a>
     `;
@@ -109,8 +113,8 @@ function renderHero(basics, uiConfig = {}) {
 
   const quote = uiConfig.quote;
   const quoteHtml = quote && quote.text ? `
-    <div class="no-print hidden xl:block absolute -right-8 -top-8 w-44 sticky-note bg-paper-yellow p-3 border-2 border-slate-700 rotate-6 shadow-md z-30">
-      <div class="washi-tape"></div>
+    <div class="no-print hidden xl:block absolute -right-8 -top-8 w-48 sticky-note bg-paper-yellow p-3.5 border-2 border-slate-800 rotate-6 shadow-md z-30">
+      <div class="washi-tape-amber"></div>
       <div class="font-hand font-bold text-slate-900 text-lg leading-tight">
         "${quote.text}"
       </div>
@@ -120,14 +124,15 @@ function renderHero(basics, uiConfig = {}) {
 
   return `
     <section id="over-mij" class="relative sketch-card-static p-6 sm:p-8 lg:p-10 print-break-avoid">
-      <div class="washi-tape-amber no-print"></div>
+      <div class="magnet magnet-red -top-2.5 left-10 no-print"></div>
+      <div class="magnet magnet-blue -top-2.5 right-10 no-print"></div>
 
       ${quoteHtml}
 
       <div class="flex flex-col md:flex-row items-start md:items-center gap-6 lg:gap-10">
         <div class="relative shrink-0 mx-auto md:mx-0">
-          <div class="relative p-2 bg-white border-2 border-slate-800 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-[4px_5px_0px_#1e293b] rotate-[-2.5deg] hover:rotate-0 transition-transform duration-300">
-            <div class="washi-tape no-print"></div>
+          <div class="relative p-2 bg-white border-2 border-slate-900 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-[4px_5px_0px_#0f172a] rotate-[-2.5deg] hover:rotate-0 transition-transform duration-300">
+            <div class="pushpin no-print"></div>
             
             <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-[220px_20px_240px_25px/20px_240px_25px_220px] overflow-hidden bg-gradient-to-br from-amber-100 via-teal-50 to-slate-200 border border-slate-300 relative group">
               <img 
@@ -172,7 +177,7 @@ function renderHero(basics, uiConfig = {}) {
 
           <div class="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3 text-xs sm:text-sm text-slate-700 font-bold">
             ${locStr ? `
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155]">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-800 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2.5px_0px_#1e293b]">
                 <i class="fa-solid fa-location-dot text-rose-500"></i>
                 <span>${locStr}</span>
               </div>
@@ -199,10 +204,10 @@ function renderCoachHighlights(highlights) {
   if (!highlights || highlights.length === 0) return '';
 
   const styles = [
-    { bg: 'bg-[#fffbeb]', border: 'border-amber-500', tape: 'washi-tape-amber', iconBg: 'bg-amber-100 text-amber-800', badge: 'bg-amber-200 text-amber-950 border-amber-500', rot: '-rotate-1' },
-    { bg: 'bg-[#f0fdf4]', border: 'border-emerald-500', tape: 'washi-tape', iconBg: 'bg-emerald-100 text-emerald-800', badge: 'bg-emerald-200 text-emerald-950 border-emerald-500', rot: 'rotate-1' },
-    { bg: 'bg-[#eef2ff]', border: 'border-indigo-500', tape: 'washi-tape', iconBg: 'bg-indigo-100 text-indigo-800', badge: 'bg-indigo-200 text-indigo-950 border-indigo-500', rot: '-rotate-1.5' },
-    { bg: 'bg-[#fff1f2]', border: 'border-rose-400', tape: 'washi-tape-amber', iconBg: 'bg-rose-100 text-rose-800', badge: 'bg-rose-200 text-rose-950 border-rose-500', rot: 'rotate-1' }
+    { bg: 'bg-[#fffbeb]', border: 'border-amber-500', fastener: '<div class="magnet magnet-red -top-2.5 left-6 no-print"></div>', iconBg: 'bg-amber-100 text-amber-900', badge: 'bg-amber-200 text-amber-950 border-amber-500', rot: '-rotate-2' },
+    { bg: 'bg-[#f0fdf4]', border: 'border-emerald-500', fastener: '<div class="washi-tape no-print"></div>', iconBg: 'bg-emerald-100 text-emerald-900', badge: 'bg-emerald-200 text-emerald-950 border-emerald-500', rot: 'rotate-1.5' },
+    { bg: 'bg-[#eef2ff]', border: 'border-indigo-500', fastener: '<div class="pushpin no-print"></div>', iconBg: 'bg-indigo-100 text-indigo-900', badge: 'bg-indigo-200 text-indigo-950 border-indigo-500', rot: '-rotate-1.5' },
+    { bg: 'bg-[#fff1f2]', border: 'border-rose-400', fastener: '<div class="magnet magnet-blue -top-2.5 right-6 no-print"></div>', iconBg: 'bg-rose-100 text-rose-900', badge: 'bg-rose-200 text-rose-950 border-rose-500', rot: 'rotate-2' }
   ];
 
   const iconFa = {
@@ -218,7 +223,7 @@ function renderCoachHighlights(highlights) {
     const faIcon = iconFa[item.icon] || 'fa-solid fa-lightbulb';
     return `
       <div class="sticky-note ${style.bg} border-2 ${style.border} p-5 ${style.rot} flex flex-col justify-between relative">
-        <div class="${style.tape} no-print"></div>
+        ${style.fastener}
         <div>
           <div class="flex items-center justify-between gap-2 mb-3">
             <div class="w-10 h-10 rounded-lg ${style.iconBg} border border-slate-700/40 flex items-center justify-center text-lg shadow-xs">
