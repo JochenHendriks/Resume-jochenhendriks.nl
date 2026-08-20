@@ -4,7 +4,10 @@
   "description": "Statische client-side CV website voor Jochen Hendriks (Senior IT Consultant, Scrum Master & Agile Coach)",
   "main": "build.js",
   "scripts": {
-    "build": "node build.js"
+    "build": "node build.js",
+    "start": "node serve.js",
+    "serve": "node serve.js",
+    "dev": "node build.js; node serve.js"
   },
   "keywords": [
     "json-resume",
