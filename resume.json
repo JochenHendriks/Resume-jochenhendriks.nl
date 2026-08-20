@@ -222,5 +222,32 @@
       "language": "Nederlands",
       "fluency": "Full Professional"
     }
+  ],
+  "publications": [
+    {
+      "name": "A Story About Misunderstood Requirements",
+      "publisher": "Scrum.org",
+      "releaseDate": "2018-07-30",
+      "url": "https://www.scrum.org/resources/story-about-misunderstood-requirements",
+      "summary": "In this Scrum Tapas video, Professional Scrum Trainer Chris Lukassen is joined by Intergamma's Scrum Master Jochen Hendriks to discuss how misinterpreted requirements can provide the completely wrong solution for the users, yet sound as if it was exactly what they wanted."
+    }
+  ],
+  "interests": [
+    {
+      "name": "Gaming",
+      "keywords": [
+        "Online gaming",
+        "Bordspellen",
+        "VR",
+        "LEGO"
+      ]
+    },
+    {
+      "name": "Sporten",
+      "keywords": [
+        "Schaatsen",
+        "Zwemmen"
+      ]
+    }
   ]
 }

@@ -557,6 +557,100 @@ function renderLanguages(langList) {
   `).join('');
 }
 
+function renderPublications(pubList) {
+  if (!pubList || pubList.length === 0) return '';
+
+  return pubList.map((pub, idx) => {
+    const rot = idx % 2 === 0 ? 'rotate-[-1.5deg]' : 'rotate-[1deg]';
+    return `
+      <div class="relative bg-[#fffdfa] border-2 border-dashed border-slate-300 p-6 pt-7 rounded shadow-sm ${rot} transition hover:rotate-0 hover:shadow-md print-break-avoid">
+        <div class="washi-tape-amber no-print"></div>
+
+        <!-- Hand-drawn Reading Glasses Doodle -->
+        <div class="no-print hidden sm:block absolute -right-3 -top-4 pointer-events-none rotate-12 z-20" title="Leestip!">
+          <svg class="w-10 h-7" viewBox="0 0 50 30" fill="none">
+            <circle cx="15" cy="15" r="9" stroke="#0d9488" stroke-width="2.2" fill="rgba(255,255,255,0.7)"/>
+            <circle cx="35" cy="15" r="9" stroke="#0d9488" stroke-width="2.2" fill="rgba(255,255,255,0.7)"/>
+            <path d="M24 13 Q25 9 26 13" stroke="#0d9488" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M6 14 L2 11" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
+            <path d="M44 14 L48 11" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="flex items-center justify-between gap-2 mb-2">
+          <span class="font-mono text-xs uppercase tracking-wider font-bold text-teal-900 bg-teal-100/80 px-2 py-0.5 rounded">
+            ${pub.publisher || 'Publicatie'}
+          </span>
+          ${pub.releaseDate ? `
+            <div class="date-highlight text-xs">
+              <i class="fa-regular fa-calendar text-[10px] opacity-70"></i>
+              <span>${formatDate(pub.releaseDate)}</span>
+            </div>
+          ` : ''}
+        </div>
+
+        <h3 class="font-mono font-bold text-slate-950 text-base sm:text-lg leading-snug mb-2">
+          ${pub.url ? `
+            <a href="${pub.url}" target="_blank" rel="noopener noreferrer" class="hover:text-teal-800 transition underline decoration-teal-600/50">
+              ${pub.name} <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1 text-teal-700"></i>
+            </a>
+          ` : pub.name}
+        </h3>
+
+        ${pub.summary ? `<p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">${pub.summary}</p>` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+function renderInterests(interestsList) {
+  if (!interestsList || interestsList.length === 0) return '';
+
+  const itemsHtml = interestsList.map((item, idx) => {
+    const isGaming = (item.name || '').toLowerCase().includes('gaming');
+    const angle = idx % 2 === 0 ? '-rotate-1' : 'rotate-1';
+    const icon = isGaming ? 'fa-solid fa-gamepad' : 'fa-solid fa-person-running';
+    
+    const stickyColors = ['sticky-yellow', 'sticky-emerald', 'sticky-indigo', 'sticky-rose'];
+    const rotations = ['rotate-[-2deg]', 'rotate-[3deg]', 'rotate-[-1.5deg]', 'rotate-[2.5deg]'];
+
+    const tagsHtml = (item.keywords || []).map((kw, kIdx) => {
+      const sColor = stickyColors[kIdx % stickyColors.length];
+      const sRot = rotations[kIdx % rotations.length];
+      return `
+        <span class="${sColor} ${sRot} inline-block px-3 py-1.5 rounded text-xs font-extrabold text-slate-900 shadow-xs transition hover:scale-110 hover:rotate-0">
+          ${kw}
+        </span>
+      `;
+    }).join('');
+
+    return `
+      <div class="relative space-y-3 ${angle}">
+        <div class="flex items-center gap-2">
+          <i class="${icon} text-teal-800 text-lg"></i>
+          <h3 class="font-hand font-bold text-2xl text-slate-950">${item.name}</h3>
+        </div>
+        <div class="flex flex-wrap gap-2.5 pt-1">
+          ${tagsHtml}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 p-5 sm:p-7 bg-amber-50/30 rounded-xl border-2 border-dashed border-amber-300/70">
+      <!-- Star marker doodle -->
+      <div class="no-print hidden sm:block absolute -right-3 -top-4 pointer-events-none rotate-12 z-20">
+        <svg class="w-8 h-8 text-amber-500" viewBox="0 0 40 40" fill="none">
+          <path d="M20 4 L23 14 L33 15 L25 22 L27 32 L19 26 L11 31 L14 21 L7 14 L17 13 Z" stroke="#d97706" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(251, 191, 36, 0.25)"/>
+        </svg>
+      </div>
+
+      ${itemsHtml}
+    </div>
+  `;
+}
+
 async function build() {
   console.log('🚀 Starten van asynchrone statische Flipchart CV Pre-render build...');
 
@@ -600,6 +694,8 @@ async function build() {
     html = html.replace('<!-- SLOT_CERTIFICATES -->', renderCertificates(resumeObj.certificates || []));
     html = html.replace('<!-- SLOT_EDUCATION -->', renderEducation(resumeObj.education || []));
     html = html.replace('<!-- SLOT_LANGUAGES -->', renderLanguages(resumeObj.languages || []));
+    html = html.replace('<!-- SLOT_PUBLICATIONS -->', renderPublications(resumeObj.publications || []));
+    html = html.replace('<!-- SLOT_INTERESTS -->', renderInterests(resumeObj.interests || []));
 
     await fs.promises.writeFile(outputPath, html, 'utf-8');
     console.log(`✅ Succes! Flipchart CV samengesteld en 100% statisch geschreven naar ${outputPath}`);
