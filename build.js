@@ -107,17 +107,21 @@ function renderHero(basics, metrics) {
     `;
   }).join('');
 
+  const quoteHtml = basics.quote && basics.quote.text ? `
+    <div class="no-print hidden xl:block absolute -right-8 -top-8 w-44 sticky-note bg-paper-yellow p-3 border-2 border-slate-700 rotate-6 shadow-md z-30">
+      <div class="washi-tape"></div>
+      <div class="font-hand font-bold text-slate-900 text-lg leading-tight">
+        "${basics.quote.text}"
+      </div>
+      ${basics.quote.author ? `<span class="block text-right font-hand text-xs text-slate-600 mt-1">— ${basics.quote.author}</span>` : ''}
+    </div>
+  ` : '';
+
   return `
     <section id="over-mij" class="relative sketch-card-static p-6 sm:p-8 lg:p-10 print-break-avoid">
       <div class="washi-tape-amber no-print"></div>
 
-      <div class="no-print hidden xl:block absolute -right-8 -top-8 w-44 sticky-note bg-paper-yellow p-3 border-2 border-slate-700 rotate-6 shadow-md z-30">
-        <div class="washi-tape"></div>
-        <div class="font-hand font-bold text-slate-900 text-lg leading-tight">
-          "Mensen boven processen, echte interactie boven dikke plannen!" ✨
-        </div>
-        <span class="block text-right font-hand text-xs text-slate-600 mt-1">— Agile Mindset</span>
-      </div>
+      ${quoteHtml}
 
       <div class="flex flex-col md:flex-row items-start md:items-center gap-6 lg:gap-10">
         <div class="relative shrink-0 mx-auto md:mx-0">
