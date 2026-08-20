@@ -372,16 +372,18 @@ function renderWork(workList) {
             
             ${assignmentStatusBadge}
 
-            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2 pr-14 sm:pr-16">
               <div>
-                <div class="flex items-center gap-2 flex-wrap pr-16 sm:pr-20">
-                  <h4 class="font-extrabold text-slate-950 text-base sm:text-lg">${assignment.client || 'Klantopdracht'}</h4>
-                  <span class="font-hand font-bold text-sm px-2 py-0.5 rounded bg-amber-200/90 text-slate-950 shadow-2xs">
-                    ${assignment.role || 'Consultant'}
-                  </span>
-                </div>
+                <h4 class="font-extrabold text-slate-950 text-base sm:text-lg leading-tight">
+                  ${assignment.client || 'Klantopdracht'}
+                </h4>
+                ${assignment.role ? `
+                  <p class="text-xs sm:text-sm font-bold text-teal-900 mt-0.5 font-sans">
+                    ${assignment.role}
+                  </p>
+                ` : ''}
               </div>
-              <time class="date-highlight text-xs self-start sm:self-auto mt-1 sm:mt-0">
+              <time class="date-highlight text-xs self-start sm:self-auto mt-1 sm:mt-0 shrink-0">
                 ${formatMonthYear(assignment.startDate)} – ${formatMonthYear(assignment.endDate) || 'Heden'}
               </time>
             </div>
