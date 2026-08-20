@@ -16,17 +16,6 @@ function formatDate(dateStr) {
   return dateStr;
 }
 
-function renderHeaderContact(basics) {
-  const linkedinProfile = (basics.profiles || []).find(p => (p.network || '').toLowerCase().includes('linkedin'));
-  const linkedinUrl = linkedinProfile ? linkedinProfile.url : 'https://www.linkedin.com/in/jochenh';
-  return `
-    <a id="btn-contact-nav" href="${linkedinUrl}" target="_blank" rel="noopener noreferrer" class="sketch-card inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-amber-300 hover:bg-amber-400 text-slate-950 text-xs sm:text-sm font-bold transition" title="Neem contact op via LinkedIn">
-      <i class="fa-brands fa-linkedin text-sm text-[#0a66c2]"></i>
-      <span>Contact</span>
-    </a>
-  `;
-}
-
 function renderPrintHeader(basics) {
   const name = basics.name || 'Jochen Hendriks';
   const label = basics.label || '';
@@ -59,8 +48,8 @@ function renderHero(basics) {
   const label = basics.label || '';
   const summary = basics.summary || '';
   const locStr = basics.location ? [basics.location.city, basics.location.region, basics.location.countryCode].filter(Boolean).join(', ') : '';
-  const email = basics.email || '';
-  const phone = basics.phone || '';
+  const linkedinProfile = (basics.profiles || []).find(p => (p.network || '').toLowerCase().includes('linkedin'));
+  const linkedinUrl = linkedinProfile ? linkedinProfile.url : 'https://www.linkedin.com/in/jochenh';
 
   const profilesHtml = (basics.profiles || []).map(p => {
     let iconClass = 'fa-globe';
@@ -145,6 +134,14 @@ function renderHero(basics) {
               </div>
             ` : ''}
             ${profilesHtml}
+            <a href="${linkedinUrl}" target="_blank" rel="noopener noreferrer" class="sketch-card inline-flex items-center gap-1.5 px-3.5 py-1 bg-amber-300 hover:bg-amber-400 text-slate-950 transition" title="Neem contact op via LinkedIn">
+              <i class="fa-brands fa-linkedin text-sm text-[#0a66c2]"></i>
+              <span>Contact</span>
+            </a>
+            <button onclick="window.print()" class="sketch-card no-print inline-flex items-center gap-1.5 px-3.5 py-1 bg-slate-900 hover:bg-teal-800 text-white transition" title="Print of bewaar dit CV als PDF">
+              <i class="fa-solid fa-print text-amber-400"></i>
+              <span>Print CV</span>
+            </button>
           </div>
         </div>
       </div>
@@ -455,7 +452,6 @@ function build() {
   let html = fs.readFileSync(templatePath, 'utf-8');
 
   // Pre-render pure static HTML into all slots
-  html = html.replace('<!-- SLOT_HEADER_CONTACT -->', renderHeaderContact(resumeObj.basics || {}));
   html = html.replace('<!-- SLOT_PRINT_HEADER -->', renderPrintHeader(resumeObj.basics || {}));
   html = html.replace('<!-- SLOT_HERO -->', renderHero(resumeObj.basics || {}));
   html = html.replace('<!-- SLOT_COACH_HIGHLIGHTS -->', renderCoachHighlights(resumeObj.coachHighlights || []));
