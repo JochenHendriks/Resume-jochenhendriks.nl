@@ -3,6 +3,7 @@
     "name": "Jochen Hendriks",
     "label": "Scrum Master bij Capgemini Nederland",
     "image": "profile.jpg",
+    "availableForWork": false,
     "email": "",
     "phone": "",
     "url": "https://www.jochenhendriks.nl",
@@ -16,15 +17,57 @@
       {
         "network": "LinkedIn",
         "username": "jochenh",
-        "url": "https://www.linkedin.com/in/jochenh"
+        "url": "https://www.linkedin.com/in/jochenh/"
       },
       {
-        "network": "Personal",
-        "username": "jochenhendriks.nl",
-        "url": "https://www.jochenhendriks.nl"
+        "network": "GitHub",
+        "username": "JochenHendriks",
+        "url": "https://github.com/JochenHendriks"
+      },
+      {
+        "network": "Meetup",
+        "username": "251564166",
+        "url": "https://www.meetup.com/nl-NL/members/251564166/"
+      },
+      {
+        "network": "Twitch",
+        "username": "supergr0ver_",
+        "url": "https://www.twitch.tv/supergr0ver_"
+      },
+      {
+        "network": "Steam",
+        "username": "SUPERGR0VER",
+        "url": "https://steamcommunity.com/id/SUPERGR0VER/"
+      },
+      {
+        "network": "Tweakers",
+        "username": "587601",
+        "url": "https://tweakers.net/gallery/587601/"
       }
     ]
   },
+  "metrics": [
+    {
+      "value": "6+ Jaar",
+      "label": "Scrum Master",
+      "color": "amber"
+    },
+    {
+      "value": "33+",
+      "label": "Liberating Structures",
+      "color": "teal"
+    },
+    {
+      "value": "LSP",
+      "label": "Certified Facilitator of the Lego® Serious Play® Method",
+      "color": "yellow"
+    },
+    {
+      "value": "PSM II",
+      "label": "Professional Scrum Master & DevOps",
+      "color": "rose"
+    }
+  ],
   "coachHighlights": [
     {
       "icon": "lego",

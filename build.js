@@ -42,7 +42,34 @@ function renderPrintHeader(basics) {
   `;
 }
 
-function renderHero(basics) {
+function renderMetrics(metricsList) {
+  if (!metricsList || metricsList.length === 0) return '';
+
+  const colorStyles = {
+    amber: 'bg-paper-amber/80 text-slate-900 border-slate-700 shadow-[2px_3px_0px_#334155] -rotate-1',
+    teal: 'bg-paper-teal/80 text-teal-900 border-slate-700 shadow-[2px_3px_0px_#334155] rotate-1',
+    yellow: 'bg-paper-yellow/90 text-amber-950 border-slate-700 shadow-[2px_3px_0px_#334155] -rotate-1',
+    rose: 'bg-paper-rose/80 text-rose-950 border-slate-700 shadow-[2px_3px_0px_#334155] rotate-1'
+  };
+
+  const cardsHtml = metricsList.map((m, idx) => {
+    const styleClass = colorStyles[m.color] || colorStyles.amber;
+    return `
+      <div class="${styleClass} p-3.5 border-2 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] flex flex-col justify-center items-center">
+        <div class="text-xl sm:text-2xl font-extrabold font-sans">${m.value}</div>
+        <div class="text-xs font-bold text-slate-700 leading-snug text-center mt-1">${m.label}</div>
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <div class="no-print mt-8 pt-6 border-t-2 border-dashed border-slate-300 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-center">
+      ${cardsHtml}
+    </div>
+  `;
+}
+
+function renderHero(basics, metrics) {
   const name = basics.name || 'Jochen Hendriks';
   const image = basics.image || 'profile.jpg';
   const label = basics.label || '';
@@ -52,16 +79,30 @@ function renderHero(basics) {
   const linkedinUrl = linkedinProfile ? linkedinProfile.url : 'https://www.linkedin.com/in/jochenh';
 
   const profilesHtml = (basics.profiles || []).map(p => {
-    let iconClass = 'fa-globe';
     const net = (p.network || '').toLowerCase();
-    if (net.includes('linkedin')) iconClass = 'fa-brands fa-linkedin';
-    else if (net.includes('github')) iconClass = 'fa-brands fa-github';
-    else if (net.includes('twitter') || net.includes('x')) iconClass = 'fa-brands fa-x-twitter';
-    else if (net.includes('youtube')) iconClass = 'fa-brands fa-youtube';
+    let iconHtml = '<i class="fa-solid fa-globe text-teal-700"></i>';
+
+    if (net.includes('linkedin')) {
+      iconHtml = '<i class="fa-brands fa-linkedin text-[#0a66c2]"></i>';
+    } else if (net.includes('github')) {
+      iconHtml = '<i class="fa-brands fa-github text-slate-800"></i>';
+    } else if (net.includes('meetup')) {
+      iconHtml = '<i class="fa-brands fa-meetup text-[#f64060]"></i>';
+    } else if (net.includes('twitch')) {
+      iconHtml = '<i class="fa-brands fa-twitch text-[#9146ff]"></i>';
+    } else if (net.includes('steam')) {
+      iconHtml = '<i class="fa-brands fa-steam text-[#171a21]"></i>';
+    } else if (net.includes('tweakers')) {
+      iconHtml = '<span class="inline-flex items-center justify-center w-4 h-4 bg-[#4c9bd4] text-white text-[10px] font-black rounded-[2px] leading-none shadow-2xs">T</span>';
+    } else if (net.includes('twitter') || net.includes('x')) {
+      iconHtml = '<i class="fa-brands fa-x-twitter text-slate-900"></i>';
+    } else if (net.includes('youtube')) {
+      iconHtml = '<i class="fa-brands fa-youtube text-rose-600"></i>';
+    }
 
     return `
       <a href="${p.url || '#'}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border-2 border-slate-700 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] shadow-[2px_2px_0px_#334155] hover:bg-teal-50 hover:text-teal-900 transition">
-        <i class="${iconClass}"></i><span>${p.network}</span>
+        ${iconHtml}<span>${p.network}</span>
       </a>
     `;
   }).join('');
@@ -97,14 +138,16 @@ function renderHero(basics) {
             </div>
           </div>
 
-          <div class="no-print absolute -bottom-6 -right-6 flex items-center text-teal-800 pointer-events-none">
-            <svg class="w-10 h-8 text-teal-700 rotate-12" viewBox="0 0 50 40" fill="none">
-              <path d="M8 30 C 20 35 35 25 42 10 M 34 8 L 43 10 L 41 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="font-hand text-base font-bold whitespace-nowrap bg-amber-200 border border-slate-700 px-2 py-0.5 rounded -rotate-6 shadow-xs">
-              Beschikbaar voor opdrachten!
-            </span>
-          </div>
+          ${basics.availableForWork ? `
+            <div class="no-print absolute -bottom-6 -right-6 flex items-center text-teal-800 pointer-events-none">
+              <svg class="w-10 h-8 text-teal-700 rotate-12" viewBox="0 0 50 40" fill="none">
+                <path d="M8 30 C 20 35 35 25 42 10 M 34 8 L 43 10 L 41 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="font-hand text-base font-bold whitespace-nowrap bg-amber-200 border border-slate-700 px-2 py-0.5 rounded -rotate-6 shadow-xs">
+                Beschikbaar voor opdrachten!
+              </span>
+            </div>
+          ` : ''}
         </div>
 
         <div class="flex-grow space-y-3.5 text-center md:text-left">
@@ -112,10 +155,6 @@ function renderHero(basics) {
             <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-950 tracking-tight">
               ${name}
             </h1>
-            
-            <span class="inline-flex items-center px-3 py-0.5 text-xs font-bold bg-teal-100 text-teal-950 border-2 border-slate-800 rounded-[255px_10px_225px_10px/10px_225px_10px_255px] rotate-1">
-              <i class="fa-solid fa-certificate mr-1.5 text-teal-700"></i> PSM II & SAFe Agilist
-            </span>
           </div>
 
           <p class="text-base sm:text-lg font-bold text-teal-900">
@@ -146,24 +185,7 @@ function renderHero(basics) {
         </div>
       </div>
 
-      <div class="no-print mt-10 pt-6 border-t-2 border-dashed border-slate-300 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-center">
-        <div class="bg-paper-amber/80 p-3 border-2 border-slate-700 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-[2px_3px_0px_#334155] -rotate-1">
-          <div class="text-xl sm:text-2xl font-extrabold text-slate-900 font-sans">12+ Jaar</div>
-          <div class="text-xs font-bold text-slate-700">IT & Consultancy</div>
-        </div>
-        <div class="bg-paper-teal/80 p-3 border-2 border-slate-700 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-[2px_3px_0px_#334155] rotate-1">
-          <div class="text-xl sm:text-2xl font-extrabold text-teal-900 font-sans">33+</div>
-          <div class="text-xs font-bold text-slate-700">Liberating Structures</div>
-        </div>
-        <div class="bg-paper-yellow/90 p-3 border-2 border-slate-700 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-[2px_3px_0px_#334155] -rotate-1">
-          <div class="text-xl sm:text-2xl font-extrabold text-amber-900 font-sans">LSP</div>
-          <div class="text-xs font-bold text-slate-700">Certified LEGO® Facilitator</div>
-        </div>
-        <div class="bg-paper-rose/80 p-3 border-2 border-slate-700 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-[2px_3px_0px_#334155] rotate-1">
-          <div class="text-xl sm:text-2xl font-extrabold text-rose-900 font-sans">Level 1 & 2</div>
-          <div class="text-xs font-bold text-slate-700">Deep Democracy Lewis</div>
-        </div>
-      </div>
+      ${renderMetrics(metrics || [])}
     </section>
   `;
 }
@@ -453,7 +475,7 @@ function build() {
 
   // Pre-render pure static HTML into all slots
   html = html.replace('<!-- SLOT_PRINT_HEADER -->', renderPrintHeader(resumeObj.basics || {}));
-  html = html.replace('<!-- SLOT_HERO -->', renderHero(resumeObj.basics || {}));
+  html = html.replace('<!-- SLOT_HERO -->', renderHero(resumeObj.basics || {}, resumeObj.metrics || []));
   html = html.replace('<!-- SLOT_COACH_HIGHLIGHTS -->', renderCoachHighlights(resumeObj.coachHighlights || []));
   html = html.replace('<!-- SLOT_WORK -->', renderWork(resumeObj.work || []));
   html = html.replace('<!-- SLOT_SKILLS -->', renderSkills(resumeObj.skills || []));
