@@ -155,7 +155,7 @@ function renderHero(basics, uiConfig = {}) {
             </div>
 
             <div class="text-center pt-2 pb-0.5">
-              <span class="font-hand font-bold text-slate-800 text-lg tracking-wide">Jochen ✌️</span>
+              <span class="font-hand font-bold text-slate-800 text-lg tracking-wide">Jochen</span>
             </div>
           </div>
 
@@ -214,25 +214,15 @@ function renderHero(basics, uiConfig = {}) {
 function renderCoachHighlights(highlights) {
   if (!highlights || highlights.length === 0) return '';
 
-  // Implemented with the exact pure CSS Folded Corner technique from dev.to
   const styles = [
-    { class: 'sticky-fold-br sticky-yellow -rotate-1', iconBg: 'bg-amber-200 text-amber-950', badge: 'bg-white/80 text-amber-950 border-amber-300' },
-    { class: 'sticky-fold-br sticky-emerald rotate-1', iconBg: 'bg-emerald-200 text-emerald-950', badge: 'bg-white/80 text-emerald-950 border-emerald-300' },
-    { class: 'sticky-fold-br sticky-indigo -rotate-1.5', iconBg: 'bg-indigo-200 text-indigo-950', badge: 'bg-white/80 text-indigo-950 border-indigo-300' },
-    { class: 'sticky-fold-br sticky-rose rotate-1.5', iconBg: 'bg-rose-200 text-rose-950', badge: 'bg-white/80 text-rose-950 border-rose-300' }
+    { class: 'sticky-fold-br sticky-yellow -rotate-1', badge: 'bg-white/80 text-amber-950 border-amber-300' },
+    { class: 'sticky-fold-br sticky-emerald rotate-1', badge: 'bg-white/80 text-emerald-950 border-emerald-300' },
+    { class: 'sticky-fold-br sticky-indigo -rotate-1.5', badge: 'bg-white/80 text-indigo-950 border-indigo-300' },
+    { class: 'sticky-fold-br sticky-rose rotate-1.5', badge: 'bg-white/80 text-rose-950 border-rose-300' }
   ];
-
-  const iconFa = {
-    lego: 'fa-solid fa-cubes-stacked',
-    sparkles: 'fa-solid fa-wand-magic-sparkles',
-    users: 'fa-solid fa-people-arrows',
-    dice: 'fa-solid fa-dice',
-    palette: 'fa-solid fa-pen-nib'
-  };
 
   const cardsHtml = highlights.map((item, idx) => {
     const style = styles[idx % styles.length];
-    const faIcon = iconFa[item.icon] || 'fa-solid fa-lightbulb';
     const isLsp = idx === 0;
 
     const starDoodle = isLsp ? `
@@ -248,9 +238,6 @@ function renderCoachHighlights(highlights) {
         ${starDoodle}
         <div>
           <div class="flex items-center justify-between gap-2 mb-3">
-            <div class="w-10 h-10 rounded-lg ${style.iconBg} flex items-center justify-center text-lg shadow-xs">
-              <i class="${faIcon}"></i>
-            </div>
             <span class="font-hand font-bold text-sm px-2 py-0.5 border ${style.badge} rounded shadow-2xs">
               ${item.badge}
             </span>
@@ -286,14 +273,13 @@ function renderCoachHighlights(highlights) {
 
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 flex items-center gap-2">
-            <i class="fa-solid fa-cubes-stacked text-amber-600"></i>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-950">
             Facilitatie & Werkvormen
           </h2>
         </div>
 
         <div class="no-print font-hand font-bold text-lg sm:text-xl text-slate-700 rotate-[-1.5deg] bg-amber-100 border border-amber-300 px-3 py-1 rounded shadow-xs">
-          💡 "100% betrokkenheid, 0% saaie vergaderingen!"
+          "100% betrokkenheid, 0% saaie vergaderingen!"
         </div>
       </div>
 
@@ -322,7 +308,6 @@ function renderWork(workList) {
                 <span class="font-bold text-slate-900 text-sm sm:text-base">${r.title}</span>
               </div>
               <div class="date-highlight text-sm self-start sm:self-auto">
-                <i class="fa-regular fa-calendar text-[10px] opacity-70"></i>
                 <span>${formatDate(r.startDate)} – ${formatDate(r.endDate)}</span>
               </div>
             </div>
@@ -356,7 +341,6 @@ function renderWork(workList) {
                 </div>
               </div>
               <div class="date-highlight text-xs self-start sm:self-auto">
-                <i class="fa-regular fa-calendar text-[10px] opacity-70"></i>
                 <span>${formatDate(assignment.startDate)} – ${formatDate(assignment.endDate)}</span>
               </div>
             </div>
@@ -403,7 +387,7 @@ function renderWork(workList) {
           <div class="flex items-center justify-between mb-4">
             <div class="flex items-center gap-2">
               <span class="font-hand font-bold text-lg text-teal-900">
-                📌 Klantopdrachten & Detacheringen (${job.assignments.length})
+                Klantopdrachten & Detacheringen (${job.assignments.length})
               </span>
             </div>
           </div>
@@ -444,7 +428,6 @@ function renderWork(workList) {
             ${singlePositionHtml}
           </div>
           <div class="date-highlight text-base sm:text-lg self-start sm:self-auto">
-            <i class="fa-regular fa-calendar text-xs opacity-70"></i>
             <span>${periodStr}</span>
           </div>
         </div>
@@ -475,10 +458,8 @@ function renderWork(workList) {
 
 function renderSkills(skillsList) {
   if (!skillsList || skillsList.length === 0) return '';
-  const iconList = ['fa-solid fa-compass-drafting', 'fa-solid fa-people-group', 'fa-solid fa-code-branch', 'fa-solid fa-chart-line'];
 
-  return skillsList.map((skillGroup, idx) => {
-    const icon = iconList[idx % iconList.length];
+  return skillsList.map(skillGroup => {
     const keywordsHtml = (skillGroup.keywords || []).map(kw => `
       <span class="px-2.5 py-1 bg-slate-50 border border-slate-200 rounded-md text-xs font-bold text-slate-800 hover:bg-amber-100 transition">
         ${kw}
@@ -489,12 +470,7 @@ function renderSkills(skillsList) {
       <div class="flipchart-sheet p-5 flex flex-col justify-between">
         <div>
           <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center gap-2.5">
-              <div class="w-8 h-8 rounded-lg bg-teal-100 text-teal-900 flex items-center justify-center text-sm shadow-xs">
-                <i class="${icon}"></i>
-              </div>
-              <h3 class="font-bold text-slate-950 text-base">${skillGroup.name}</h3>
-            </div>
+            <h3 class="font-bold text-slate-950 text-base">${skillGroup.name}</h3>
             <span class="font-hand font-bold text-sm px-2.5 py-0.5 rounded bg-amber-100 text-slate-900 border border-amber-200">
               ${skillGroup.level || 'Expert'}
             </span>
@@ -513,9 +489,6 @@ function renderCertificates(certs) {
 
   return certs.map(cert => `
     <div class="flipchart-sheet p-4 flex items-start gap-3">
-      <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 mt-0.5 text-sm shadow-xs">
-        <i class="fa-solid fa-award"></i>
-      </div>
       <div class="min-w-0">
         <h4 class="font-bold text-slate-950 text-xs sm:text-sm leading-snug">${cert.name}</h4>
         <div class="flex items-center gap-2 mt-1 text-xs text-slate-600 font-medium">
@@ -583,7 +556,6 @@ function renderPublications(pubList) {
           </span>
           ${pub.releaseDate ? `
             <div class="date-highlight text-xs">
-              <i class="fa-regular fa-calendar text-[10px] opacity-70"></i>
               <span>${formatDate(pub.releaseDate)}</span>
             </div>
           ` : ''}
@@ -592,7 +564,7 @@ function renderPublications(pubList) {
         <h3 class="font-mono font-bold text-slate-950 text-base sm:text-lg leading-snug mb-2">
           ${pub.url ? `
             <a href="${pub.url}" target="_blank" rel="noopener noreferrer" class="hover:text-teal-800 transition underline decoration-teal-600/50">
-              ${pub.name} <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1 text-teal-700"></i>
+              ${pub.name}
             </a>
           ` : pub.name}
         </h3>
@@ -607,9 +579,7 @@ function renderInterests(interestsList) {
   if (!interestsList || interestsList.length === 0) return '';
 
   const itemsHtml = interestsList.map((item, idx) => {
-    const isGaming = (item.name || '').toLowerCase().includes('gaming');
     const angle = idx % 2 === 0 ? '-rotate-1' : 'rotate-1';
-    const icon = isGaming ? 'fa-solid fa-gamepad' : 'fa-solid fa-person-running';
     
     const tagStyles = [
       'bg-[#fef08a] border border-amber-300 text-slate-900',
@@ -632,7 +602,6 @@ function renderInterests(interestsList) {
     return `
       <div class="relative space-y-3 ${angle}">
         <div class="flex items-center gap-2">
-          <i class="${icon} text-teal-800 text-lg"></i>
           <h3 class="font-hand font-bold text-2xl text-slate-950">${item.name}</h3>
         </div>
         <div class="flex flex-wrap gap-2.5 pt-1">
