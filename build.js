@@ -269,6 +269,27 @@ function renderWork(workList) {
   return workList.map(job => {
     const periodStr = `${formatDate(job.startDate)} – ${formatDate(job.endDate)}`;
 
+    // 1. Roles Timeline View (for employers with multiple positions like Capgemini & Intergamma)
+    let rolesTimelineHtml = '';
+    if (job.roles && Array.isArray(job.roles) && job.roles.length > 0) {
+      rolesTimelineHtml = `
+        <div class="mt-3.5 mb-4 pl-3.5 border-l-2 border-teal-700/60 space-y-2.5">
+          ${job.roles.map(r => `
+            <div class="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-xs sm:text-sm">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-teal-800 -ml-[20px] ring-4 ring-white shadow-2xs"></span>
+                <span class="font-bold text-slate-950 text-sm sm:text-base">${r.title}</span>
+              </div>
+              <span class="text-xs text-slate-700 font-bold bg-slate-50 px-2 py-0.5 border border-slate-300 rounded self-start sm:self-auto">
+                <i class="fa-regular fa-calendar text-[11px] mr-1 text-slate-500"></i>${formatDate(r.startDate)} – ${formatDate(r.endDate)}
+              </span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    // 2. Client Assignments & Detacheringen (e.g. Capgemini)
     let assignmentsHtml = '';
     if (job.assignments && Array.isArray(job.assignments) && job.assignments.length > 0) {
       const itemsHtml = job.assignments.map(assignment => `
@@ -322,22 +343,23 @@ function renderWork(workList) {
             </div>
           </div>
 
-          <div class="space-y-4 pl-0 sm:pl-3 sm:border-l-2 sm:border-slate-300 assignments-group">
+          <div class="space-y-4 pl-0 sm:pl-3 sm:border-l-2 sm:border-slate-300">
             ${itemsHtml}
           </div>
         </div>
       `;
     }
 
+    const singlePositionHtml = (!job.roles || job.roles.length === 0) && job.position ? `
+      <p class="text-sm font-bold text-teal-900 mt-0.5">${job.position}</p>
+    ` : '';
+
     return `
       <div class="sketch-card-static p-6 sm:p-7 print-break-avoid relative">
         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
           <div>
-            <div class="flex items-center gap-2 flex-wrap">
-              <h3 class="text-lg sm:text-xl font-extrabold text-slate-950">${job.position || 'Functie'}</h3>
-              ${job.url ? `<a href="${job.url}" target="_blank" rel="noopener noreferrer" class="text-xs text-teal-800 hover:underline font-bold flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> Website</a>` : ''}
-            </div>
-            <p class="text-sm font-bold text-teal-900 mt-0.5">${job.name || 'Werkgever'}</p>
+            <h3 class="text-xl sm:text-2xl font-extrabold text-slate-950">${job.name || 'Werkgever'}</h3>
+            ${singlePositionHtml}
           </div>
           <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 border border-slate-700 rounded text-xs font-bold text-slate-900 whitespace-nowrap self-start shadow-2xs">
             <i class="fa-regular fa-calendar text-slate-600"></i>
@@ -345,9 +367,11 @@ function renderWork(workList) {
           </div>
         </div>
 
+        ${rolesTimelineHtml}
+
         ${job.summary ? `<p class="text-sm text-slate-700 leading-relaxed mb-4">${job.summary}</p>` : ''}
 
-        ${job.highlights && job.highlights.length > 0 ? `
+        ${job.highlights && job.highlights.length > 0 && (!job.roles || job.roles.length === 0) ? `
           <div class="mb-4">
             <h5 class="font-hand font-bold text-base text-slate-600 mb-1.5">Kernresultaten & Impact:</h5>
             <ul class="space-y-1.5 text-xs sm:text-sm text-slate-800">

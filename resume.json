@@ -53,11 +53,23 @@
       "url": "https://www.capgemini.com/nl-nl/",
       "startDate": "2021-05",
       "endDate": "Present",
-      "summary": "Managing Consultant (juli 2026 - heden), Agile Trainer (januari 2026 - heden) en Senior Consultant (mei 2021 - juli 2026) bij Capgemini Nederland in Utrecht.",
-      "highlights": [
-        "Managing consultant (juli 2026 - heden)",
-        "Agile trainer (januari 2026 - heden)",
-        "Senior Consultant (mei 2021 - juli 2026)"
+      "summary": "Actief in consultancy, agile transformaties en teamcoaching.",
+      "roles": [
+        {
+          "title": "Managing Consultant",
+          "startDate": "2026-07",
+          "endDate": "Present"
+        },
+        {
+          "title": "Agile Trainer",
+          "startDate": "2026-01",
+          "endDate": "Present"
+        },
+        {
+          "title": "Senior Consultant",
+          "startDate": "2021-05",
+          "endDate": "2026-07"
+        }
       ],
       "assignments": [
         {
@@ -98,10 +110,18 @@
       "url": "https://www.intergamma.nl",
       "startDate": "2015-11",
       "endDate": "2021-05",
-      "summary": "Scrum Master (januari 2016 - mei 2021) en Business analist E-commerce (november 2015 - mei 2021) in Leusden, Utrecht.",
-      "highlights": [
-        "Scrum Master (januari 2016 - mei 2021)",
-        "Business analist E-commerce (november 2015 - mei 2021)"
+      "summary": "E-commerce platformontwikkeling, Scrum ceremonies en agile samenwerking in Leusden.",
+      "roles": [
+        {
+          "title": "Scrum Master",
+          "startDate": "2016-01",
+          "endDate": "2021-05"
+        },
+        {
+          "title": "Business analist E-commerce",
+          "startDate": "2015-11",
+          "endDate": "2021-05"
+        }
       ]
     },
     {
