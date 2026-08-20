@@ -286,12 +286,6 @@ function renderCoachHighlights(highlights) {
 
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
         <div>
-          <div class="flex items-center gap-2">
-            <span class="font-hand font-bold text-xl text-teal-900">#HandsOnAgileToolbox</span>
-            <svg class="no-print w-5 h-5 text-amber-500" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L14.5 8.5L21 9.5L16 14.5L17.5 21L12 17.5L6.5 21L8 14.5L3 9.5L9.5 8.5L12 2Z"/>
-            </svg>
-          </div>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 flex items-center gap-2">
             <i class="fa-solid fa-cubes-stacked text-amber-600"></i>
             Facilitatie & Werkvormen
