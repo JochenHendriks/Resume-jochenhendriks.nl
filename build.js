@@ -222,10 +222,6 @@ function renderHero(basics, uiConfig = {}) {
               </div>
             ` : ''}
             ${profilesHtml}
-            <a href="${linkedinUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-1 bg-amber-300 hover:bg-amber-400 text-slate-950 rounded-md shadow-xs transition" aria-label="Neem contact op via LinkedIn (opent in nieuw venster)">
-              <i class="fa-brands fa-linkedin text-sm text-[#0a66c2]" aria-hidden="true"></i>
-              <span>Contact</span>
-            </a>
             <button onclick="window.print()" class="no-print inline-flex items-center gap-1.5 px-3.5 py-1 bg-slate-900 hover:bg-teal-800 text-white rounded-md shadow-xs transition" aria-label="Print of bewaar dit CV als PDF">
               <i class="fa-solid fa-print text-amber-400" aria-hidden="true"></i>
               <span>Print CV</span>
