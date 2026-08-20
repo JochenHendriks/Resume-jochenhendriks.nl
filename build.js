@@ -222,10 +222,6 @@ function renderHero(basics, uiConfig = {}) {
               </div>
             ` : ''}
             ${profilesHtml}
-            <button onclick="window.print()" class="no-print inline-flex items-center gap-1.5 px-3.5 py-1 bg-slate-900 hover:bg-teal-800 text-white rounded-md shadow-xs transition" aria-label="Print of bewaar dit CV als PDF">
-              <i class="fa-solid fa-print text-amber-400" aria-hidden="true"></i>
-              <span>Print CV</span>
-            </button>
           </div>
         </div>
       </div>
