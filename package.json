@@ -1,0 +1,17 @@
+{
+  "name": "resume-jochenhendriks",
+  "version": "1.0.0",
+  "description": "Statische client-side CV website voor Jochen Hendriks (Senior IT Consultant, Scrum Master & Agile Coach)",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "keywords": [
+    "json-resume",
+    "cv",
+    "agile-coach",
+    "scrum-master"
+  ],
+  "author": "Jochen Hendriks",
+  "license": "MIT"
+}
