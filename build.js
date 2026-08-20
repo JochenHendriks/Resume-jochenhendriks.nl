@@ -480,7 +480,15 @@ function renderSkills(skillsList) {
   if (!skillsList || skillsList.length === 0) return '';
 
   const dotColorSchemes = ['voting-dot-red', 'voting-dot-blue', 'voting-dot-green', 'voting-dot-yellow'];
-  const washiColorSchemes = ['washi-keyword-yellow', 'washi-keyword-teal', 'washi-keyword-rose', 'washi-keyword-amber', ''];
+  const washiColorSchemes = [
+    'washi-keyword-yellow',
+    'washi-keyword-teal',
+    'washi-keyword-rose',
+    'washi-keyword-amber',
+    'washi-keyword-sky',
+    'washi-keyword-emerald',
+    'washi-keyword-purple'
+  ];
   const rotations = ['rotate-[-1.5deg]', 'rotate-[1.8deg]', 'rotate-[-2deg]', 'rotate-[1.2deg]', 'rotate-[-0.8deg]', 'rotate-[2.2deg]'];
   const dotOffsets = [
     'transform: translate(0px, 1px) rotate(-4deg);',
