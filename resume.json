@@ -47,30 +47,33 @@
   "work": [
     {
       "name": "Capgemini",
-      "position": "Managing Consultant / Agile Trainer / Senior Consultant",
+      "position": "Scrum Master",
       "url": "https://www.capgemini.com/nl-nl/",
-      "startDate": "2021-05",
+      "startDate": "2021-05-01",
       "summary": "Actief in team coaching, agile transformatie en het geven van trainingen",
       "roles": [
         {
           "title": "Managing Consultant",
-          "startDate": "2026-07"
+          "startDate": "2026-07-01",
+          "endDate": ""
         },
         {
           "title": "Agile Trainer",
-          "startDate": "2026-01"
+          "startDate": "2026-01-01",
+          "endDate": ""
         },
         {
           "title": "Senior Consultant",
-          "startDate": "2021-05",
-          "endDate": "2026-07"
+          "startDate": "2021-05-01",
+          "endDate": "2026-07-01"
         }
       ],
       "assignments": [
         {
           "client": "Politie Nederland",
           "role": "Scrum Master (via Capgemini)",
-          "startDate": "2025-10",
+          "startDate": "2025-10-01",
+          "endDate": "",
           "summary": "Scrum Master via Capgemini bij Politie Nederland in Utrecht.",
           "highlights": [
             "Begeleiden van teams bij wendbaar werken binnen het politiedomein."
@@ -79,8 +82,8 @@
         {
           "client": "ABN AMRO Bank N.V.",
           "role": "DevOps/Scrum Coach (via Capgemini)",
-          "startDate": "2023-02",
-          "endDate": "2025-07",
+          "startDate": "2023-02-01",
+          "endDate": "2025-07-01",
           "summary": "DevOps en Scrum coaching via Capgemini bij ABN AMRO Bank N.V.",
           "highlights": [
             "Coaching van DevOps- en Scrum-teams naar continue verbetering en hogere leverbetrouwbaarheid."
@@ -89,8 +92,8 @@
         {
           "client": "UWV",
           "role": "Scrum Master bij UWV Klant&Service (via Capgemini)",
-          "startDate": "2021-06",
-          "endDate": "2022-10",
+          "startDate": "2021-06-01",
+          "endDate": "2022-10-01",
           "summary": "Scrum Master van een team Functioneel Beheerders binnen UWV Klant&Service.",
           "highlights": [
             "Scrum Master van een team Functioneel Beheerders"
@@ -102,19 +105,19 @@
       "name": "Intergamma",
       "position": "Scrum Master & Business analist E-commerce",
       "url": "https://www.intergamma.nl",
-      "startDate": "2015-11",
-      "endDate": "2021-05",
-      "summary": "E-commerce platformontwikkeling, Scrum ceremonies en agile samenwerking in Leusden.",
+      "startDate": "2015-11-01",
+      "endDate": "2021-05-01",
+      "summary": "",
       "roles": [
         {
           "title": "Scrum Master",
-          "startDate": "2016-01",
-          "endDate": "2021-05"
+          "startDate": "2016-01-01",
+          "endDate": "2021-05-01"
         },
         {
           "title": "Business analist E-commerce",
-          "startDate": "2015-11",
-          "endDate": "2021-05"
+          "startDate": "2015-11-01",
+          "endDate": "2021-05-01"
         }
       ]
     },
@@ -122,8 +125,8 @@
       "name": "Hulpstudent.nl",
       "position": "Digitale Communicatie",
       "url": "https://www.hulpstudent.nl",
-      "startDate": "2011-07",
-      "endDate": "2015-10",
+      "startDate": "2011-07-01",
+      "endDate": "2015-10-01",
       "summary": "",
       "highlights": []
     }
@@ -196,18 +199,27 @@
   "education": [
     {
       "institution": "Hogeschool van Utrecht",
+      "url": "",
       "area": "Digitale communicatie",
       "studyType": "Bachelor of Communication",
-      "startDate": "2007",
-      "endDate": "2011",
-      "courses": []
+      "startDate": "2007-12-31",
+      "endDate": "2011-12-31",
+      "score": "",
+      "courses": [
+        "communicatie systemen",
+        "online marketing",
+        "projectmatig werken",
+        "usability onderzoek"
+      ]
     },
     {
       "institution": "Hogeschool van Arnhem en Nijmegen",
+      "url": "",
       "area": "Commerciele economie",
       "studyType": "HBO",
-      "startDate": "2006",
-      "endDate": "2007",
+      "startDate": "2006-12-31",
+      "endDate": "2007-12-31",
+      "score": "",
       "courses": []
     }
   ],
