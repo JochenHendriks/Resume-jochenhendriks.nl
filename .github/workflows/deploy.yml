@@ -1,9 +1,17 @@
-name: Build and Deploy to GitHub Pages
+name: Build and Auto-commit Static HTML
 
 on:
   push:
     branches:
       - main
+    paths:
+      - 'resume.json'
+      - 'ui-config.json'
+      - 'template.html'
+      - 'build.js'
+      - 'tailwind.config.js'
+      - 'src/**'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
 permissions:
@@ -16,14 +24,33 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
-      - name: Build static HTML (inject JSON)
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static HTML and compile Tailwind CSS
         run: npm run build
+
+      - name: Auto-commit updated index.html to main branch
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          if [[ -n $(git status -s index.html dist/tailwind.css) ]]; then
+            git add index.html dist/tailwind.css
+            git commit -m "chore(build): auto-generate static index.html from updated resume data [skip ci]"
+            git push origin main
+          else
+            echo "No changes in generated static HTML"
+          fi
 
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
@@ -32,4 +59,4 @@ jobs:
           publish_dir: ./
           publish_branch: gh-pages
           destination_dir: ./
-          exclude_assets: '.github,node_modules'
+          exclude_assets: '.github,node_modules,src'
