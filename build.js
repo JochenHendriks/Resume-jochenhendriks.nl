@@ -85,7 +85,7 @@ function renderMetrics(metricsList) {
     const valueContent = isFirst ? `
       <span class="marker-circle-red font-extrabold inline-block">
         ${m.value}
-        <img src="marker-circle.png" alt="" aria-hidden="true" class="select-none pointer-events-none" />
+        <img src="marker-circle-red.svg" alt="" aria-hidden="true" class="select-none pointer-events-none" />
       </span>
     ` : m.value;
 
