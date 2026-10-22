@@ -1,4 +1,4 @@
-name: Build and Auto-commit Static HTML
+name: Build and Deploy Static HTML to GitHub Pages
 
 on:
   push:
@@ -16,10 +16,23 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
 
     steps:
       - name: Checkout repository
@@ -37,8 +50,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build static HTML and compile Tailwind CSS
-        run: npm run build
+      - name: Generate static HTML
+        run: node build.js
 
       - name: Auto-commit updated index.html to main branch
         run: |
@@ -52,11 +65,11 @@ jobs:
             echo "No changes in generated static HTML"
           fi
 
-      - name: Deploy to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
-          publish_branch: gh-pages
-          destination_dir: ./
-          exclude_assets: '.github,node_modules,src'
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
