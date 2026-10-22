@@ -16,7 +16,7 @@
     "scrum-master"
   ],
   "author": "Jochen Hendriks",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "devDependencies": {
     "tailwindcss": "^3.4.19"
   }
