@@ -403,14 +403,14 @@ function renderWork(workList) {
             ${assignment.summary ? `<p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed font-sans">${escapeHtml(assignment.summary)}</p>` : ''}
 
             ${assignment.highlights && assignment.highlights.length > 0 ? `
-              <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-800">
+              <ul class="mt-3 space-y-2 text-xs sm:text-sm text-slate-800">
                 ${assignment.highlights.map(h => `
                   <li class="flex items-start gap-2">
                     <!-- Bold Hand-drawn Marker Checkmark -->
                     <svg class="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="M4 12 L9 17 L20 6" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span>${escapeHtml(h)}</span>
+                    <span><mark class="marker-highlight bg-transparent text-slate-900">${escapeHtml(h)}</mark></span>
                   </li>
                 `).join('')}
               </ul>
@@ -465,7 +465,7 @@ function renderWork(workList) {
             <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight">${escapeHtml(job.name || 'Werkgever')}</h3>
             ${singlePositionHtml}
           </div>
-          <time class="date-highlight text-base sm:text-lg self-start sm:self-auto">
+          <time class="date-highlight text-xs sm:text-sm self-start sm:self-auto">
             ${periodStr}
           </time>
         </div>
@@ -476,14 +476,14 @@ function renderWork(workList) {
 
         ${job.highlights && job.highlights.length > 0 && (!job.roles || job.roles.length === 0) ? `
           <div class="mb-4">
-            <h4 class="font-hand font-bold text-base text-slate-700 mb-1.5">Kernresultaten & Impact:</h4>
-            <ul class="space-y-1.5 text-xs sm:text-sm text-slate-800">
+            <div class="mb-1.5"><span class="marker-badge text-base">Kernresultaten &amp; Impact:</span></div>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-800">
               ${job.highlights.map(h => `
                 <li class="flex items-start gap-2">
                   <svg class="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M4 12 L9 17 L20 6" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
-                  <span>${escapeHtml(h)}</span>
+                  <span><mark class="marker-highlight bg-transparent text-slate-900">${escapeHtml(h)}</mark></span>
                 </li>
               `).join('')}
             </ul>
@@ -506,7 +506,7 @@ function renderProjects(projectsList) {
     const endStr = formatMonthYear(project.endDate);
     let periodStr = '';
     if (startStr && endStr) {
-      periodStr = `${startStr} – ${endStr}`;
+      periodStr = (startStr === endStr) ? startStr : `${startStr} – ${endStr}`;
     } else if (startStr) {
       periodStr = `${startStr} – Heden`;
     } else if (endStr) {
@@ -544,15 +544,15 @@ function renderProjects(projectsList) {
           ` : ''}
 
           ${project.highlights && project.highlights.length > 0 ? `
-            <div class="mb-2">
-              <h4 class="font-hand font-bold text-base text-slate-700 mb-1.5">Highlights:</h4>
-              <ul class="space-y-1.5 text-xs sm:text-sm text-slate-800">
+            <div class="mb-3">
+              <div class="mb-1.5"><span class="marker-badge text-base">Highlights:</span></div>
+              <ul class="space-y-2 text-xs sm:text-sm text-slate-800">
                 ${project.highlights.map(h => `
                   <li class="flex items-start gap-2">
                     <svg class="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="M4 12 L9 17 L20 6" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span>${escapeHtml(h)}</span>
+                    <span><mark class="marker-highlight bg-transparent text-slate-900">${escapeHtml(h)}</mark></span>
                   </li>
                 `).join('')}
               </ul>
@@ -887,6 +887,7 @@ async function build() {
     html = html.replace('<!-- SLOT_HERO -->', renderHero(resumeObj.basics || {}, uiConfig));
     html = html.replace('<!-- SLOT_COACH_HIGHLIGHTS -->', renderCoachHighlights(uiConfig.coachHighlights || []));
     html = html.replace('<!-- SLOT_WORK -->', renderWork(resumeObj.work || []));
+    html = html.replace('<!-- SLOT_PROJECTS -->', renderProjects(resumeObj.projects || []));
     html = html.replace('<!-- SLOT_SKILLS -->', renderSkills(resumeObj.skills || []));
     html = html.replace('<!-- SLOT_CERTIFICATES -->', renderCertificates(resumeObj.certificates || []));
     html = html.replace('<!-- SLOT_EDUCATION -->', renderEducation(resumeObj.education || []));

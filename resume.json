@@ -136,7 +136,57 @@
       "highlights": []
     }
   ],
-  "projects": [],
+  "projects": [
+    {
+      "name": "Team onboarding & Agile Kick-off (EFSA)",
+      "startDate": "2026-01-19",
+      "endDate": "2026-01-23",
+      "description": "Gefaciliteerde onboarding van een nieuw multidisciplinair Fusion-team. Focus op psychologische veiligheid, soft skills en een vliegende start in de Agile-werkwijze.",
+      "highlights": [
+        "Internationaal Europees team",
+        "Teamwaarden bepaald",
+        "Skill matrix opgesteld",
+        "Eerste backlog ingericht"
+      ],
+      "url": ""
+    },
+    {
+      "name": "Trainer Agile & Scrum (AS Watson)",
+      "startDate": "2024-03-01",
+      "endDate": "2024-03-31",
+      "description": "Eendaagse, op maat gemaakte Agile & Scrum workshop voor een multidisciplinair team om theorie direct toe te passen in de eigen werkomgeving.",
+      "highlights": [
+        "LEGO Scrum-simulatie",
+        "Agile Manifesto opgesteld",
+        "Estimation Game"
+      ],
+      "url": ""
+    },
+    {
+      "name": "Scrum Master Applied Innovation Exchange",
+      "startDate": "2023-10-01",
+      "endDate": "2024-03-31",
+      "description": "Coaching van een Scrum team bij de ontwikkeling van een AI-oplossing (GPT) voor automatische documentatie-analyse. Geborgde continuïteit bij een sterk fluctuerende teamsamenstelling.",
+      "highlights": [
+        "Veilige leeromgeving",
+        "Soepele team onboarding",
+        "Agile mindset versterkt"
+      ],
+      "url": ""
+    },
+    {
+      "name": "LSP Workshop Teambuilding (Welkoop)",
+      "startDate": "2026-06-08",
+      "endDate": "2026-06-08",
+      "description": "Eendaagse teambuilding workshop gefaciliteerd met de LEGO® Serious Play® methode om communicatie, besluitvorming en de onderlinge samenwerking binnen het team te stimuleren.",
+      "highlights": [
+        "Interactieve teambuilding",
+        "Gezamenlijke besluitvorming",
+        "Verbeterde samenwerking"
+      ],
+      "url": ""
+    }
+  ],
   "skills": [
     {
       "name": "Liberating Structures",

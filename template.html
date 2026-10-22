@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl" class="scroll-smooth">
+<html lang="nl" class="scroll-smooth overflow-x-hidden">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -123,6 +123,12 @@
   </style>
 
   <style>
+    /* ==================== GLOBAL VIEWPORT & OVERFLOW GUARDS ==================== */
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
     /* ==================== WARM FLIPCHART WORKSHOP PAPER ==================== */
     .flipchart-bg {
       background-color: #faf7f2;
@@ -503,25 +509,75 @@
     .print-only {
       display: none;
     }
-    /* Highlighter effect with multiply blend mode */
+    /* ==================== TACTILE DATE BADGE (NEUTRAL OFFICE / SPRINTS) ==================== */
     .date-highlight {
-      font-family: '"Caveat"', cursive, sans-serif;
-      font-weight: 700;
-      font-size: 1.15rem;
-      color: #0f172a;
-      background-color: rgba(254, 240, 138, 0.9);
-      mix-blend-mode: multiply;
-      padding: 0.05em 0.45em;
-      border-radius: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-weight: 600;
+      color: #334155;
+      background-color: rgba(255, 255, 255, 0.9);
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      padding: 0.12rem 0.55rem;
+      border-radius: 6px;
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
-      line-height: 1.2;
+      gap: 0.4rem;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+
+    .date-highlight::before {
+      content: '\f073';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      font-size: 0.85em;
+      color: #0d9488;
+      opacity: 0.85;
+    }
+
+    /* ==================== MAX.HN HIGHLIGHTER MARKER EFFECT ==================== */
+    /* Based on https://max.hn/blog/how-to-create-a-highlighter-marker-effect-in-css */
+    mark,
+    .marker-highlight {
+      margin: 0 -0.4em;
+      padding: 0.1em 0.4em;
+      border-radius: 0.8em 0.3em;
+      background: transparent;
+      background-image: linear-gradient(
+        to right,
+        rgba(255, 225, 0, 0.1),
+        rgba(255, 225, 0, 0.7) 4%,
+        rgba(255, 225, 0, 0.3)
+      );
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+
+    /* Marker Heading Badge (e.g. "Highlights:" / "Kernresultaten:") */
+    .marker-badge {
+      font-family: '"Caveat"', cursive, sans-serif;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 -0.4em;
+      padding: 0.1em 0.5em;
+      border-radius: 0.8em 0.3em;
+      background: transparent;
+      background-image: linear-gradient(
+        to right,
+        rgba(255, 225, 0, 0.15),
+        rgba(255, 225, 0, 0.85) 4%,
+        rgba(255, 225, 0, 0.45)
+      );
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+      display: inline-block;
+      transform: rotate(-1deg);
+      line-height: 1.25;
     }
   </style>
 </head>
 
-<body class="flipchart-bg text-slate-800 antialiased min-h-screen flex flex-col font-sans selection:bg-teal-200">
+<body class="flipchart-bg text-slate-800 antialiased min-h-screen flex flex-col font-sans selection:bg-teal-200 overflow-x-hidden w-full relative">
 
   <!-- Global SVG ClipPath Defs for Sticky Notes (Shared across all notes) -->
   <svg width="0" height="0" class="sr-only" aria-hidden="true">
@@ -565,7 +621,7 @@
     </aside>
 
     <!-- ==================== REALISTIC COFFEE STAIN (BEHIND / OVERLAPPING CONTENT) ==================== -->
-    <div class="no-print absolute -right-20 -top-8 w-72 sm:w-96 pointer-events-none select-none z-0 opacity-85 coffee-stain" aria-hidden="true">
+    <div class="no-print absolute right-0 sm:-right-20 -top-4 sm:-top-8 w-48 sm:w-72 lg:w-96 max-w-[60vw] sm:max-w-none pointer-events-none select-none z-0 opacity-70 sm:opacity-85 coffee-stain overflow-hidden sm:overflow-visible" aria-hidden="true">
       <img src="coffee-stain.png" alt="" class="w-full h-auto transform rotate-[12deg]">
     </div>
 
@@ -597,7 +653,7 @@
     </aside>
 
     <!-- ==================== MAIN CONTENT ==================== -->
-    <main class="flex-grow space-y-12">
+    <main class="relative z-10 flex-grow space-y-12">
 
     <!-- HERO SECTION / ASYMMETRICAL PROFILE CARD -->
     <!-- SLOT_HERO -->
