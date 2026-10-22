@@ -55,10 +55,25 @@ function escapeHtml(str) {
 function sanitizeUrl(url) {
   if (!url || typeof url !== 'string') return '#';
   const trimmed = url.trim();
-  if (/^(https?:\/\/|mailto:|tel:|\/|#)/i.test(trimmed)) {
+  if (/^(javascript|vbscript):/i.test(trimmed)) {
+    return '#';
+  }
+  if (/^(https?:\/\/|mailto:|tel:|\/|#|\.\/)/i.test(trimmed)) {
     return escapeHtml(trimmed);
   }
   return '#';
+}
+
+function sanitizeImageUrl(url) {
+  if (!url || typeof url !== 'string') return 'profile.jpg';
+  const trimmed = url.trim();
+  if (/^(javascript|vbscript):/i.test(trimmed)) {
+    return 'profile.jpg';
+  }
+  if (/^(https?:\/\/|\/|\.\/|data:image\/|[a-zA-Z0-9_\-\.\/]+\.(jpe?g|png|gif|webp|svg|avif))/i.test(trimmed)) {
+    return escapeHtml(trimmed);
+  }
+  return escapeHtml(trimmed);
 }
 
 function renderPrintHeader(basics) {
@@ -127,7 +142,7 @@ function renderMetrics(metricsList) {
 
 function renderHero(basics, uiConfig = {}) {
   const name = escapeHtml(basics.name || 'Jochen Hendriks');
-  const image = sanitizeUrl(basics.image || 'profile.jpg');
+  const image = sanitizeImageUrl(basics.image || 'profile.jpg');
   const label = escapeHtml(basics.label || '');
   const summary = escapeHtml(basics.summary || '');
   const locStr = basics.location ? [basics.location.city, basics.location.region, basics.location.countryCode].filter(Boolean).map(escapeHtml).join(', ') : '';
