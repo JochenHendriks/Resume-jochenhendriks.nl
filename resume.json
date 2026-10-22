@@ -185,6 +185,29 @@
         "Verbeterde samenwerking"
       ],
       "url": ""
+    },
+    {
+      "name": "self-hosted magic estimation tool",
+      "startDate": "2026-08-01",
+      "endDate": "2026-08-31",
+      "description": "Ontwikkeling van een self-hosted webapplicatie voor remote magic estimation, om agile teams te ondersteunen bij het efficiënt en visueel inschatten van werk.",
+      "highlights": [
+        "Next.js, Node.js & Express",
+        "Redis caching",
+        "Tailwind CSS"
+      ],
+      "url": ""
+    },
+    {
+      "name": "DORA Metrics Dashboard",
+      "startDate": "2026-09-01",
+      "endDate": "2026-09-30",
+      "description": "Lokaal dashboard ontworpen voor het aggregeren en visualiseren van DORA en Evidence-Based Management (EBM) metrics aan de hand van Jira export data.",
+      "highlights": [
+        "Python & Stlite",
+        "Focus op meetbare team flow"
+      ],
+      "url": ""
     }
   ],
   "skills": [
