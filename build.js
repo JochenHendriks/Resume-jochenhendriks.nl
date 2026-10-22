@@ -42,13 +42,32 @@ function formatFullDate(dateStr) {
   return dateStr;
 }
 
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function sanitizeUrl(url) {
+  if (!url || typeof url !== 'string') return '#';
+  const trimmed = url.trim();
+  if (/^(https?:\/\/|mailto:|tel:|\/|#)/i.test(trimmed)) {
+    return escapeHtml(trimmed);
+  }
+  return '#';
+}
+
 function renderPrintHeader(basics) {
-  const name = basics.name || 'Jochen Hendriks';
-  const label = basics.label || '';
-  const summary = basics.summary || '';
-  const locStr = basics.location ? [basics.location.city, basics.location.region, basics.location.countryCode].filter(Boolean).join(', ') : '';
+  const name = escapeHtml(basics.name || 'Jochen Hendriks');
+  const label = escapeHtml(basics.label || '');
+  const summary = escapeHtml(basics.summary || '');
+  const locStr = basics.location ? [basics.location.city, basics.location.region, basics.location.countryCode].filter(Boolean).map(escapeHtml).join(', ') : '';
   const linkedinProfile = (basics.profiles || []).find(p => (p.network || '').toLowerCase().includes('linkedin'));
-  const urlDisplay = basics.url ? basics.url.replace(/^https?:\/\//, '') : '';
+  const urlDisplay = basics.url ? escapeHtml(basics.url.replace(/^https?:\/\//, '')) : '';
 
   return `
     <div class="print-only mb-6 border-b-2 border-slate-800 pb-3">
@@ -60,7 +79,7 @@ function renderPrintHeader(basics) {
         </div>
         <div class="text-right text-xs space-y-1 text-slate-700 shrink-0 ml-4">
           ${locStr ? `<div><i class="fa-solid fa-location-dot mr-1.5 text-slate-400"></i>${locStr}</div>` : ''}
-          ${linkedinProfile ? `<div><i class="fa-brands fa-linkedin mr-1.5 text-slate-400"></i>${linkedinProfile.url.replace(/^https?:\/\//, '')}</div>` : ''}
+          ${linkedinProfile ? `<div><i class="fa-brands fa-linkedin mr-1.5 text-slate-400"></i>${escapeHtml((linkedinProfile.url || '').replace(/^https?:\/\//, ''))}</div>` : ''}
           ${urlDisplay ? `<div><i class="fa-solid fa-globe mr-1.5 text-slate-400"></i>${urlDisplay}</div>` : ''}
         </div>
       </div>
@@ -84,15 +103,15 @@ function renderMetrics(metricsList) {
 
     const valueContent = isFirst ? `
       <span class="marker-circle-red font-extrabold inline-block">
-        ${m.value}
+        ${escapeHtml(m.value)}
         <img src="marker-circle-red.svg" alt="" aria-hidden="true" class="select-none pointer-events-none" />
       </span>
-    ` : m.value;
+    ` : escapeHtml(m.value);
 
     return `
       <div class="${style.bg} border ${style.border} relative p-4 rounded-lg shadow-sm flex flex-col justify-center items-center hover:scale-105 transition-transform">
         <div class="text-xl sm:text-2xl font-extrabold font-sans py-1">${valueContent}</div>
-        <div class="text-xs font-bold text-slate-800 leading-snug text-center mt-1">${m.label}</div>
+        <div class="text-xs font-bold text-slate-800 leading-snug text-center mt-1">${escapeHtml(m.label)}</div>
       </div>
     `;
   }).join('');
@@ -107,13 +126,13 @@ function renderMetrics(metricsList) {
 }
 
 function renderHero(basics, uiConfig = {}) {
-  const name = basics.name || 'Jochen Hendriks';
-  const image = basics.image || 'profile.jpg';
-  const label = basics.label || '';
-  const summary = basics.summary || '';
-  const locStr = basics.location ? [basics.location.city, basics.location.region, basics.location.countryCode].filter(Boolean).join(', ') : '';
+  const name = escapeHtml(basics.name || 'Jochen Hendriks');
+  const image = sanitizeUrl(basics.image || 'profile.jpg');
+  const label = escapeHtml(basics.label || '');
+  const summary = escapeHtml(basics.summary || '');
+  const locStr = basics.location ? [basics.location.city, basics.location.region, basics.location.countryCode].filter(Boolean).map(escapeHtml).join(', ') : '';
   const linkedinProfile = (basics.profiles || []).find(p => (p.network || '').toLowerCase().includes('linkedin'));
-  const linkedinUrl = linkedinProfile ? linkedinProfile.url : 'https://www.linkedin.com/in/jochenh/';
+  const linkedinUrl = linkedinProfile ? sanitizeUrl(linkedinProfile.url) : 'https://www.linkedin.com/in/jochenh/';
 
   const profilesHtml = (basics.profiles || []).map(p => {
     const net = (p.network || '').toLowerCase();
@@ -138,8 +157,8 @@ function renderHero(basics, uiConfig = {}) {
     }
 
     return `
-      <a href="${p.url || '#'}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-slate-300 rounded-md shadow-xs hover:bg-teal-50 hover:text-teal-900 transition" aria-label="${p.network} profiel (opent in nieuw venster)">
-        ${iconHtml}<span>${p.network}</span>
+      <a href="${sanitizeUrl(p.url)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-slate-300 rounded-md shadow-xs hover:bg-teal-50 hover:text-teal-900 transition" aria-label="${escapeHtml(p.network)} profiel (opent in nieuw venster)">
+        ${iconHtml}<span>${escapeHtml(p.network)}</span>
       </a>
     `;
   }).join('');
@@ -152,9 +171,9 @@ function renderHero(basics, uiConfig = {}) {
           <div class="sticky-inner">
             <div class="sticky-content p-4 flex flex-col justify-center text-center">
               <div class="font-hand font-bold text-slate-900 text-base sm:text-lg leading-tight">
-                "${quote.text}"
+                "${escapeHtml(quote.text)}"
               </div>
-              ${quote.author ? `<span class="block text-right font-hand text-xs text-slate-600 mt-1">— ${quote.author}</span>` : ''}
+              ${quote.author ? `<span class="block text-right font-hand text-xs text-slate-600 mt-1">— ${escapeHtml(quote.author)}</span>` : ''}
             </div>
           </div>
         </div>
@@ -261,8 +280,8 @@ function renderCoachHighlights(highlights) {
           <div class="sticky-inner">
             <div class="sticky-content p-4 sm:p-5 flex flex-col justify-start text-left box-border">
               <div>
-                <h3 class="font-sans font-extrabold text-slate-950 text-base sm:text-lg leading-snug mb-1.5">${item.title}</h3>
-                <p class="font-sans text-xs sm:text-sm text-slate-800 leading-relaxed">${item.description}</p>
+                <h3 class="font-sans font-extrabold text-slate-950 text-base sm:text-lg leading-snug mb-1.5">${escapeHtml(item.title)}</h3>
+                <p class="font-sans text-xs sm:text-sm text-slate-800 leading-relaxed">${escapeHtml(item.description)}</p>
               </div>
             </div>
           </div>
@@ -332,7 +351,7 @@ function renderWork(workList) {
                   <path d="M4 3 Q16 2 17 4 Q18 16 16 17 Q3 18 3 16 Q2 4 4 3 Z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(204,251,241,0.7)"/>
                   <path d="M6 10 L9 13 L15 6" stroke="#0d9488" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <span class="font-bold text-slate-900 text-sm sm:text-base">${r.title}</span>
+                <span class="font-bold text-slate-900 text-sm sm:text-base">${escapeHtml(r.title)}</span>
               </div>
               <time class="date-highlight text-sm self-start sm:self-auto">
                 ${formatMonthYear(r.startDate)} – ${formatMonthYear(r.endDate) || 'Heden'}
@@ -368,11 +387,11 @@ function renderWork(workList) {
             <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-2 pr-14 sm:pr-16">
               <div>
                 <h4 class="font-extrabold text-slate-950 text-base sm:text-lg leading-tight">
-                  ${assignment.client || 'Klantopdracht'}
+                  ${escapeHtml(assignment.client || 'Klantopdracht')}
                 </h4>
                 ${assignment.role ? `
                   <p class="text-xs sm:text-sm font-bold text-teal-900 mt-0.5 font-sans">
-                    ${assignment.role}
+                    ${escapeHtml(assignment.role)}
                   </p>
                 ` : ''}
               </div>
@@ -381,7 +400,7 @@ function renderWork(workList) {
               </time>
             </div>
 
-            ${assignment.summary ? `<p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed font-sans">${assignment.summary}</p>` : ''}
+            ${assignment.summary ? `<p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed font-sans">${escapeHtml(assignment.summary)}</p>` : ''}
 
             ${assignment.highlights && assignment.highlights.length > 0 ? `
               <ul class="mt-3 space-y-1.5 text-xs sm:text-sm text-slate-800">
@@ -391,7 +410,7 @@ function renderWork(workList) {
                     <svg class="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="M4 12 L9 17 L20 6" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span>${h}</span>
+                    <span>${escapeHtml(h)}</span>
                   </li>
                 `).join('')}
               </ul>
@@ -401,7 +420,7 @@ function renderWork(workList) {
               <div class="mt-3.5 pt-3 border-t border-slate-200/70 flex flex-wrap gap-1.5">
                 ${assignment.keywords.map(kw => `
                   <span class="px-2 py-0.5 bg-white border border-slate-300 text-slate-700 rounded text-[11px] font-bold">
-                    ${kw}
+                    ${escapeHtml(kw)}
                   </span>
                 `).join('')}
               </div>
@@ -426,7 +445,7 @@ function renderWork(workList) {
     }
 
     const singlePositionHtml = (!job.roles || job.roles.length === 0) && job.position ? `
-      <p class="text-sm font-bold text-teal-900 mt-0.5">${job.position}</p>
+      <p class="text-sm font-bold text-teal-900 mt-0.5">${escapeHtml(job.position)}</p>
     ` : '';
 
     return `
@@ -443,7 +462,7 @@ function renderWork(workList) {
 
         <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
           <div class="flex items-center gap-3 flex-wrap">
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight">${job.name || 'Werkgever'}</h3>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight">${escapeHtml(job.name || 'Werkgever')}</h3>
             ${singlePositionHtml}
           </div>
           <time class="date-highlight text-base sm:text-lg self-start sm:self-auto">
@@ -453,7 +472,7 @@ function renderWork(workList) {
 
         ${rolesTimelineHtml}
 
-        ${job.summary ? `<p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-4 font-sans">${job.summary}</p>` : ''}
+        ${job.summary ? `<p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-4 font-sans">${escapeHtml(job.summary)}</p>` : ''}
 
         ${job.highlights && job.highlights.length > 0 && (!job.roles || job.roles.length === 0) ? `
           <div class="mb-4">
@@ -464,7 +483,7 @@ function renderWork(workList) {
                   <svg class="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M4 12 L9 17 L20 6" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
-                  <span>${h}</span>
+                  <span>${escapeHtml(h)}</span>
                 </li>
               `).join('')}
             </ul>
@@ -540,7 +559,7 @@ function renderSkills(skillsList) {
       const rot = rotations[(sIdx * 2 + kIdx) % rotations.length];
       return `
         <span class="washi-keyword ${wColor} ${rot} font-hand font-bold text-base sm:text-lg text-slate-900 shadow-2xs -mr-1.5 mb-2.5">
-          ${kw}
+          ${escapeHtml(kw)}
         </span>
       `;
     }).join('');
@@ -548,13 +567,13 @@ function renderSkills(skillsList) {
     return `
       <div class="space-y-3">
         <div class="flex flex-wrap items-center gap-3">
-          <h3 class="font-marker text-xl sm:text-2xl text-slate-950 tracking-wide">${skillGroup.name}</h3>
+          <h3 class="font-marker text-xl sm:text-2xl text-slate-950 tracking-wide">${escapeHtml(skillGroup.name)}</h3>
           
           <!-- Dot Voting Stickers Row -->
-          <div class="inline-flex items-center gap-1.5 px-2 py-0.5" aria-label="Niveau: ${skillGroup.level || 'Master'} (${dotCount} stemmen)">
+          <div class="inline-flex items-center gap-1.5 px-2 py-0.5" aria-label="Niveau: ${escapeHtml(skillGroup.level || 'Master')} (${dotCount} stemmen)">
             ${dotsHtml}
             <span class="font-hand font-bold text-base text-slate-700 ml-1">
-              (${skillGroup.level || 'Master'})
+              (${escapeHtml(skillGroup.level || 'Master')})
             </span>
           </div>
         </div>
@@ -576,12 +595,12 @@ function renderCertificates(certs) {
   return sortedCerts.map(cert => {
     const formattedDate = cert.date ? formatMonthYear(cert.date) : '';
     const titleHtml = cert.url ? `
-      <a href="${cert.url}" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1.5 font-bold text-slate-950 text-xs sm:text-sm leading-snug hover:text-teal-800 transition" aria-label="${cert.name} online verificatie (opent in nieuw venster)">
-        <span>${cert.name}</span>
+      <a href="${sanitizeUrl(cert.url)}" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1.5 font-bold text-slate-950 text-xs sm:text-sm leading-snug hover:text-teal-800 transition" aria-label="${escapeHtml(cert.name)} online verificatie (opent in nieuw venster)">
+        <span>${escapeHtml(cert.name)}</span>
         <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-teal-700 shrink-0 opacity-70 group-hover:opacity-100 transition-opacity" aria-hidden="true"></i>
       </a>
     ` : `
-      <h3 class="font-bold text-slate-950 text-xs sm:text-sm leading-snug">${cert.name}</h3>
+      <h3 class="font-bold text-slate-950 text-xs sm:text-sm leading-snug">${escapeHtml(cert.name)}</h3>
     `;
 
     return `
@@ -589,12 +608,12 @@ function renderCertificates(certs) {
         <div class="min-w-0 flex-1">
           ${titleHtml}
           <div class="flex items-center gap-2 mt-1 text-xs text-slate-600 font-medium flex-wrap">
-            <span class="font-bold text-teal-800">${cert.issuer || ''}</span>
+            <span class="font-bold text-teal-800">${escapeHtml(cert.issuer || '')}</span>
             ${formattedDate ? `<span>•</span><time class="font-bold text-slate-700">${formattedDate}</time>` : ''}
           </div>
         </div>
         ${cert.url ? `
-          <a href="${cert.url}" target="_blank" rel="noopener noreferrer" class="no-print shrink-0 p-1 text-slate-400 hover:text-teal-800 hover:bg-teal-50 rounded transition" aria-label="Bekijk badge op externe website (opent in nieuw venster)">
+          <a href="${sanitizeUrl(cert.url)}" target="_blank" rel="noopener noreferrer" class="no-print shrink-0 p-1 text-slate-400 hover:text-teal-800 hover:bg-teal-50 rounded transition" aria-label="Bekijk badge op externe website (opent in nieuw venster)">
             <i class="fa-solid fa-award text-sm text-teal-700" aria-hidden="true"></i>
           </a>
         ` : ''}
@@ -614,13 +633,13 @@ function renderEducation(eduList) {
     return `
       <article class="flipchart-sheet p-4">
         <div class="flex items-center justify-between gap-2">
-          <h3 class="font-bold text-slate-950 text-xs sm:text-sm">${edu.studyType || ''} ${edu.area ? '– ' + edu.area : ''}</h3>
+          <h3 class="font-bold text-slate-950 text-xs sm:text-sm">${escapeHtml(edu.studyType || '')} ${edu.area ? '– ' + escapeHtml(edu.area) : ''}</h3>
           ${dateRangeStr ? `<time class="text-xs text-slate-600 font-bold shrink-0">${dateRangeStr}</time>` : ''}
         </div>
-        <p class="text-xs font-bold text-teal-900 mt-1">${edu.institution || ''}</p>
+        <p class="text-xs font-bold text-teal-900 mt-1">${escapeHtml(edu.institution || '')}</p>
         ${edu.courses && edu.courses.length > 0 ? `
           <div class="mt-2 text-[11px] text-slate-600 flex flex-wrap gap-1 font-medium">
-            ${edu.courses.map(c => `<span class="bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded">${c}</span>`).join('')}
+            ${edu.courses.map(c => `<span class="bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded">${escapeHtml(c)}</span>`).join('')}
           </div>
         ` : ''}
       </article>
@@ -633,8 +652,8 @@ function renderLanguages(langList) {
 
   return langList.map(lang => `
     <div class="flex items-center justify-between text-xs sm:text-sm py-1.5 border-b border-dashed border-slate-300 last:border-0">
-      <span class="font-bold text-slate-900">${lang.language}</span>
-      <span class="font-hand font-bold text-base text-teal-800">${lang.fluency}</span>
+      <span class="font-bold text-slate-900">${escapeHtml(lang.language)}</span>
+      <span class="font-hand font-bold text-base text-teal-800">${escapeHtml(lang.fluency)}</span>
     </div>
   `).join('');
 }
@@ -661,7 +680,7 @@ function renderPublications(pubList) {
 
         <div class="flex items-center justify-between gap-2 mb-2">
           <span class="font-mono text-xs uppercase tracking-wider font-bold text-teal-900 bg-teal-100/80 px-2 py-0.5 rounded">
-            ${pub.publisher || 'Publicatie'}
+            ${escapeHtml(pub.publisher || 'Publicatie')}
           </span>
           ${pub.releaseDate ? `
             <time class="date-highlight text-xs">
@@ -672,13 +691,13 @@ function renderPublications(pubList) {
 
         <h3 class="font-mono font-bold text-slate-950 text-base sm:text-lg leading-snug mb-2">
           ${pub.url ? `
-            <a href="${pub.url}" target="_blank" rel="noopener noreferrer" class="hover:text-teal-800 transition underline decoration-teal-600/50" aria-label="${pub.name} (opent in nieuw venster)">
-              ${pub.name}
+            <a href="${sanitizeUrl(pub.url)}" target="_blank" rel="noopener noreferrer" class="hover:text-teal-800 transition underline decoration-teal-600/50" aria-label="${escapeHtml(pub.name)} (opent in nieuw venster)">
+              ${escapeHtml(pub.name)}
             </a>
-          ` : pub.name}
+          ` : escapeHtml(pub.name)}
         </h3>
 
-        ${pub.summary ? `<p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">${pub.summary}</p>` : ''}
+        ${pub.summary ? `<p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">${escapeHtml(pub.summary)}</p>` : ''}
       </article>
     `;
   }).join('');
@@ -715,7 +734,7 @@ function renderInterests(interestsList) {
       const sStyle = tagStyles[kIdx % tagStyles.length];
       return `
         <span class="${sStyle} border inline-block px-3 py-1 rounded-md text-xs font-bold shadow-2xs hover:scale-105 transition-transform">
-          ${kw}
+          ${escapeHtml(kw)}
         </span>
       `;
     }).join('');
@@ -725,7 +744,7 @@ function renderInterests(interestsList) {
         <div class="${tapeClass} no-print" aria-hidden="true"></div>
         <div class="flex items-center gap-2 mb-3">
           ${iconHtml}
-          <h3 class="font-bold text-slate-950 text-base sm:text-lg">${item.name}</h3>
+          <h3 class="font-bold text-slate-950 text-base sm:text-lg">${escapeHtml(item.name)}</h3>
         </div>
         <div class="flex flex-wrap gap-2">
           ${tagsHtml}
