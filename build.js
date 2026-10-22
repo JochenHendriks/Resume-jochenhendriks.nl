@@ -496,6 +496,94 @@ function renderWork(workList) {
   }).join('');
 }
 
+function renderProjects(projectsList) {
+  if (!projectsList || !Array.isArray(projectsList) || projectsList.length === 0) return '';
+
+  const cardsHtml = projectsList.map((project, idx) => {
+    const rot = idx % 2 === 0 ? 'rotate-[-0.8deg]' : 'rotate-[0.8deg]';
+    const tapeClass = idx % 2 === 0 ? 'washi-tape-amber' : 'washi-tape';
+    const startStr = formatMonthYear(project.startDate);
+    const endStr = formatMonthYear(project.endDate);
+    let periodStr = '';
+    if (startStr && endStr) {
+      periodStr = `${startStr} – ${endStr}`;
+    } else if (startStr) {
+      periodStr = `${startStr} – Heden`;
+    } else if (endStr) {
+      periodStr = endStr;
+    }
+
+    return `
+      <article class="relative bg-[#fffdfa] border border-slate-300 p-6 pt-7 rounded-lg shadow-sm ${rot} hover:rotate-0 hover:shadow-md transition duration-200 print-break-avoid flex flex-col justify-between">
+        <div class="${tapeClass} no-print" aria-hidden="true"></div>
+
+        <div>
+          <div class="flex items-start justify-between gap-3 mb-1">
+            <h3 class="font-sans font-extrabold text-slate-950 text-lg sm:text-xl leading-snug">
+              ${escapeHtml(project.name)}
+            </h3>
+            ${project.url ? `
+              <a href="${sanitizeUrl(project.url)}" target="_blank" rel="noopener noreferrer" class="text-teal-700 hover:text-teal-900 p-1 shrink-0 transition" aria-label="${escapeHtml(project.name)} bekijken (opent in nieuw venster)">
+                <i class="fa-solid fa-arrow-up-right-from-square text-sm" aria-hidden="true"></i>
+              </a>
+            ` : ''}
+          </div>
+
+          ${periodStr ? `
+            <div class="mb-3">
+              <time class="date-highlight text-xs inline-block">
+                ${periodStr}
+              </time>
+            </div>
+          ` : ''}
+
+          ${project.description ? `
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4 font-sans">
+              ${escapeHtml(project.description)}
+            </p>
+          ` : ''}
+
+          ${project.highlights && project.highlights.length > 0 ? `
+            <div class="mb-2">
+              <h4 class="font-hand font-bold text-base text-slate-700 mb-1.5">Highlights:</h4>
+              <ul class="space-y-1.5 text-xs sm:text-sm text-slate-800">
+                ${project.highlights.map(h => `
+                  <li class="flex items-start gap-2">
+                    <svg class="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M4 12 L9 17 L20 6" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>${escapeHtml(h)}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+          ` : ''}
+        </div>
+      </article>
+    `;
+  }).join('');
+
+  return `
+    <section id="projecten" class="space-y-6 print-break-avoid relative" aria-labelledby="projecten-heading">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b-2 border-slate-300 relative">
+        <div>
+          <h2 id="projecten-heading" class="text-2xl sm:text-3xl font-marker tracking-wide text-slate-900">
+            Projecten & Initiatieven
+          </h2>
+        </div>
+
+        <div class="no-print font-hand font-bold text-lg sm:text-xl text-slate-700 rotate-[-1deg] bg-amber-100 border border-amber-300 px-3 py-1 rounded shadow-xs">
+          "Van idee tot tastbare impact!"
+        </div>
+      </div>
+
+      <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        ${cardsHtml}
+      </div>
+    </section>
+  `;
+}
+
 function renderSkills(skillsList) {
   if (!skillsList || skillsList.length === 0) return '';
 
