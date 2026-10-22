@@ -18,7 +18,7 @@
   "author": "Jochen Hendriks",
   "license": "UNLICENSED",
   "devDependencies": {
-    "tailwindcss": "^3.4.19"
+    "tailwindcss": "^4.3.3"
   },
   "overrides": {
     "braces": "^3.0.3"
