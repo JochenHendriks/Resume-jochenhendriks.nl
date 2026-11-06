@@ -245,6 +245,12 @@
   ],
   "certificates": [
     {
+      "name": "Certified AI-Native Foundations Professional",
+      "date": "2026-11-06",
+      "issuer": "AI-Native Training by Scaled Agile, Inc.",
+      "url": "https://www.credly.com/badges/ed125dfd-d404-45bc-b4fc-caaddfb59547"
+    },
+    {
       "name": "Certified Facilitator of the Lego® Serious Play® Method",
       "date": "2026-05-12",
       "issuer": "LSP method",
