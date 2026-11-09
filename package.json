@@ -7,7 +7,7 @@
     "build": "node build.js",
     "start": "node serve.js",
     "serve": "node serve.js",
-    "dev": "node build.js; node serve.js"
+    "dev": "node build.js && node serve.js"
   },
   "keywords": [
     "json-resume",

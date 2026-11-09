@@ -51,8 +51,8 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          if [[ -n $(git status -s index.html dist/tailwind.css) ]]; then
-            git add index.html dist/tailwind.css
+          if [[ -n $(git status -s index.html) ]]; then
+            git add index.html
             git commit -m "chore(build): auto-generate static index.html from updated resume data [skip ci]"
             git push origin main
           else
